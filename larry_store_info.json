@@ -3,6 +3,11 @@
   "display_name": "larry-pws-navigator-v2",
   "created_at": "2025-11-17 21:35:00",
   "api_version": "v2",
-  "total_chunks": 147,
-  "last_updated": "2025-11-17 23:53:38"
+  "total_chunks": 2988,
+  "pws_library_chunks": 980,
+  "course_material_chunks": 2008,
+  "total_words": "2.66M",
+  "last_updated": "2025-11-18 00:30:00",
+  "upload_status": "complete",
+  "knowledge_base_version": "v2.0"
 }
