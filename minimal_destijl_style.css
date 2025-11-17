@@ -1,0 +1,169 @@
+/*
+Minimal De Stijl-Inspired CSS for Larry Navigator
+Focus: Hyper-modern, minimal, clean, and responsive.
+Colors: Primary (Black, White), Accent (Red, Blue, Yellow - used sparingly for key indicators).
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
+
+/* 1. Global Styling */
+* {
+    font-family: 'IBM Plex Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FFFFFF;
+}
+
+/* 2. Streamlit Overrides for Minimal Layout */
+
+/* Ensure full width and remove default padding/margins */
+.main {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Remove the default Streamlit header/footer */
+[data-testid="stHeader"], [data-testid="stToolbar"] {
+    display: none !important;
+}
+
+/* Main content area - single column focus */
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 800px; /* Constrain width for better readability */
+    margin: 0 auto; /* Center the content */
+}
+
+/* Sidebar: Use it for configuration, but make it minimal */
+[data-testid="stSidebar"] {
+    background: #F8F8F8;
+    border-right: 2px solid #000000; /* Minimal De Stijl line */
+    padding-top: 2rem;
+}
+
+/* 3. De Stijl Header - Minimalist Take */
+.destijl-header {
+    background: #FFFFFF;
+    border-bottom: 2px solid #000000;
+    padding: 1.5rem 0;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.destijl-header h1 {
+    color: #000000;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.destijl-header p {
+    color: #333333;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    font-weight: 400;
+}
+
+/* 4. Unified Message Styling (Reduced from 7 to 3 types) */
+
+/* Type 1: User Input (Minimal) */
+.st-chat-message-user {
+    background: #F0F0F0;
+    border-left: 4px solid #000000;
+    padding: 12px 16px;
+    margin: 1rem 0;
+    border-radius: 0;
+}
+
+/* Type 2: Larry's Core Response (Minimalist White/Black) */
+.st-chat-message-assistant {
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-left: 4px solid #0066CC; /* Blue accent for core response */
+    padding: 16px 20px;
+    margin: 1rem 0;
+    line-height: 1.6;
+    border-radius: 0;
+    box-shadow: none; /* Remove heavy shadows */
+}
+
+/* Type 3: Critical/Action/Framework (Accent Block) */
+.accent-block {
+    background: #FFD700; /* Yellow accent */
+    color: #000000;
+    border-left: 6px solid #E30613; /* Red accent line */
+    padding: 16px 20px;
+    margin: 1.5rem 0;
+    font-weight: 600;
+    border-radius: 0;
+}
+
+.accent-block h3 {
+    color: #000000;
+    margin-top: 0;
+}
+
+/* 5. Key Indicators (Sidebar/Top Bar) */
+
+/* Minimalist Persona Badge */
+.minimal-persona-badge {
+    background: #000000;
+    color: #FFFFFF;
+    padding: 8px 12px;
+    font-weight: 600;
+    font-size: 0.9em;
+    margin-bottom: 1rem;
+    border-left: 4px solid #E30613; /* Red accent */
+    display: inline-block;
+}
+
+/* Minimalist Uncertainty/Risk Indicator */
+.minimal-indicator {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.2em;
+    font-weight: 700;
+    padding: 4px 0;
+    border-bottom: 1px solid #CCCCCC;
+    margin-bottom: 0.5rem;
+}
+
+.minimal-indicator span {
+    color: #E30613; /* Red for high impact */
+}
+
+/* 6. Response UX Improvements */
+
+/* Progress Bar Styling (Streamlit default is fine, but ensure it's visible) */
+.stProgress > div > div > div > div {
+    background-color: #0066CC; /* Blue progress bar */
+}
+
+/* Collapsible Section Styling (Streamlit Expander) */
+[data-testid="stExpander"] {
+    border: 1px solid #000000;
+    border-radius: 0;
+    margin: 1rem 0;
+}
+
+[data-testid="stExpander"] > div:first-child {
+    background-color: #F8F8F8;
+    border-bottom: 1px solid #000000;
+}
+
+/* 7. Mobile Responsiveness (Streamlit is generally responsive, but the single column ensures it) */
+@media (max-width: 600px) {
+    .block-container {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    .destijl-header h1 {
+        font-size: 2rem;
+    }
+}
