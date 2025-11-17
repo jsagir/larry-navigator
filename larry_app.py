@@ -12,6 +12,12 @@ from google import genai
 from google.genai import types
 import json
 from larry_web_search import integrate_search_with_response
+from larry_framework_recommender import (
+    recommend_frameworks,
+    calculate_uncertainty_risk,
+    get_framework_notification,
+    get_all_frameworks_sorted
+)
 
 # Load environment variables
 def load_env():
@@ -367,46 +373,102 @@ st.markdown("""
         border: 2px solid #000000;
     }
 
-    /* Portfolio Balance Tracker */
-    .portfolio-tracker {
+    /* Uncertainty vs Risk Paradigm */
+    .uncertainty-risk-tracker {
         background: #FFFFFF;
         padding: 20px;
         border: 4px solid #000000;
         margin: 1.5rem 0;
     }
 
-    .portfolio-tracker h4 {
+    .uncertainty-risk-tracker h4 {
         margin: 0 0 16px 0;
         font-size: 0.9em;
         letter-spacing: 0.1em;
-    }
-
-    .portfolio-grid {
-        display: grid;
-        grid-template-rows: auto auto auto;
-        gap: 4px;
-        background: #000000;
-        padding: 4px;
-    }
-
-    .portfolio-item {
-        padding: 12px;
-        color: #FFFFFF;
-        font-weight: 600;
-        font-size: 0.9em;
-    }
-
-    .portfolio-item.now {
-        background: #0066CC;
-    }
-
-    .portfolio-item.new {
-        background: #FFD700;
         color: #000000;
     }
 
-    .portfolio-item.next {
-        background: #E30613;
+    .uncertainty-risk-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    .uncertainty-box, .risk-box {
+        padding: 16px 12px;
+        border: 3px solid #000000;
+        text-align: center;
+    }
+
+    .uncertainty-box {
+        background: linear-gradient(135deg, #E30613 0%, #FF6B6B 100%);
+        color: #FFFFFF;
+    }
+
+    .risk-box {
+        background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        color: #000000;
+    }
+
+    .metric-label {
+        font-size: 0.75em;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+    }
+
+    .metric-value {
+        font-size: 1.8em;
+        font-weight: 700;
+        font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .metric-level {
+        font-size: 0.8em;
+        margin-top: 4px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    /* Framework Recommendations */
+    .framework-recommendation {
+        background: linear-gradient(135deg, #0066CC 0%, #0050D5 100%);
+        border-left: 6px solid #FFD700;
+        padding: 16px;
+        margin: 12px 0;
+        color: #FFFFFF;
+        border-radius: 0;
+        box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+    }
+
+    .framework-recommendation .framework-name {
+        font-weight: 700;
+        font-size: 1.1em;
+        margin-bottom: 8px;
+        color: #FFD700;
+    }
+
+    .framework-recommendation .framework-desc {
+        font-size: 0.85em;
+        line-height: 1.4;
+        margin-bottom: 8px;
+    }
+
+    .framework-recommendation .framework-meta {
+        font-size: 0.75em;
+        opacity: 0.9;
+        font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .framework-notification {
+        background: #FFD700;
+        color: #000000;
+        padding: 12px 16px;
+        margin: 12px 0;
+        border-left: 6px solid #E30613;
+        font-weight: 600;
+        box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
     }
 
     /* Context Panel Styling */
@@ -725,8 +787,20 @@ if 'problem_type' not in st.session_state:
 if 'problem_position' not in st.session_state:
     st.session_state.problem_position = 50
 
-if 'portfolio' not in st.session_state:
-    st.session_state.portfolio = {'now': 0, 'new': 0, 'next': 0}
+if 'uncertainty_score' not in st.session_state:
+    st.session_state.uncertainty_score = 50
+
+if 'risk_score' not in st.session_state:
+    st.session_state.risk_score = 50
+
+if 'uncertainty_level' not in st.session_state:
+    st.session_state.uncertainty_level = 'medium'
+
+if 'risk_level' not in st.session_state:
+    st.session_state.risk_level = 'medium'
+
+if 'recommended_frameworks' not in st.session_state:
+    st.session_state.recommended_frameworks = []
 
 # Header
 st.markdown("""
@@ -764,14 +838,24 @@ with left_col:
 
     st.markdown("---")
 
-    # Portfolio Tracker
-    st.markdown("""
-    <div class="portfolio-tracker">
-        <h4>📈 INNOVATION PORTFOLIO</h4>
-        <div class="portfolio-grid">
-            <div class="portfolio-item now">NOW (Incremental): 70%</div>
-            <div class="portfolio-item new">NEW (Adjacent): 20%</div>
-            <div class="portfolio-item next">NEXT (Disruptive): 10%</div>
+    # Uncertainty vs Risk Paradigm
+    uncertainty_display = st.session_state.uncertainty_level.upper().replace('-', ' ')
+    risk_display = st.session_state.risk_level.upper().replace('-', ' ')
+
+    st.markdown(f"""
+    <div class="uncertainty-risk-tracker">
+        <h4>⚖️ UNCERTAINTY VS RISK PARADIGM</h4>
+        <div class="uncertainty-risk-grid">
+            <div class="uncertainty-box">
+                <div class="metric-label">UNCERTAINTY</div>
+                <div class="metric-value">{st.session_state.uncertainty_score}%</div>
+                <div class="metric-level">{uncertainty_display}</div>
+            </div>
+            <div class="risk-box">
+                <div class="metric-label">RISK</div>
+                <div class="metric-value">{st.session_state.risk_score}%</div>
+                <div class="metric-level">{risk_display}</div>
+            </div>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -885,6 +969,23 @@ with center_col:
             st.session_state.problem_type = problem_type
             st.session_state.problem_position = position
 
+            # Calculate uncertainty and risk
+            uncertainty_level, risk_level, uncertainty_score, risk_score = calculate_uncertainty_risk(
+                problem_type, user_input
+            )
+            st.session_state.uncertainty_level = uncertainty_level
+            st.session_state.risk_level = risk_level
+            st.session_state.uncertainty_score = uncertainty_score
+            st.session_state.risk_score = risk_score
+
+            # Recommend frameworks
+            st.session_state.recommended_frameworks = recommend_frameworks(
+                problem_type,
+                st.session_state.persona,
+                user_input,
+                max_recommendations=3
+            )
+
             # Add user message
             st.session_state.messages.append({"role": "user", "content": user_input})
 
@@ -937,17 +1038,32 @@ with right_col:
         </div>
         """, unsafe_allow_html=True)
 
-    # Frameworks Library
-    with st.expander("📚 Frameworks", expanded=False):
-        st.markdown("""
-        **Top Frameworks:**
-        - Design Thinking
-        - Disruptive Innovation
-        - Jobs-to-be-Done
-        - Blue Ocean Strategy
-        - Three Box Solution
-        - Scenario Analysis
-        """)
+    # Framework Recommendations (Highlighted when relevant)
+    if st.session_state.recommended_frameworks:
+        st.markdown("### 💡 Relevant Frameworks")
+        notification = get_framework_notification(st.session_state.recommended_frameworks)
+        if notification:
+            st.markdown(f'<div class="framework-notification">{notification}</div>', unsafe_allow_html=True)
+
+        for framework in st.session_state.recommended_frameworks:
+            st.markdown(f"""
+            <div class="framework-recommendation">
+                <div class="framework-name">{framework['name']}</div>
+                <div class="framework-desc">{framework['description']}</div>
+                <div class="framework-meta">{framework['mentions']} mentions | Score: {framework['score']}/100</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+        st.markdown("---")
+
+    # All Frameworks Library
+    with st.expander("📚 All Frameworks (2,988 chunks)", expanded=False):
+        all_frameworks = get_all_frameworks_sorted()
+        for fw in all_frameworks:
+            st.markdown(f"""**{fw['name']}** ({fw['mentions']:,} mentions)
+{fw['description']}
+""")
+            st.markdown("---")
 
     # Example Questions
     with st.expander("💡 Example Questions", expanded=False):
