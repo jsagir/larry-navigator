@@ -19,6 +19,7 @@ from larry_framework_recommender import (
     get_all_frameworks_sorted
 )
 from larry_neo4j_rag import get_neo4j_rag_context, is_neo4j_configured, is_faiss_configured, get_faiss_rag_context
+from streamlit_integration import send_to_rasa, parse_rasa_response, map_streamlit_session_to_rasa, update_streamlit_from_rasa
 
 # --- 1. Utility Functions ---
 
@@ -76,121 +77,59 @@ def classify_problem_type(message):
         return "general", 50
 
 def parse_response_for_message_types(response_text):
+    # This function is no longer strictly needed as Rasa provides structured responses
+    # It is kept as a placeholder to avoid breaking the render_message function below
     messages = []
     sections = response_text.split("\n\n")
     for section in sections:
         if not section.strip():
             continue
-        if any(phrase in section for phrase in ["?", "Suppose", "What if", "Think about", "Do not misunderstand", "Action:", "Next step:", "In the next", "Try this:", "Framework", "Tool", "Model", "Method"]):
-            messages.append(("accent", section))
-        else:
-            messages.append(("regular", section))
+        messages.append(("regular", section))
     return messages
 
 def render_message(message_type, content):
-    if message_type == "accent":
-        with st.expander("💡 Key Insight / Action Item", expanded=True):
-            st.markdown(f"<div class=\"accent-block\">{content}</div>", unsafe_allow_html=True)
-        return ""
-    else:
+    # Updated to handle new custom message types from Rasa
+    if message_type == "provocative":
+        with st.expander("🚨 Provocative Question", expanded=True):
+            st.markdown(f"<div class=\"accent-block provocative-block\">{content}</div>", unsafe_allow_html=True)
+    elif message_type == "framework":
+        with st.expander("💡 Framework Suggestion", expanded=True):
+            st.markdown(f"<div class=\"accent-block framework-block\">{content}</div>", unsafe_allow_html=True)
+    elif message_type == "action":
+        with st.expander("✅ Action Plan", expanded=True):
+            st.markdown(f"<div class=\"accent-block action-block\">{content}</div>", unsafe_allow_html=True)
+    elif message_type == "case":
+        with st.expander("📚 Case Study", expanded=True):
+            st.markdown(f"<div class=\"accent-block case-block\">{content}</div>", unsafe_allow_html=True)
+    elif message_type == "diagnostic":
+        st.error(content)
+    else: # Regular assistant message
         with st.chat_message("assistant"):
             st.markdown(content)
-        return ""
 
-def chat_with_larry(user_message, api_key, store_info, persona, problem_type, exa_api_key=None):
-    """Send message to Larry using File Search + Exa.ai web search + Neo4j RAG"""
-    try:
-        client = genai.Client(api_key=api_key)
-
-        # --- 1. Perform Exa Web Search ---
-        search_results = None
-        if exa_api_key:
-            with st.spinner("🔍 Searching latest research..."):
-                search_results = integrate_search_with_response(
-                    user_message=user_message,
-                    persona=persona,
-                    problem_type=problem_type,
-                    exa_api_key=exa_api_key
-                )
-
-        # --- 2. Perform Neo4j Graph RAG (Network-Effect) ---
-        neo4j_context = None
-        if is_neo4j_configured():
-            with st.spinner("🌐 Querying Network-Effect Graph..."):
-                neo4j_context, neo4j_error = get_neo4j_rag_context(
-                    user_message, persona, problem_type, api_key
-                )
-            if neo4j_error:
-                st.error(f"Neo4j RAG Error: {neo4j_error}")
-                neo4j_context = None
-
-        # --- 3. Perform FAISS Vector RAG (Simulated) ---
-        faiss_context = None
-        if is_faiss_configured():
-            with st.spinner("🧠 Searching Vector Store (FAISS)..."):
-                faiss_context = get_faiss_rag_context(user_message)
-
-        # --- 3. Build Enhanced Prompt ---
-        enhanced_prompt = f"""{LARRY_SYSTEM_PROMPT}
-
-**DETECTED CONTEXT:**
-- User Persona: {persona}
-- Problem Type: {problem_type}
-
-Adapt your response accordingly! Use appropriate frameworks and language for this persona and problem type.
-"""
-
-        if search_results:
-            enhanced_prompt += f"\n\n**CURRENT WEB RESEARCH:**\n{search_results}\n\nIntegrate these cutting-edge findings into your response with proper citations."
-
-        if neo4j_context:
-            enhanced_prompt += f"\n\n**NETWORK-EFFECT GRAPH CONTEXT:**\n{neo4j_context}\n\nUse this structured knowledge to provide a more insightful, relationship-aware answer."
-
-        # Add FAISS context if available
-        if faiss_context:
-            enhanced_prompt += f"\n\n**FAISS VECTOR CONTEXT:**\n{faiss_context}\n\nIntegrate this vector-based context into your response."
-
-        # --- 4. Generate Content ---
-        tools_config = []
-        if store_info:
-            tools_config.append(
-                types.Tool(
-                    file_search=types.FileSearch(
-                        file_search_store_names=[store_info["store_name"]]
-                    )
-                )
-            )
-
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=user_message,
-            config=types.GenerateContentConfig(
-                system_instruction=enhanced_prompt,
-                tools=tools_config,
-                temperature=0.7,
-                top_p=0.95,
-            )
-        )
-
-        # --- 5. Combine Full Response ---
-        full_response = ""
-        if search_results:
-            full_response += f"**[WEB SEARCH RESULTS]**\n{search_results}\n\n---\n\n"
-        if neo4j_context:
-            full_response += f"**[NETWORK-EFFECT GRAPH CONTEXT]**\n{neo4j_context}\n\n---\n\n"
+def chat_with_larry(user_message):
+    """Send message to Larry via the Rasa Middleware."""
+    sender_id = map_streamlit_session_to_rasa(st.session_state)
+    
+    with st.spinner("🧠 Larry is thinking... Orchestrating intelligent RAG via Rasa..."):
+        # 1. Send message to Rasa
+        rasa_response = send_to_rasa(user_message, sender_id)
         
-        # Add FAISS context to the final output
-        if faiss_context:
-            full_response += f"**[FAISS VECTOR CONTEXT]**\n{faiss_context}\n\n---\n\n"
-
-        if response and response.text:
-            full_response += response.text
-            return full_response
-        else:
-            return "I'm sorry, I couldn't generate a response. Could you rephrase your question?"
-
-    except Exception as e:
-        return f"Error: {str(e)}"
+        # 2. Parse Rasa response into Streamlit format
+        parsed_messages = parse_rasa_response(rasa_response)
+        
+        # 3. Get latest slots from Rasa (to update sidebar indicators)
+        # This is a placeholder. In a full deployment, the custom actions would update the slots
+        # and we would need a separate API call to the Rasa tracker to fetch them.
+        # For now, we rely on the custom actions to send back the necessary slot updates
+        # and manually update the persona/problem_type based on the latest message's intent
+        
+        # Fallback to manual update if Rasa is not fully integrated yet
+        if "rasa_sender_id" not in st.session_state:
+            st.session_state.persona = detect_persona(user_message)
+            st.session_state.problem_type, _ = classify_problem_type(user_message)
+            
+        return parsed_messages
 
 # --- 2. Streamlit App Setup ---
 
@@ -371,40 +310,24 @@ if st.session_state.api_key:
     user_input = st.chat_input("Ask Larry about innovation, problem-solving, or PWS methodology...")
 
     if user_input:
-        st.session_state.persona = detect_persona(user_input)
-        problem_type, position = classify_problem_type(user_input)
-        st.session_state.problem_type = problem_type
-
-        uncertainty_level, risk_level, uncertainty_score, risk_score = calculate_uncertainty_risk(
-            problem_type, user_input
-        )
-        st.session_state.uncertainty_level = uncertainty_level
-        st.session_state.risk_level = risk_level
-        st.session_state.uncertainty_score = uncertainty_score
-        st.session_state.risk_score = risk_score
-
-        st.session_state.recommended_frameworks = recommend_frameworks(
-            problem_type,
-            st.session_state.persona,
-            user_input,
-            max_recommendations=3
-        )
+        # The following logic is now handled by the Rasa Action Server for stateful management:
+        # - Persona detection and refinement
+        # - Problem type classification
+        # - Uncertainty/Risk calculation
+        # - Framework recommendation
+        # The Streamlit UI will be updated via the Rasa slots.
 
         st.session_state.messages.append({"role": "user", "content": user_input})
 
-        with st.spinner("🤔 Larry is thinking..."):
-            store_info = load_store_info()
-            response = chat_with_larry(
-                user_input,
-                st.session_state.api_key,
-                store_info,
-                st.session_state.persona,
-                st.session_state.problem_type,
-                st.session_state.exa_api_key
-            )
+        # 4. Get response from Larry via Rasa Middleware
+        rasa_messages = chat_with_larry(user_message=user_input)
 
-        st.session_state.messages.append({"role": "assistant", "content": response})
+        # 5. Render response and update history
+        for message in rasa_messages:
+            render_message(message["type"], message["content"])
+            st.session_state.messages.append({"role": "assistant", "type": message["type"], "content": message["content"]})
 
+        # 6. Rerun to update the sidebar with new persona/problem type (updated by Rasa slots)
         st.rerun()
 else:
     st.info("👈 Please enter your Google AI API key in the sidebar to start chatting!")

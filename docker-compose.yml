@@ -1,0 +1,106 @@
+version: '3.8'
+
+services:
+  # 1. Rasa Server (Core and NLU)
+  rasa:
+    image: rasa/rasa:3.7.0-full # Use a stable Rasa version
+    container_name: rasa_server
+    volumes:
+      - ./rasa_config:/app
+      - ./rasa_config/models:/app/models
+    ports:
+      - "5005:5005"
+    command:
+      - run
+      - --enable-api
+      - --cors
+      - "*"
+      - --debug
+    environment:
+      # Database for Tracker Store (Postgres)
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=rasa_db
+      - POSTGRES_USER=rasa_user
+      - POSTGRES_PASSWORD=rasa_password
+      # Redis for Lock Store
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - action_server
+      - postgres
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5005/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # 2. Rasa Action Server (Custom Actions)
+  action_server:
+    image: rasa/rasa-sdk:3.7.0
+    container_name: rasa_action_server
+    volumes:
+      - ./rasa_config/actions:/app/actions
+      - ./larry-navigator:/app/larry-navigator # Mount the RAG code
+    ports:
+      - "5055:5055"
+    environment:
+      # API Keys for RAG Bridge
+      - GOOGLE_AI_API_KEY=${GOOGLE_AI_API_KEY}
+      - EXA_API_KEY=${EXA_API_KEY}
+      - COHERE_API_KEY=${COHERE_API_KEY} # For Reranking
+      # Neo4j Credentials
+      - NEO4J_URI=${NEO4J_URI}
+      - NEO4J_USER=${NEO4J_USER}
+      - NEO4J_PASSWORD=${NEO4J_PASSWORD}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5055/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # 3. Streamlit UI
+  streamlit:
+    build:
+      context: ./larry-navigator
+      dockerfile: Dockerfile
+    container_name: larry_navigator_ui
+    ports:
+      - "8501:8501"
+    environment:
+      - RASA_API_URL=http://rasa:5005/webhooks/rest/webhook
+      # Pass through API keys for initial configuration checks (optional, but good practice)
+      - GOOGLE_AI_API_KEY=${GOOGLE_AI_API_KEY}
+      - EXA_API_KEY=${EXA_API_KEY}
+    depends_on:
+      - rasa
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # 4. Database Services
+  postgres:
+    image: postgres:14
+    container_name: postgres_db
+    environment:
+      - POSTGRES_DB=rasa_db
+      - POSTGRES_USER=rasa_user
+      - POSTGRES_PASSWORD=rasa_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6
+    container_name: redis_lock_store
+
+volumes:
+  postgres_data:
+  # neo4j_data: # Uncomment if you want to run an internal Neo4j instance
+  #   driver: local
+
+# Note: A Dockerfile is assumed to exist in the larry-navigator directory
+# to build the Streamlit app. If it doesn't exist, one will need to be created.
+# The user's existing Streamlit Cloud deployment will handle the Streamlit part,
+# but this compose file provides a complete local/server deployment solution.
