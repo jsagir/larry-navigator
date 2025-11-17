@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+pws-navigator-env/
+venv/
+ENV/
+env/
+
+# API Keys and Secrets
+*.env
+.env
+secrets.json
+*_API_KEY*
+
+# Temporary Files
+temp_*.txt
+*.tmp
+*.log
+
+# Neo4j
+.neo4j/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project Specific
+larry_store_info.json
+pws_chunks.json
+pws_catalog.json
+
+# Claude artifacts
+.claude/

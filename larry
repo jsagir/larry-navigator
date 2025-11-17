@@ -1,0 +1,1 @@
+#\!/bin/bash\nsource pws-navigator-env/bin/activate && python3 larry_chatbot.py
