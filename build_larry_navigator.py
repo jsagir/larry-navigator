@@ -5,14 +5,38 @@ Creates Gemini File Search store and uploads chunks with metadata
 """
 
 import json
+import os
+import sys
 import time
+from pathlib import Path
 from google import genai
 from google.genai import types
 
+# Load environment variables from .env file
+def load_env():
+    """Load environment variables from .env file"""
+    env_path = Path(__file__).parent / '.env'
+    if env_path.exists():
+        with open(env_path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, value = line.split('=', 1)
+                    os.environ[key.strip()] = value.strip()
+
+load_env()
+
 # Configuration
-GOOGLE_AI_API_KEY = "AIzaSyC6miH5hbQeBHYVORXLJra0CCS1NMRp_TE"
+GOOGLE_AI_API_KEY = os.getenv('GOOGLE_AI_API_KEY')
 CHUNKS_FILE = "pws_chunks.json"
 STORE_NAME = "larry-pws-navigator"
+
+if not GOOGLE_AI_API_KEY:
+    print("✗ Error: GOOGLE_AI_API_KEY not found!")
+    print("Please create a .env file with your API key:")
+    print("  GOOGLE_AI_API_KEY=your-api-key-here")
+    print("\nGet your API key from: https://aistudio.google.com/apikey")
+    sys.exit(1)
 
 def create_file_search_store(client):
     """Create a new File Search store for Larry"""

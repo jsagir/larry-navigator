@@ -3,8 +3,9 @@
 **An AI-powered chatbot that teaches innovation using Lawrence Aronhime's Problems Worth Solving (PWS) methodology**
 
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
-[![Gemini API](https://img.shields.io/badge/Gemini-2.0%20Flash-orange.svg)](https://ai.google.dev/)
+[![Gemini API](https://img.shields.io/badge/Gemini-2.5%20Flash-orange.svg)](https://ai.google.dev/)
 [![Neo4j](https://img.shields.io/badge/Neo4j-Graph%20Database-green.svg)](https://neo4j.com/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Cloud%20Ready-FF4B4B.svg)](https://streamlit.io/)
 
 ---
 
@@ -45,6 +46,33 @@ Every response follows the proven structure:
 - **Innovation Frameworks**: Three Box Solution, Scenario Analysis, TRIZ, Jobs-to-be-Done, and more
 - **Tools**: Trending to Absurd, Beautiful Questions, Red Teaming, Mom Test
 - **1,136 Knowledge Chunks** from Neo4j graph database
+
+---
+
+## 🌐 Two Ways to Use Larry
+
+### 1️⃣ **Web Interface (Recommended)** 🎨
+Beautiful Mondrian-style Streamlit app with modern geometric design
+
+**Deploy to Streamlit Cloud (Free):**
+- Visit https://share.streamlit.io/
+- Connect this repo: `jsagir/larry-navigator`
+- Add your API key as a secret
+- Get a public URL instantly!
+
+**Or run locally:**
+```bash
+./run_larry.sh
+```
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions.
+
+### 2️⃣ **Command Line Interface** 💻
+Traditional terminal-based chat interface
+
+```bash
+python3 larry_chatbot.py
+```
 
 ---
 
