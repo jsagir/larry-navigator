@@ -31,6 +31,7 @@ env/
 .env
 secrets.json
 *_API_KEY*
+.streamlit/secrets.toml
 
 # Temporary Files
 temp_*.txt
@@ -52,7 +53,7 @@ temp_*.txt
 Thumbs.db
 
 # Project Specific
-larry_store_info.json
+# larry_store_info.json - placeholder included in repo
 pws_chunks.json
 pws_catalog.json
 

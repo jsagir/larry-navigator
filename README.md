@@ -264,10 +264,82 @@ Edit `LARRY_SYSTEM_PROMPT` in `larry_chatbot.py` to adjust:
 
 ---
 
+## 🌐 Web Interface & Deployment
+
+Larry now includes a Streamlit web interface for easy browser-based interaction!
+
+### Local Web Access
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the web interface
+streamlit run app.py
+```
+
+The app will open automatically at `http://localhost:8501`
+
+### Deployment Options
+
+#### Option 1: Streamlit Cloud (Easiest - Free)
+
+1. Push your repository to GitHub
+2. Go to [share.streamlit.io](https://share.streamlit.io)
+3. Click "New app"
+4. Select your repository and branch
+5. Set main file path to `app.py`
+6. Add your `GOOGLE_AI_API_KEY` in Secrets (Settings > Secrets)
+7. Click "Deploy"
+
+**Secrets format for Streamlit Cloud:**
+```toml
+GOOGLE_AI_API_KEY = "your-api-key-here"
+```
+
+#### Option 2: Docker Container
+
+```bash
+# Build the Docker image
+docker build -t larry-navigator .
+
+# Run the container
+docker run -p 8501:8501 \
+  -e GOOGLE_AI_API_KEY="your-api-key" \
+  larry-navigator
+```
+
+Access at `http://localhost:8501`
+
+#### Option 3: Cloud Platforms
+
+**Google Cloud Run:**
+```bash
+gcloud run deploy larry-navigator \
+  --source . \
+  --platform managed \
+  --region us-central1 \
+  --allow-unauthenticated \
+  --set-env-vars GOOGLE_AI_API_KEY="your-api-key"
+```
+
+**Render / Railway / Heroku:**
+- Connect your GitHub repository
+- Set build command: `pip install -r requirements.txt`
+- Set start command: `streamlit run app.py --server.port=$PORT`
+- Add `GOOGLE_AI_API_KEY` environment variable
+
+### Environment Variables
+
+For production deployment, set:
+- `GOOGLE_AI_API_KEY` - Your Google AI API key
+
+---
+
 ## 🤝 Contributing
 
 Contributions welcome! Areas for improvement:
-- [ ] Web interface (Streamlit/Gradio)
+- [x] Web interface (Streamlit/Gradio)
 - [ ] Voice mode (speech-to-text/text-to-speech)
 - [ ] Session memory (conversation context)
 - [ ] Framework visualizations (diagrams)
