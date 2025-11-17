@@ -13,11 +13,12 @@
 
 Larry is a conversational AI that embodies **Professor Lawrence Aronhime's teaching philosophy**: *Start with problems, not answers.*
 
-Built on 1,136 knowledge chunks from PWS course materials, Larry helps you navigate innovation challenges through:
+**Built on 2,988 knowledge chunks (~2.66M words)** from comprehensive PWS materials, Larry helps you navigate innovation challenges through:
 - 🎓 Socratic teaching (questions before answers)
 - 📚 Framework-based thinking (systematic problem-solving)
 - 💡 Case studies and stories (memorable examples)
 - 🚀 Actionable guidance (what to do next)
+- 🔗 Relationship-aware context (cross-references frameworks, authors, topics)
 
 ---
 
@@ -40,32 +41,44 @@ Every response follows the proven structure:
 5. **APPLICATION** - Actionable next steps
 6. **CHALLENGE** - Follow-up question to deepen understanding
 
-### 📚 **Comprehensive Knowledge Base**
-- **10 Core PWS Lectures** (N01-N10)
+### 📚 **Comprehensive Knowledge Base v2.0**
+- **2,988 Knowledge Chunks** (~2.66 million words)
+- **PWS Library** (980 chunks): Prior art, reference books, methodologies
+- **Course Material** (2,008 chunks): Lectures, notes, frameworks
 - **Problem Types**: Un-defined, Ill-defined, Well-defined, Wicked
-- **Innovation Frameworks**: Three Box Solution, Scenario Analysis, TRIZ, Jobs-to-be-Done, and more
-- **Tools**: Trending to Absurd, Beautiful Questions, Red Teaming, Mom Test
-- **1,136 Knowledge Chunks** from Neo4j graph database
+- **Top Frameworks** (2,000+ mentions): Design Thinking, Disruptive Innovation, Scenario Analysis, Jobs-to-be-Done, Nested Hierarchies, Blue Ocean Strategy
+- **Top Authors** (1,800+ mentions): Clayton Christensen, Peter Drucker, Eric Ries, Steve Blank
+- **Relationship Intelligence**: Cross-references between frameworks, topics, and methods
 
 ---
 
 ## 🌐 Two Ways to Use Larry
 
 ### 1️⃣ **Web Interface (Recommended)** 🎨
-Beautiful Mondrian-style Streamlit app with modern geometric design
+Beautiful **Mondrian-style** Streamlit app with modern geometric design
+- Primary colors (Red #DE1B1B, Blue #0050D5, Yellow #FFD500)
+- Clean, minimalist interface
+- Real-time chat with message history
+- Session statistics tracking
 
 **Deploy to Streamlit Cloud (Free):**
-- Visit https://share.streamlit.io/
-- Connect this repo: `jsagir/larry-navigator`
-- Add your API key as a secret
-- Get a public URL instantly!
+```bash
+1. Visit https://share.streamlit.io/
+2. Connect repo: jsagir/larry-navigator
+3. Set main file: larry_app.py
+4. Add API key to secrets:
+   GOOGLE_AI_API_KEY = "your-key-here"
+5. Deploy! 🚀
+```
 
 **Or run locally:**
 ```bash
+streamlit run larry_app.py
+# Or use the launcher:
 ./run_larry.sh
 ```
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions.
+See [STREAMLIT_DEPLOYMENT_GUIDE.md](STREAMLIT_DEPLOYMENT_GUIDE.md) for detailed instructions.
 
 ### 2️⃣ **Command Line Interface** 💻
 Traditional terminal-based chat interface
@@ -192,12 +205,15 @@ business while creating tomorrow's opportunities...
                      │
                      ▼
 ┌─────────────────────────────────────────────────────────────┐
-│           Google Gemini 2.0 Flash + File Search             │
+│           Google Gemini 2.5 Flash + File Search             │
 │  ┌──────────────────────────────────────────────────┐       │
 │  │    Aronhime System Prompt (teaching methodology) │       │
 │  └──────────────────────────────────────────────────┘       │
 │  ┌──────────────────────────────────────────────────┐       │
-│  │  File Search Store: 10 PWS Lectures (N01-N10)   │       │
+│  │  File Search Store: 2,988 chunks (~2.66M words) │       │
+│  │  • PWS Library: 980 chunks (prior art)          │       │
+│  │  • Course Material: 2,008 chunks (lectures)      │       │
+│  │  • Relationship metadata (frameworks, authors)   │       │
 │  └──────────────────────────────────────────────────┘       │
 └────────────────────┬────────────────────────────────────────┘
                      │
@@ -207,12 +223,17 @@ business while creating tomorrow's opportunities...
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Data Flow
-1. **Neo4j** → Extract 1,136 PWS chunks (`extract_pws_content.py`)
-2. **Chunks** → Upload to Gemini File Search (`build_larry_navigator.py`)
-3. **User Question** → Persona + Question Type detection
-4. **Gemini** → Generate Aronhime-style response with retrieved context
-5. **Response** → Structured teaching with frameworks and stories
+### Data Flow v2.0
+1. **Source Material** (360 files, 298MB) → PWS Library + Course Material
+2. **Intelligent Chunking** (`relationship_aware_chunker.py`)
+   - ~1000 words per chunk, 200-word overlap
+   - Extract frameworks, authors, topics
+   - Build relationship metadata
+3. **Processing** (`process_all_knowledge.py`) → 2,988 chunks (~2.66M words)
+4. **Upload** (`upload_full_knowledge.py`) → Gemini File Search with metadata
+5. **User Question** → Persona + Question Type detection
+6. **Gemini 2.5 Flash** → RAG with File Search + Aronhime methodology
+7. **Response** → Structured teaching (Hook → Frame → Framework → Story → Application → Challenge)
 
 ---
 
@@ -220,17 +241,34 @@ business while creating tomorrow's opportunities...
 
 ```
 larry-navigator/
-├── larry_chatbot.py              # Main chatbot interface
-├── build_larry_navigator.py      # File Search store builder
-├── extract_pws_content.py        # Neo4j content extractor
-├── test_larry.py                 # Sample question tester
-├── neo4j_explorer.py             # Database schema explorer
-├── neo4j_document_query.py       # Document structure analyzer
-├── larry                         # Quick launcher script
-├── README.md                     # This file
-├── LARRY_README.md               # Detailed user guide
-├── .gitignore                    # Git ignore rules
-└── pws-navigator-env/            # Virtual environment (not in repo)
+├── larry_app.py                          # Streamlit web interface (Mondrian-style) 🎨
+├── larry_chatbot.py                      # CLI chatbot interface
+├── relationship_aware_chunker.py         # Advanced chunker with metadata
+├── intelligent_chunker.py                # Smart ~1000-word chunker
+├── process_all_knowledge.py              # Process PWS Library + Course Material
+├── upload_full_knowledge.py              # Upload 2,988 chunks to File Search
+├── check_upload_status.py                # Monitor upload progress
+├── monitor_upload.py                     # Background upload monitor
+├── build_larry_navigator.py              # Legacy File Search builder
+├── extract_pws_content.py                # Neo4j content extractor (legacy)
+├── test_larry.py                         # Sample question tester
+├── neo4j_explorer.py                     # Database schema explorer
+├── larry_store_info.json                 # File Search store configuration
+├── larry_chunks_v2.json                  # 147 course material chunks
+├── larry_full_knowledge_chunks.json      # 2,988 comprehensive chunks
+├── run_larry.sh                          # Quick Streamlit launcher
+├── requirements.txt                      # Python dependencies
+├── .streamlit/config.toml                # Streamlit configuration
+├── docs/                                 # Additional course materials
+│   ├── lectures/                         # Lecture slides and notes
+│   ├── frameworks/                       # Framework documentation
+│   └── additional/                       # Books and references
+├── README.md                             # This file
+├── STREAMLIT_DEPLOYMENT_GUIDE.md         # Complete deployment guide
+├── LARRY_README.md                       # Detailed user guide
+├── .env                                  # API keys (DO NOT COMMIT)
+├── .gitignore                            # Git ignore rules
+└── pws-navigator-env/                    # Virtual environment (not in repo)
 ```
 
 ---
