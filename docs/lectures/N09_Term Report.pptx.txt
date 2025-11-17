@@ -1,0 +1,785 @@
+CONCLUSION OF THE TERM
+Problem, solution, business case
+Confidential for classroom use only
+1
+1
+
+Back to the Beginning: The Story You Want to Tell
+H: Hypothesis / Start with Why
+Why are you starting this startup? What do you believe about your target market? Express this as an “I believe” statement - what you believe is broken, or is a need or opportunity that has not yet been met.
+E: Enormous Stakes
+Express the size and scope of the problem or opportunity, in terms of how many people or companies it impacts, how much money is at stake, etc.
+ A: Alternatives Grossly Inadequate 
+Briefly state the way(s) this problem/opportunity is addressed today, and how those approaches or solutions all fall terribly short. Give brief names or examples of current solutions if relevant.
+R: Radically different solution 
+Briefly describe what your solution does, how it is radically different (ideally 10x better, paradigm shift, game-changing), and how it comprehensively solves the problem/opportunity. 
+ T: Traits and skills (of the team)
+Describe the roles (who is responsible for what) on the Team, and the factual background that gives them credibility for these roles
+Confidential: For Classroom Use Only
+2
+From Ben Weiner
+
+Peter Thiel’s View
+Under perfect competition, in the long run no company makes an economic profit. The opposite of perfect competition is monopoly. Whereas a competitive firm must sell at the market price, a monopoly owns its market, so it can set its own prices. Since it has no competition, it produces at the quantity and price combination that maximizes its profits. 
+…by “monopoly,” we mean the kind of company that’s so good at what it does that no other firm can offer a close substitute. Google is a good example of a company that went from 0 to 1: it hasn’t competed in search since the early 2000s, when it definitively distanced itself from Microsoft and Yahoo! 
+Every monopoly is unique, but they usually share some combination of the following characteristics: proprietary technology, network effects, economies of scale, and branding.
+As a good rule of thumb, proprietary technology must be at least 10 times better than its closest substitute in some important dimension to lead to a real monopolistic advantage. Anything less than an order of magnitude better will probably be perceived as a marginal improvement and will be hard to sell, especially in an already crowded market. The clearest way to make a 10x improvement is to invent something completely new. 
+Every startup is small at the start. Every monopoly dominates a large share of its market. Therefore, every startup should start with a very small market. Always err on the side of starting too small. The reason is simple: it’s easier to dominate a small market than a large one. If you think your initial market might be too big, it almost certainly is.
+
+
+Confidential for classroom use only
+3
+Peter Thiel, From Zero to One (Crown Business : 2014)
+What will be a future monopoly is uncertain
+3
+
+Three Critical Questions
+Is it real?
+Can we win?
+What are the Resources required to win?  Are they available or can they be obtained?
+What are the Risks associated with the project or business?  Can they be managed?
+Is it worth it?
+What is the Return expected and why?  Does it warrant our attention?
+Confidential for classroom use only
+4
+From ARINC
+
+THE PROBLEM
+Confidential for classroom use only
+5
+5
+
+Develop a Good Problem Statement
+Nobel Laureate Herbert Simon: 
+“Solving a problem simply means representing it so as to make the solution transparent.”
+10
+
+Getting a crystal‐clear definition of the problem you are solving is the critical starting point to bulletproof problem solving. You need to be clear about the boundaries of the problem, the criteria for success, the time frame, or level of accuracy required.
+Good problem statements have a number of characteristics. They are: 
+Outcomes focused: A clear statement of the problem to be solved, expressed in outcomes, not activities or intermediate outputs. 
+Specific and measurable wherever possible. 
+Clearly time‐bound. Designed to explicitly address decision‐maker values and boundaries, including the accuracy needed and the scale of aspirations. 
+Structured to allow sufficient scope for creativity and unexpected results—too narrowly scoped problems can artificially constrain solutions. 
+Solved at the highest level possible, meaning for the organization as a whole, not just optimized for a part or a partial solution.
+
+Confidential for classroom use only
+6
+Charles Conn and Robert McLean, Bulletproof Problem Solving: The One Skill That Changes Everything (Wiley: 2018).
+
+
+What is Your Well-Defined Problem?
+How can we help… do… under these circumstances… in order to…? 
+Does anyone care?
+What is the use case?
+Think in terms of the W’s
+Confidential: For Classroom Use Only
+7
+
+THE SOLUTION
+8
+Confidential for classroom use only
+8
+
+Usher’s Model
+For purposes of generalized exposition, innovation can be formalized as a genetic sequence of four steps:
+Perception of a problem, an unfilled want whose gratification is made possible by the presence of some fortuitous conditions
+Setting of the stage, which serves as the basis for providing mediated contingencies that engender systematic efforts to find solutions to perceived problems through trial and error
+Act of insight, by which the essential solution of the problem is found
+The critical revision, where the solution is studied critically and understood in its fullness
+
+Confidential for classroom use only
+9
+Abbott Payson Usher, A History of Mechanical Inventions (Harvard University Press: 1929)
+Abbott Payson Usher was an American economic historian. 
+(1883 – 1965)
+9
+
+Three Approaches for Solving Problems
+Brute Force
+Grid search of every potential solution until one works
+Example: Thomas Edison trying thousands of materials to determine the best filament for the lightbulb
+Targeted Development
+Theory informs potential solutions
+Example: Li-ion batteries developed with heavy guidance from research in electrochemical theory
+Eureka Moment
+Solution results from a chance event (randomness)
+Example: MOSFETs developed after accidentally discovering that current in a semiconductor can be controlled with electric field (rather than current, as in traditional bipolar junction transistors (BJTs))
+10
+Confidential for classroom use only
+From Abbie Gibson
+How do you address a reverse salient – Abbie’s model.  For Eureka moments, there must be a trigger, a random event.  The question is whether that process can be made more efficient and speeded up; perhaps by using contemporary computing tools.  Could this also be used to predict the direction of technological advance.
+10
+
+Which Approach to Use?
+Confidential: For Classroom Use Only
+11
+Brute Force
+Grid search of every potential solution until one works
+Targeted Development
+Theory informs potential solutions
+Eureka Moment
+Solution results from a chance event (randomness)
+An example of how these three approaches can be used together
+11
+
+And Now Which Approach?
+Confidential: For Classroom Use Only
+12
+Brute Force
+Grid search of every potential solution until one works
+Targeted Development
+Theory informs potential solutions
+Eureka Moment
+Solution results from a chance event (randomness)
+
+And Now Which Approach?
+Confidential: For Classroom Use Only
+13
+Brute Force
+Grid search of every potential solution until one works
+Targeted Development
+Theory informs potential solutions
+Eureka Moment
+Solution results from a chance event (randomness)
+
+Solution
+Confidential: For Classroom Use Only
+14
+May 18, 2023
+
+Nerdle: Which Approach to Use?
+Brute Force
+Grid search of every potential solution until one works
+Targeted Development
+Theory informs potential solutions
+Eureka Moment
+Solution results from a chance event (randomness)
+Confidential: For Classroom Use Only
+15
+
+Solution
+Confidential: For Classroom Use Only
+16
+July 14, 2025
+
+Charles Conn and Robert McLean Bulletproof Problem Solving: The One Skill That Changes Everything
+(Wiley: 2018)
+
+Confidential for classroom use only
+17
+THE MCKINSEY METHOD
+The key to actually solving the problem
+17
+
+The Key to Solving Any Problem
+McKinsey’s Seven Steps:
+Define the problem
+Disaggregate the problem
+Prioritize
+Develop the workplan
+Gather and analyze the data
+Synthesize the findings
+Communicate the findings in a compelling story
+Confidential for classroom use only
+18
+Charles Conn and Robert McLean, Bulletproof Problem Solving: The One Skill That Changes Everything (Wiley: 2018).
+
+What interests us are the first two
+18
+
+Example
+Confidential for classroom use only
+19
+Charles Conn and Robert McLean, Bulletproof Problem Solving: The One Skill That Changes Everything (Wiley: 2018).
+
+
+Defining MECE
+MECE is a list.  It is a list of qualities lists should have.  [MECE] says that when data from a category is desired to be broken into subcategories, the choice of subcategories should be
+collectively exhaustive — i.e., the set of all subcategories, taken together, should fully characterize the larger category of which the data are part (“no gaps”)
+mutually exclusive — i.e., no subcategory should represent any other subcategory (“no overlaps”)
+This is desirable for the purpose of analysis: mutual exclusivity avoids the risk of double counting information, and collective exhaustion avoids the risk of overlooking information. 
+In plain English, MECE says that a list should have
+No overlaps
+No gaps
+Confidential for classroom use only
+20
+One way to think about MECE is to create a grid – the question is what goes on the x and y axes, e.g. mechanisms and methods.  Think about your reason why analysis and the associated M’s, P’s, S’s, etc.
+20
+
+Issue Trees and Logic Trees
+Two areas for MECE thinking are in 
+logic trees and 
+issue trees.
+
+Logic trees help you identify components of a problem. Start at the 20,000 foot view and move progressively downward. You may want to build multiple trees, for instance by business unit (organizational hierarchy) and functionally (production, sales, marketing, etc.) to see which leads you to the next step, the hypothesis.
+Issue trees let you rigorously test the hypothesis. They are different from logic trees. Logic trees are a hierarchical grouping of elements. Issue trees are the series of questions or issues that must be addressed to support or disprove a hypothesis. It becomes your roadmap for analysis.
+
+Confidential for classroom use only
+21
+
+Why Use Issue Trees?
+To break a problem into component parts
+To ensure integrity of the problem solving is maintained
+To build a common understanding within the team of the problem-solving framework
+To help focus team efforts
+Confidential for classroom use only
+22
+
+Structure of an Issue Tree
+Confidential for classroom use only
+23
+Goal:
+Break a problem into component parts and show concrete solutions
+Question
+Formulation of the basic question to be resolved should be as specific as possible
+Idea 1
+Idea 2
+Idea 3
+Idea 1.1
+Idea 1.2
+Idea 2.1
+Idea 2.2
+Idea 3.1
+Idea 3.2
+How / What?
+Level of detail
+Complete but non-overlapping list of conceivable solutions
+Further levels of detail for ideas, also complete and non-overlapping
+How / What?
+
+Try This Example
+Confidential for classroom use only
+24
+Create a logic tree to address the following:
+How can you reduce monthly shopping expenses?
+
+
+
+A Solution
+Confidential for classroom use only
+25
+How could you reduce your expenditure each month?
+Buy fewer items
+Food
+Clothing 
+Travel 
+Entertainment
+Share costs of items (e.g., split rent with roommate, carpool)
+Pay less for same quantity of items
+Buy lower-quality items 
+Buy items at discount/on sale
+Make sure your solution is MECE
+25
+
+Summary: Doing MECE
+Break a problem down into smaller pieces that can serve as hypotheses to be tested
+Small pieces cannot overlap
+Sum of small parts must equal the big group
+Small elements must parallel each other, i.e. they must be in the same class or category
+Stick to the magical three
+
+For example:
+https://www.youtube.com/watch?v=PdzH3Dfn8_g
+https://www.youtube.com/watch?v=Io4RcT38D2M 
+Confidential for classroom use only
+26
+
+Exercise
+Disaggregate a problem by building an issue tree:
+How can MLB regain its popularity?
+How can patient compliance be improved?
+How can our physical infrastructure be made more resilient? 
+How can the Toyota Prius regain market share?
+How can fake meat replace real meat?
+How can STEM teaching be improved?
+How can phishing attacks be stopped?
+How can satellites be secured from attack?
+How can we leverage computational power?
+How can air travel be made safe with regard to communicable diseases?
+How can mRNA vaccines be better distributed?
+How can medical expertise be made more available in remote areas?
+How can a Mars colony get medical supplies?
+Any problem of your choosing?
+Confidential for classroom use only
+27
+
+THE 80/20 RULE
+Confidential for classroom use only
+28
+28
+
+The Pareto Principle
+The Pareto Principle (also known as the “80/20 Rule” or the “Law of the Vital Few”) states that, for many events, roughly 80% of the effects come from 20% of the causes. It results from a ‘power law’ distribution.  Examples of this principle: 
+Wealth: The top 20% of the population own more than 80% of the nation's wealth.
+Science: The top 20% of published papers account for more than 80% of all cited works in subsequent publications.
+Computing: Fixing the top 20% of the most-reported bugs eliminates 80% of errors and crashes in a given system.
+Entertainment: The top 20% of titles make up more than 80% of viewers/listeners.
+Confidential for classroom use only
+29
+Source: https://en.wikipedia.org/wiki/Pareto_principle:  
+Pareto Principle
+Causes
+20%
+Effects
+80%
+Power Law Distribution
+Long Tail
+80%
+Head
+20%
+
+Good Issue Trees Meet MECE and 80/20 Rule
+Confidential for classroom use only
+30
+Question
+Together, statements answer the question or fully describe the idea on the level immediately above
+ME
+CE
+CollectivelyExhaustive
+MutuallyExclusive
+Idea 1
+Idea 2
+Idea 3
+Mutually Exclusive Collectively Exhaustive
+Content of 
+Statements does not overlap
+Benefit for impact
+Efficient
+Time and 
+effort to 
+structure
+problem
+NOT EFFICIENT
+Trying to be perfect
+100%
+80%
+100%
+20%
+80/20 rule
+
+The Point
+The point of doing 80/20 analyses is to focus your analytical effort on the most important factors.
+Confidential for classroom use only
+31
+Charles Conn and Robert McLean, Bulletproof Problem Solving: The One Skill That Changes Everything (Wiley: 2018).
+
+
+Example: Solving the Problem of Medication Errors
+A medication error is a failure in the treatment process that leads to, or has the potential to lead to, harm to the patient. 
+Per the NIH, recent studies of medical errors have estimated errors may account for as many as 251,000 deaths annually in the United States, making medical errors the third leading cause of death. 
+Error rates are significantly higher in the U.S. than in other developed countries such as Canada, Australia, New Zealand, Germany and the United Kingdom. At the same time less than 10 percent of medical errors are reported. 
+Confidential for classroom use only
+32
+32
+
+Example: Medication Errors
+Per the WHO, there is no consensus about the definition of a medication error. A systematic literature review found 26 different terminologies employed for a medication error.
+Medication errors can occur in 
+deciding which medicine and dosage regimen to use (prescribing faults—irrational, inappropriate, and ineffective prescribing, under-prescribing, over-prescribing); 
+writing the prescription (prescription errors); manufacturing the formulation (wrong strength, contaminants or adulterants, wrong or misleading packaging); 
+dispensing the formulation (wrong drug, wrong formulation, wrong label); 
+administering or taking the medicine (wrong dose, wrong route, wrong frequency, wrong duration); monitoring therapy (failing to alter therapy when required, erroneous alteration). 
+They can be classified, using a psychological classification of errors, as knowledge-, rule-, action- and memory-based errors. 
+Although medication errors can occasionally be serious, they are not commonly so and are often trivial. However, it is important to detect them, since system failures that result in minor errors can later lead to serious errors.
+Confidential for classroom use only
+33
+https://academic.oup.com/qjmed/article/102/8/513/1598923
+
+Class Exercise
+Prepare an issue tree for
+How consumers can reduce food waste
+A problem you are currently working on
+Your choice?
+Apply the 80/20 Rule – what must any solution actually accomplish?
+Confidential for classroom use only
+34
+
+Exercise
+Cover slide
+What is the problem you want to address? 
+Disaggregate the problem: 
+Create an issue tree (try starting with a mind map)
+Use MECE to structure the issue tree
+Apply the 80/20 Rule to identify the most important issues to solve
+Confidential for classroom use only
+35
+35
+
+Combining problem and solution
+THE BUSINESS CASE
+36
+Confidential for classroom use only
+36
+
+Confidential: For Classroom Use Only
+37
+John Mullins, The New Business Road Test (FT Press: 2008).
+
+The Mullins Model:Thinking Small and Big at the Same Time
+Confidential for classroom use only
+38
+Macro 
+Level 
+Micro 
+Level 
+Market Domains 
+Industry Domains 
+Validation
+Market Attractiveness 
+Target Segment Benefits
+ and Attractiveness 
+Industry Attractiveness 
+Competitive Advantage 
+Per John Mullins (London School of Business):
+John Mullins, The New Business Road Test (FT Press: 2008).
+
+Target Segment
+Define the initial target market segment
+Who (and how many)
+What are the relevant demographics or psycho-graphics
+Where, in terms of geography
+What is the value proposition to this market segment
+What customer pain(s) will your business idea resolve
+What gain(s) will your business idea offer
+How is your idea is superior (better, faster, cheaper) enough to get customers to change what they are doing now
+Confidential for classroom use only
+39
+John Mullins, The New Business Road Test (FT Press: 2008).
+
+Determine a Value Proposition
+A business or marketing statement that summarizes why a consumer should buy a product or use a service. 
+This statement should convince a potential consumer that one particular product or service will add more value or better solve a problem than other similar offerings. 
+Companies use this statement to target customers who will benefit most from using the company's products, and this helps maintain an economic moat.  
+The ideal value proposition is concise and appeals to the customer's strongest decision-making drivers. 
+
+Confidential for classroom use only
+40
+http://www.investopedia.com/terms/v/valueproposition.asp?viewed=1
+
+Per ARINC: A B2B Value Proposition
+When defining your value proposition, if you can clearly answer the following questions in a way that is meaningful to your customer, you have gone a long way in developing a winning offer:
+What do we do in helping our customers increase their revenue? 
+What do we do in helping our customers decrease their costs? 
+
+Other important questions:
+What do we do to help our customers better respond to the needs of their customers, to new opportunities that might be presented by their customers, or to threats? 
+What do we do to help our customers improve their productivity? 
+What do we do to help our customers improve their cycle time/speed? 
+What do we do to help our customers improve the satisfaction, retention, and growth of their customers? 
+What do we do to help our customers improve their quality? 
+What do we do to help our customers improve the satisfaction of their employees? 
+Confidential for classroom use only
+41
+
+The Value Proposition: Pains and Gains
+If the problem you have defined can be solved, then the value proposition will describe:
+Customer Jobs:  what customers are trying to get done in their work and in their lives
+Gains:  the more or less expected benefits the customers are seeking
+Pains:  the bad outcomes, risks, and obstacles related to customer jobs
+
+Confidential for classroom use only
+42
+Alexander Osterwalder, et. al., Value Proposition Design (John Wiley and Sons: 2014)
+
+Market Attractiveness
+Can the initial target segment lead to others? 
+How large is the potential market?
+number of customers
+how much do they spend on this kind of product or service
+how fast has the market grown, and will it continue to grow
+Think in terms of market size and market growth
+Confidential for classroom use only
+43
+John Mullins, The New Business Road Test (FT Press: 2008).
+
+Industry Attractiveness
+What exactly are you competing against in terms of
+Products and/or services
+Companies 
+Think in terms of volume and market share 
+How large or well-resourced are these companies?
+Be specific
+
+Confidential for classroom use only
+44
+John Mullins, The New Business Road Test (FT Press: 2008).
+
+Competitive Advantage
+What is your competitive advantage (i.e. something different from that offered by existing products and services) that
+delivers greater value to customers
+and/or comparable value at lower cost
+or enters a niche market where there is no competition
+How difficult will this advantage be to copy?
+Is your idea scalable?
+Confidential for classroom use only
+45
+John Mullins, The New Business Road Test (FT Press: 2008).
+
+Validation
+How have you validated 
+That this problem is real, i.e. that the initial target market cares
+That your solution is superior to alternatives
+What secondary and primary research have you done?
+To whom have you spoken?
+With whom will you need to speak?
+Confidential for classroom use only
+46
+John Mullins, The New Business Road Test (FT Press: 2008).
+
+THE GOAL OF YOUR REPORT:Reduce Uncertainty and “Buy the Right to Continue”
+Vijay Jolly
+Commercializing New Technologies(Boston: Harvard University Press, 1998)
+Confidential for classroom use only
+47
+47
+
+Buying the Right to Continue
+Per Vijay Jolly:
+Technology commercialization is a sequence of distinct subprocesses
+Subprocesses are connected by bridges associated with mobilizing stakeholders
+Bridging the subprocesses is about managing two things:
+Creating enough value in a predecessor stage to make a technology worth taking further
+Mobilizing stakeholders concerned with the next stage and convincing them of its future potential
+Therefore, there is a need to satisfy the stakeholders of the technology at each stage, without whom the technology’s value does not get recognized, nor is there an impulse to take it further
+Fundamentally bridging subprocesses is an exercise in stakeholder management
+The accomplishment of one stage successfully reduces the total uncertainty remaining, but does not necessarily increase the probability of accomplishing a subsequent stage
+Confidential: For Classroom Use Only
+48
+
+Technology Commercialization Subprocesses
+Technology commercialization subprocesses:
+Imagining a techno-market insight
+Incubating the technology to define its commercializability
+Demonstrating it contextually in products and/or processes
+Promoting the latter’s adoption
+Sustaining commercialization
+Confidential: For Classroom Use Only
+49
+
+50
+More on Technology Commercialization Subprocesses
+Stage
+Imagining
+Incubating
+Demonstrating
+Promoting
+Sustaining
+Definition
+Where the prospect for a technology is combined with potentially attractive markets
+Where paths to commercial viability are defined
+Where a product is built
+Where customers adopt the technology
+Where the product is improved to meet market requirements
+Expected Outcome
+Exciting, preferably unique technology-based idea linked to a market need
+Definition of idea’s technical feasibility, commercial potential, and plan for taking it further
+Incorporating the technology in attractive, market-ready products and/or processes
+Getting product or process rapidly accepted by various market constituents
+Generating long-term value by entrenching and expanding use of the technology and retaining a lead in it
+Completion Points
+Technical proof of principle, filing key patent(s), preliminary vision for the technology
+Preparing a business case and plan for commercialization, crafting the technology or product
+Launch of commercial version of product or process
+Capturing a profitable share of the market quickly
+Adequate return on investments made in technology and infrastructure for commercializing it
+Stakeholders
+Peers, colleagues, research partners, media
+Investors, development partners, potential users
+Potential customers, suppliers of complementary technologies, internal colleagues in other functions, business partners
+Customers, end-users, opinion leaders, market constituents
+Old and new customers, business partners, management
+Confidential: For Classroom Use Only
+
+Value Build-Up and Uncertainty
+Bridging the subprocesses is about managing two things:
+Creating enough value in a predecessor stage to make a technology worth taking further
+Mobilizing stakeholders concerned with the next stage and convincing them of its future potential
+The subprocesses all represent segments of the innovation process, each requiring input from a variety of functions and external sources as well as different types of research
+Each segment represent as independent subprocess of value creation
+Each subprocess needs to contend with its own set of stakeholders
+The subprocesses conform approximately to the nature of competition and specialization in technological innovation today
+The subprocesses offer a way to think about entry, exit, and alliances when it comes to bringing new technologies to market
+Investments made in a technology need to match the value it creates at a point in time – either in the form of what someone is willing to pay to buy an option on it, or, if a public company, the market capitalization investors assign
+Performing the various activities involved at each stage in a proficient manner enables an inventor to “buy the right to keep going by having successes along the way”
+Confidential: For Classroom Use Only
+51
+Buying the right not just to continue but to get started
+51
+
+Confidential for classroom use only
+52
+FINAL TERM REPORT
+52
+
+Final Presentation: Problem, Solution, Business Case
+Cover slide
+What is the opportunity you want to address? 
+Background:
+What are the relevant near- and long-term trends that make this space interesting?
+Why is this opportunity worth addressing?  
+Why is it important? 
+And to whom?
+Summary: What is the well-defined problem you want to solve?
+How can we help… do… under these circumstances… in order to accomplish…?
+What will the solution look like?  What must the solution deliver?
+Think in terms of  pains relieved and/or gains achieved
+Think in terms of root causes
+Does the basic business case make sense?
+Complete the template for the Mullins Model to the extent you can 
+What have you validated?
+Conclusion:
+Is it real?
+Can we win?
+Is it worth it?
+
+Confidential for classroom use only
+53
+
+Final Report: Problem, Solution, Business Case
+Cover page
+What is the opportunity you want to address? 
+Background:
+What are the relevant near- and long-term trends that make this space interesting?
+Include your literature search as appropriate
+Include mind maps, process maps, and issue trees as appropriate
+Why is this opportunity worth addressing?  What is the use case?  Is there a story?  Try thinking in terms of the W’s:
+Why is it important? 
+And to whom?
+What is the well-defined problem you want to solve:
+How can we help… do… under these circumstances… in order to accomplish…?
+Think in terms of a job-to-be-done statement (see appendix)
+What will the solution look like?  What must the solution deliver?  
+Think in terms of  pains relieved and/or gains achieved.  Think in terms of root causes.
+How are you going to develop the solution?  
+What is the technical plan?
+Does the basic business case make sense?
+Complete the template for the Mullins Model (backed by research)
+What have you validated?
+Conclusion:
+Problem:  Is it real?
+Solution:  Can we win?
+Business case:  Is it worth it?
+Confidential for classroom use only
+54
+
+APPENDIX:BRAINSTORMING SOLUTIONS
+Confidential for classroom use only
+55
+55
+
+THE BABSON MODEL AND MAGICAL THINKING
+Confidential for classroom use only
+56
+
+The Value of Magical Thinking
+Confidential for classroom use only
+57
+The idea is to place ideas developed from user inquiries in the three circles, develop relationships among them ideas, build related solutions that cross all three circles, and settle on one “stretch” solution that can be taken back to users for further development.
+Pragmatic
+Fanciful
+Pragmatic & Fanciful
+Solutions
+innovative, challenging, risky, different, significant, exciting
+crazy, impossible, controversial, idealistic
+possible, safe, acceptable, incremental
+
+IDEO’S DEEP DIVE
+Thomas Kelley with Jonathan Littman 
+The Art of Innovation
+(Doubleday: 2001)
+Confidential for classroom use only
+58
+
+The Deep Dive
+https://www.youtube.com/watch?v=M66ZU2PCIcM 
+Confidential for classroom use only
+59
+
+The Methodology
+"When you’re stuck with a tough decision or a problem you don’t understand, talk to all the smart people you know." It’s the networking approach to problem solving….we have a well-developed and continuously refined methodology; 
+Understand the market, the client, the technology, and the perceived constraints on the problem. Later in a project, we often challenge those constraints, but it’s important to understand current perceptions. 
+Observe real people in real-life situations to find out what makes them tick: what confuses them, what they like, what they hate, where they have latent needs not addressed by current products and services
+Visualize new-to-the-world concepts and the customers who will use them. Some people think of this step as predicting the future, and it is probably the most brainstorming-intensive phase of the process. Quite often, the visualization takes the form of a computer-based rendering or simulation, though IDEO also builds thousands of physical models and prototypes every year. For new product categories we sometimes visualize the customer experience by using composite characters and storyboard-illustrated scenarios. In some cases, we even make a video that portrays life with the future product before it really exists. 
+Evaluate and refine the prototypes in a series of quick iterations. We try not to get too attached to the first few prototypes, because we know they’ll change. No idea is so good that it can’t be improved upon, and we plan on a series of improvements. We get input from our internal team, from the client team, from knowledgeable people not directly involved with the project, and from people who make up the target market. We watch for what works and what doesn’t, what confuses people, what they seem to like, and we incrementally improve the product in the next round. 
+Implement the new concept for commercialization. This phase is often the longest and most technically challenging in the development process, but I believe that IDEO’s ability to successfully implement lends credibility to all the creative work that goes before. 
+
+Confidential for classroom use only
+60
+
+Seven Secrets for Better Brainstorming
+SHARPEN THE FOCUS  Good brainstormers start with a well-honed statement of the problem…. Go for something tangible that participants can sink their teeth into, without limiting the possible solutions. We’ve also found that the best topic statements focus outward on a specific customer need or service enhancement rather than focusing inward on some organizational goal. 
+PLAYFUL RULES  Don’t start to critique or debate ideas. 
+NUMBER YOUR IDEAS  We’ve found that a hundred ideas per hour usually indicates a good, fluid brainstorming session. 
+BUILD AND JUMP  Try building on an idea. Encourage another push or introduce a small variation. Or take a jump, either back to an earlier path you skipped by too quickly or forward to a completely new approach. Whatever you do, try to get into the next power curve and keep the energy up,
+THE SPACE REMEMBERS  Great brainstorm leaders understand the power of spatial memory. Write the flow of ideas down in a medium visible to the whole group. 
+STRETCH YOUR MENTAL MUSCLES  One type of warm-up we practice is a fast-paced word game simply to clear the mind…. Another warm-up is to do some content-related homework. 
+GET PHYSICAL  Good brainstorms are extremely visual. They include sketching, mind mapping, diagrams, and stick figures. 
+Confidential for classroom use only
+61
+
+SYSTEMATIC INVENTIVE THINKING
+DREW BOYD AND JACOB GOLDENBERG
+THINKING INSIDE THE BOX
+(SIMON & SCHUSTER: 2013)
+
+
+Thinking Inside the Box
+The traditional view of creativity is that it is unstructured and doesn’t follow rules or patterns. That you need to think “outside the box” to be truly original and innovative. That you should start with a problem and then “brainstorm” ideas without restraint until you find a solution. That you should “go wild” making analogies to things that have nothing to do with your products, services, or processes. That straying as far afield as possible will help you come up with a breakthrough idea. We believe just the opposite. 
+We’ll show you that more innovation— and better and quicker innovation— happens when you work inside your familiar world (yes, inside the box) using what we call templates. …the majority of new, inventive, and successful products result from only five templates: 
+subtraction, 
+division, 
+multiplication, 
+task unification, and 
+attribute dependency. 
+These templates form the basis of the innovation method called Systematic Inventive Thinking (SIT). 
+
+Confidential for classroom use only
+63
+
+The Five Templates
+SUBTRACTION.  Innovative products and services often have had something removed, usually something that was previously thought to be essential to the product or service. 
+DIVISION.  Many creative products and services have had a component divided out of them and placed somewhere else in the usage situation, usually in a way that initially seemed unproductive or unworkable. 
+MULTIPLICATION.  With this technique, a component has been copied but changed in some way, usually in a way that initially seemed unnecessary or odd. 
+TASK UNIFICATION.  With some creative products and services, certain tasks have been brought together and unified within one component of the product or service— usually a component that was previously thought to be unrelated to that task. 
+ATTRIBUTE DEPENDENCY.  In many innovative products and services, two or more attributes that previously seemed unrelated now correlate with one another. As one thing changes, something else changes.
+Confidential for classroom use only
+64
+
+Two Key Principles
+Using the Five Templates correctly relies on two key principles. 
+The first is called the “Closed World” principle. We’ve actually introduced it to you already: the notion that the best and fastest way to innovate is to look at resources close at hand. 
+The second principle requires retraining how your brain thinks about problem solving. Most people assume that the way to innovate is to start with a well-defined problem and then try to think of solutions. In our method, it is just the opposite. We start with an abstract, conceptual solution and then work back to the problem that it solves. Therefore, we have to learn how to reverse the usual way our brain works when innovating. 
+
+Confidential for classroom use only
+65
+
+The Closed World
+We believe that you’ll be most creative when you focus on the internal aspects of a situation or problem— and when you constrain your options rather than broaden them. 
+By defining and then closing the boundaries of a particular creative challenge and then looking only inside these boundaries, you can be more creative more consistently than by musing about the stratosphere or, worse, waiting for the muse to descend. 
+The Closed World is based on the idea that you look inward rather than outward, and that this propels you toward the virgin territory of truly creative ideas— ideas that are both original and useful. …these ideas all satisfied two conditions: 
+First, they contradicted some essential belief in the prevailing wisdom about the right way to do things. 
+Second, all the solutions were contained in a relatively small space surrounding the problem. …the Closed World of the problem.
+Confidential for classroom use only
+66
+
+The Closed World and Creativity
+…our Closed World principle says that the further you go from the problem, the less creative you will be. 
+Which brings us to another important point: the purpose of the Closed World is to teach creativity first and foremost. It’s not to always come up with the best solution to a problem at hand. Sometimes the best solution to a problem can actually be found outside the box. But if your goal is to systematize creativity, you have to operate within the confines of the Closed World. That is key. 
+…by limiting the number of variables under consideration from infinity to a finite number, we amplify our potential to come up with a creative solution. Why? Such limits boost the creative process, allowing individuals to be more focused. 
+Perhaps when people eliminate resources and pare down their problem world to its basic elements, they tap into their own natural resourcefulness. 
+Creativity is really about an intelligent search among a limited list of possibilities, rather than random, long-distance outward leaps and bounds. This, then, is our first rule: look inside! 
+Confidential for classroom use only
+67
+
+The Process
+Challenge assumptions and what we take for granted.  
+Identify a problem and its current solution.  
+Determine if an opportunity exists by
+Taking something away
+Adding something
+Moving an element
+Linking the elements in unique ways, either internally or to something external
+Move the pieces of the puzzle around.
+
+Confidential for classroom use only
+68

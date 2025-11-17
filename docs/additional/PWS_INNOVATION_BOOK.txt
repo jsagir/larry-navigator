@@ -1,0 +1,1441 @@
+1. Preface
+○ Introduction to the fundamental question: How to create a startup?
+○ Overview of current problems in entrepreneurship education
+○ Explanation of why most student ideas are uninteresting
+○ Critique of existing entrepreneurship courses Why it's here: Sets up the
+problem and explains why traditional approaches to entrepreneurship
+education are insufficient
+2. Introduction
+○ Definition and importance of innovation
+○ Current state of innovation education
+○ Role of innovation in business and society
+○ Overview of forced innovation due to unpredictable world
+○ Three components of innovation framework Why it's here: Establishes the
+theoretical foundation and contextualizes the importance of innovation in
+today's world
+3. Chapter One – Foundations
+○ Problem vs Solution approach
+○ Origins of ideas
+○ Importance of opportunity identification
+○ Breaking away from traditional methods
+○ Time horizons in problem-finding Why it's here: Establishes the basic
+principles and methodology that will be used throughout the book
+4. Chapter Two – Two Models
+○ Problem Types Model:
+■ Un-defined problems
+■ Ill-defined problems
+■ Well-defined problems
+○ Uncertainty vs Risk Model:
+■ Relationship between uncertainty and risk
+■ Innovation quadrants
+■ Strategic positioning Why it's here: Introduces the core theoretical
+frameworks that guide the rest of the methodology
+5. Chapter Three – A Case Study
+○ NATO Innovation Hub example
+○ Application of methodology
+○ Problem exploration process
+○ Solution development
+○ Results and validation Why it's here: Demonstrates practical application of the
+methodology through a real-world example
+6. Chapter Four – Exploring Un-Defined Problems
+○ Trending to the Absurd:
+
+■ Taking current trends to logical extremes
+■ Finding opportunities in absurd scenarios
+○ Scenario Analysis:
+■ Creating alternative futures
+■ 2x2 matrix methodology
+○ Systems Analysis:
+■ Understanding nested hierarchies
+■ System interconnections
+○ Red Teaming:
+■ Challenging assumptions
+■ Finding weaknesses Why it's here: Provides specific tools and
+techniques for exploring long-term, highly uncertain problems
+
+1. Chapter Five – Exploring Ill-Defined Problems
+○ Extensive Searching:
+■ Broad survey approach
+■ Finding patterns and connections
+○ Intensive Searching:
+■ Deep dive methodology
+■ Domain expertise
+○ Harnessing Trends:
+■ Understanding change drivers
+■ Identifying opportunities
+○ Understanding Needs:
+■ User experience analysis
+■ Jobs to be done
+○ Challenging Orthodoxies:
+■ Questioning assumptions
+■ Finding new possibilities Why it's here: Outlines methodologies for
+exploring medium-term opportunities and specific market/technology
+spaces
+2. Chapter Six – Exploring Specific Domains
+○ Reverse Salient concept
+○ Product Life Cycles
+○ Core Technology Applications
+○ Domain-specific methodologies Why it's here: Provides tools for applying the
+methodology to specific industries or technological domains
+
+Overall Structure Rationale: The book moves from theoretical foundations to practical
+applications, starting with broad concepts and gradually becoming more specific and
+applied. It follows a logical progression from understanding what innovation is, to how to
+think about problems, to specific tools for finding and solving them.
+
+**Preface**
+
+Suppose you wanted to create a startup?  How would you begin? This is the exercise that we have run (many times) at the start of our Innovation classes (both graduate and undergraduate) at Johns Hopkins University, Israel Institute of Technology, and Hebrew University, in addition to workshops all over the world. We ask students what’s the next big thing in e-commerce, or education, or saving the planet, or healthcare, or whatever timely topic shows up in the newspapers that day.
+
+Students respond by getting together, and then brainstorm ideas. Others make lists of interesting and insightful people and ask them for ideas. Others walk down the street and try to see what is not there. Some search the newspapers for the latest world-altering disasters; or check social media for the latest hot trends. Others look at popular technology journals for the latest in scientific research, and so on.
+
+But no matter what they do, the result is always the same. There are lots of ideas, almost all of them un-interesting. These are incredibly talented students, many of them engineers and scientists, often working in research labs on important and timely topics with famous professors. So why are their ideas so un-interesting?
+
+Too many entrepreneurship courses assume that students already have a good idea, and the goal of the class is to validate the idea, find the best product-market fit, and figure out how to turn it into a real startup. Just as too many design classes assume that students already have a good problem to solve, and the goal of the class is to work through the design thinking process and develop that great solution. Everywhere you look there is an accelerator or incubator, some sponsored by universities themselves, but it is always the same – the assumption that you already have a good idea. And their job is to help you carry it forward and bring it to fruition.
+
+That is not the goal of this book.
+
+**Introduction**
+
+Innovation should need no introduction. It is the watchword of the day. It is woven into the history of global economic development; just as it is obvious to anyone who has ever tried to make their lives or jobs a little better.
+
+Innovation is now an integral part of the curricula of engineering and business schools as well as a constant topic in boardrooms. Consultants peddle it as the panacea for corporate stagnation, the key to finding competitive advantage as products and markets mature.[[1]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Just as it is the key to grappling with a changing world.[[2]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+Governments offer programs to fund innovation and, as promised by the National Science Foundation’s Innovation Corps (I-Corps), teach people how “to reduce the time and risk associated with translating promising ideas and technologies from the laboratory to the marketplace.”[[3]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) And again, the assumption is that the “promising ideas” are already present as natural extensions of people’s research and work.
+
+But innovation is not simply a voluntary course of action taken at the discretion of inventors in a laboratory or at the direction of corporate executives hoping to revive a languishing business. More frequently, innovation is forced upon us, not just by a competitive marketplace, but by an uncertain, unpredictable, and dynamic world. Unfortunately, too many innovation efforts are consumed by incrementalism, on things that can be measured easily, on “presentism.” Expecting that the world will continue to behave just like it did last quarter or last year is not a realistic assumption. Everybody may want big, disruptive ideas, but instead always seem to chase narrowly focused, “present” ideas, those for which spreadsheets are most easily built and marketing materials most easily designed.
+
+The events of the last few years have certainly emphasized this point. A 2021 article in *California Management Review* described COVID-19 as “a wake-up call that forced executives to rethink the very foundations of their business” and that they “have come to realize they must organize for dynamic systems by building agile, adaptive and resilient organizations.”[[4]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Disruptions, whether political, economic, social, or technical are likely to become the “new normal.” Needless to say, recent geo-political events have only emphasized the point:
+
+The principles that have defined life in the United States – freedom, capitalism, individual effort – were the right ones for the past and remain so for the future. These basic values lie at the foundation of an innovation ecosystem that is still the envy of the world. The have enabled breakthroughs that have transformed everyday life around the world. The United States started the innovation race in pole position, but it cannot rest assured it will remain there. Silicon Valley’s old mantra holds true not just in industry but also in geopolitics: innovate or die.[[5]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+A prerequisite of organizational agility and adaptability is the *capacity to innovate;* the capacity to imagine different futures and how to proactively impact those futures rather than simply react to current pressures. It is by innovating – in product and service offerings, value propositions, business models, etc. – that businesses can successfully navigate, and possibly channel, the turbulent waters of an increasingly uncertain world. This capacity to innovate, of course, must be matched by an entrepreneurial capacity,[[6]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) i.e. the ability to carry an innovation to market.
+
+CEOs have taken notice. In the Conference Board’s *C-Suite Challenge 2021*, which surveyed more than 900 CEOs globally, CEOs cited the “lack of an innovation culture” as one of the top five obstacles their organizations currently face, and list “innovative thinking” as the most important quality they seek in future leaders.[[7]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) So we have come to realize the wisdom in Peter Drucker’s famous observation that organizations must either “innovate or die.”[[8]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+According to Drucker, innovation “is the specific instrument of entrepreneurship. It is the act that endows resources with a new capacity to create wealth. Innovation, indeed, creates a resource.”[[9]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+But how? Drucker’s answer will be our guideline: “Purposeful, systematic innovation begins with the analysis of the opportunities. Innovation is both conceptual and perceptual. The second imperative of innovation is therefore to go out to look, to ask, to listen.”[[10]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+SIDEBAR ABOUT PETER DRUCKER
+
+---
+
+“Purposeful, systematic innovation” begins with the hunt for opportunities, the core ideas that unleash innovation and innovative activities. This book is a guide to that hunt. It lays out the methodology that we have used with some success in our classrooms at Johns Hopkins University and elsewhere. This methodology embodies a structured set of tools, techniques, and templates for doing “purposeful, systematic innovation.” But with one important difference – we do not ask students to simply go out there “to look, to ask, to listen;” we do not want students simply to “get out of the building,” but to get out of their own heads, to escape from presentism by learning how to imagine alternative futures, and to do that imagining by working through a structured methodology.
+
+In our approach, innovations require three components:
+
+1. A problem worth solving;
+2. A solution that solves the problem; and
+3. A business case that makes sense and that allows the solution to enter the market and then scale.
+
+What we have called *Innovation under Uncertainty* can be summarized in the following steps:
+
+1. Form a cohort (or class) of 15-25 people. In general, they may be interested in specific subject areas (e.g. medical technologies, energy) or problem domains (e.g. cities, climate), but have no pre-formed ideas and who are open to exploring lots of possibilities.
+2. Groups will be regularly formed and reformed from among the members of the cohort so that everybody has the chance to work with everybody else.
+3. As groups, they explore un-defined and ill-defined spaces, tool by tool and template by template and question by question (based often on their own specific interests), as they build a bank of opportunities, dozens, or even many hundreds, strong.
+4. They repeat this exploration process week after week (or as long as the class or workshop lasts), all the while moving further and further away from present thinking.
+5. Groups validate, present, and defend their ideas to other groups every step of the way, sharpening the bank of opportunities.
+6. Permanent teams slowly form.
+7. Each team creates a small portfolio of opportunities around their favorite ideas; the best being those that take advantage of market and technological uncertainty while minimizing risk.
+8. Teams present their small portfolios to the other teams (as well as outsiders); and then each team picks one to turn into a well-defined problem (teams may re-form at this point).
+9. Each team further validates and refines the problem statement.
+10. Teams continue to validate the problem while starting to design what a solution will have to deliver and the approach to be taken to actually create the solution.
+11. Each team begins work on the solution even as they validate the solution for feasibility and adoptability.
+12. Each team develops a business case for the solution.
+13. After the solution has been designed (or an MVP actually built) and a business case developed, each team presents to an outside panel.
+14. The best teams have the opportunity to move to an incubator.
+
+The remainder of the book is designed to illustrate this process in greater detail, including the techniques, tools, and templates that we have developed, as well as some examples.
+
+[[1]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) For example, “Thus, if a firm is to continue to grow at substantial rates, it must ultimately be by developing business opportunities beyond its original scope.” Quoted in John Roberts, *The Modern Firm* (Oxford University Press: 2004).
+
+[[2]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) For example, “And thus the discipline of innovation (and it is the knowledge base of entrepreneurship) is a diagnostic discipline: a systematic examination of the areas of change that typically offer entrepreneurial opportunities.” Quoted in Peter Drucker, *Innovation and Entrepreneurship* (Routledge Classics, 1985). Taylor and Francis. Kindle Edition.
+
+[[3]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://www.nsf.gov/news/special_reports/i-corps/about.jsp
+
+[[4]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Bansal, Tima Bansal and MacMillan, Karen. “How Your Organization Can Prepare for Systems Disruption” in *California Management Review* (vol 63, Issue 2, Winter 2021).
+
+[[5]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Eric Shmidt. “Innovation Power: Why Technology Will Define the Future of Geopolitics” in *Foreign Affairs* (Feb 28, 2023).
+
+[[6]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://innovation.mit.edu/assets/Defense-Innovation-Report.pdf
+
+[[7]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://conference-board.org/topics/c-suite-challenge/c-suite-challenge-2021
+
+[[8]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Quoted by Ignatius, Adi. “Innovation on the Fly” in *Harvard Business Review* (December, 2014)
+
+[[9]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Peter Drucker, *Innovation and Entrepreneurship* (Routledge Classics, 1985). Taylor and Francis. Kindle Edition.
+
+[[10]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Ibid
+
+**Chapter Two – Two Models**
+
+SIDEBAR ABOUT NATO
+
+---
+
+The methodology that we have created involves two intersecting models. Combined, they offer a structured process, including a wide range of tools, techniques, and templates, to identify problems that are worth solving across increasing horizons of uncertainty (and lengthening time-scales). The result of this process is the creation of a bank of ideas, possibly hundreds of opportunities that can then be evaluated, again in a structured manner, for the best ones. It is important at this point to emphasize that the methodology is domain agnostic and we have used it successfully in both engineering and non-engineering classes from a wide range of disciplines.
+
+The first model is about the nature of problems. In the English language, the word “problem” is problematic because it can refer to a whole range of problems, and we call all of them “problems.” And it is this confusion that our first model attempts to straighten out. Here is example. The Innovation Hub (based in Norfolk, VA) of the North Atlantic Treaty Organization (NATO) gave a class of ours the following question: “What will the small combat team of the future look like?” Students found this to be an interesting problem to try to solve, as many of them had grown up playing video games. But there is no way to solve this problem without addressing a “prior” and different kind of problem: “What is the future of war?”
+
+https://en.wikipedia.org/wiki/Small_unit_tactics#/media/File:Defense.gov_News_Photo_091103-A-1211M-017.jpg
+
+---
+
+It should be clear that these are two very different kinds of questions. And different still from the kind of problem that the students actually chose to address: “How can we find a target without GPS?” Three different kinds of questions, three different kinds of problems, three different time horizons, three different levels of definition.
+
+The first model, therefore, describes three different kinds of problems across three different time horizons: what is possible, what is plausible, and what is probable; what we have called un-defined, ill-defined, and well-defined problems. Each kind of problem asks different kinds of questions, requires different kinds of tools, different kinds of “solutions,” and different kinds of business cases.
+
+Un-defined problems ask what is possible? What is over the horizon? Un-defined problems are concerned with what the future might look like and what we might find there, or not find there. The goal is to imagine alternative futures in order to anticipate problems. Ill-defined problems, in turn, ask what’s next? What is the next big thing here, in this specific technological or market space?  By contrast, well-defined problems ask what is the best solution to this specific problem?
+
+Here are some examples, all from the world of prosthetics:
+
+**Well-Defined**:
+
+How can we make a brain controlled prosthetic hand with a sense of touch (sensory feedback) for less than $1000?
+
+SIDEBAR ABOUT THE HISTORY OF PROSTHETICS
+
+---
+
+**Ill-Defined**: What is the next big thing in
+
+1. 3D printing and prosthetics,
+2. Robotics and prosthetics,
+3. Personalized prosthetics, or
+4. How prosthetics are acquired?
+
+**Un-Defined**:
+
+What is the future of prosthetics?
+
+Each type of problem represents a different time frame and a different degree of uncertainty. Well-defined problems are problems as we normally think of them, i.e. what the solution specifically needs to accomplish is clear, even if it is hard, possibly very hard to do.
+
+Ill-defined problems, by contrast, ask what is the next big thing for us here, in this specific technological or market space? The “solution” to an ill-defined problem is a **list of opportunities** because lots of things could serve as the next big thing. The goal, therefore, is to create that list and then figure out what exactly to work on.
+
+And lastly, un-defined problems ask questions about what the future might look like and the problems that might be found in alternative futures. This is not a problem in the traditional sense of the word; rather it is **a description of future states** which can be explored for problems worth working on, problems that also help us create a list of opportunities that can then be used to prepare for, or possibly create, a future we want.
+
+These three kinds of problems exist on a continuum. But it is not just the nature of the problems, but the relationships among them that matter as well. The reality is that you can start the search for opportunities anywhere and then move back and forth across the continuum. For example, just as imagining alternative futures allows us to find problems worth working on, so the solutions to important problems allow us to rethink the future in important ways. The challenge is that we usually treat all problems as if they were well-defined, and then apply the wrong tools.
+
+Un-defined and ill-defined problems cannot be solved in any traditional sense of the term. Rather, they are spaces to explore in order to build a portfolio of opportunities. This famous quote from Linus Pauling will be our guide here:
+
+SIDEBAR ABOUT LINUS PAULING
+
+---
+
+“I’m interested in everything. Lots of things carry over from one field to another. To get good ideas, you have to have a lot of ideas and throw away the bad ones. The knack is to recognize the problems you have some chance of solving.”[[1]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+As many good ideas as we can, across as wide a spectrum as we can, in the hope that a few of them turn out to be really good. Your best idea is rarely your first idea, and it rarely grows on a tree. Finding good ideas is hard work, and takes practice. Generating lots of ideas forces us to think broadly across domains and enables us to reach beyond narrow areas of specialization in a complex and uncertain world.
+
+To summarize, we explore un-defined and ill-defined problems for opportunities, the best of which can then be turned into well-defined problems that can actually be solved. It is only when problems are well-defined that they can be solved in any meaningful sense of the term; for it is only when the problem is well-defined that a solution can be falsified, i.e., it either works or it does not.
+
+By contrast, ill- and un-defined problems are used to create portfolios of opportunities – the distinction is critical. The difficulty is that all too often we treat all problems as well-defined and use the wrong tools. And an even bigger difficulty is that that the “next big thing” almost always comes from un-defined and ill-defined problems, while the managerial support and funding always come from well-defined problems.
+
+So what is an opportunity? It is a chance to fix something that does not work as it should; a chance or a prospect to create something, hopefully something interesting and meaningful, possibly intriguing, almost certainly exciting. It is a chance to create a different future. When we ask students, “What makes for a good opportunity?” the usual answers are impact, feasibility, and personal preference. While certainly valid, as far as it goes, we want to argue that more important are those ideas that take you by surprise, that make you go “whoa” when you hear them, and those where any solution will take advantage of technological and market uncertainty, while minimizing risk.
+
+Which takes us to the second model comprising our methodology, the relationship between uncertainty and risk. As we have written elsewhere:[[2]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+Risk is the probability of loss, injury, or other adverse outcome. It can be estimated and calculated based on our knowledge of prior outcomes and conditions. It has been mathematically formulated since the late 17th century, notably in the work of Blaise Pascal. Most importantly, it can be managed. Risk can be distributed (syndicated), insured against, hedged, and reduced. In short, it can be quantified and controlled.
+
+Uncertainty is different. It is not subject to exact quantification. It was only recently formalized in the early 20th century work of the economist Frank Knight. It represents all of the possible future states of the world at any given time. The higher the uncertainty, the greater the number of possible outcomes, both positive and negative. It is a source of discomfort because we cannot predict it, but it is also a source of potential value. Higher uncertainty means greater potential, and most of us underestimate the extent of that potential since there are more possible future states of the world than we can possibly comprehend.
+
+While some view the two as essentially the same and use the words interchangeably, uncertainty is quite distinct from risk, both in its character and in its use. In fact, what sets highly successful entrepreneurs and innovators apart from the rest of the population is the ability to see and use this difference as the basis for their success.
+
+Risk can be financial, political, reputational, managerial, etc. Risk can be managed; and the tools for managing risk are well-developed and well-known to any MBA student. By contrast, uncertainty is about technological and market feasibility. And while we may manage risk, we can exploit uncertainty. Entrepreneurs and innovators see value in uncertainty because they earn profits when gains turn out to be appreciably greater than what is generally expected. How we can exploit uncertainty to create innovative opportunities is the point of this book.
+
+The questions immediately arise: “Who plays in each quadrant? What kind of problem is being addressed in each quadrant?” The top right (high uncertainty/high risk) is the proper realm of governments, including defense departments. The bets are very big and nothing is clear; e.g. hypersonics, quantum computing; and once upon a time, manned flight, nuclear energy, and space exploration.
+
+SIDEBAR ABOUT THE HISTORY OF EARLY AVIATION AND HOW GOVERNMENT SUPPORTED ITS DEVELOPMENT UNTIL COPORATIONS TOOK OVER
+
+---
+
+By contrast, the bottom right (lower uncertainty/high risk) is where we find companies with an appetite for risk and large resources; i.e., where the bets are big in markets and technologies that are well-understood; e.g. battery factories, telecommunications, electric vehicles, space exploration, pharmaceuticals. For example, early aviation was supported in various ways by government funding until the uncertainty was reduced to a point where companies felt confident enough to make large investments. The risks may have remained large, but the tools existed for managing them.
+
+In the bottom left (low uncertainty/low risk) is where we find most company R&D departments, as well as student projects and design teams; i.e., small, incremental, sustaining improvements to existing products and markets. As a former student once remarked to us, “The problem here is that corporations spend way too much money and time researching and predicting the present.” As Clayton Christensen showed decades ago, incumbent players dominate incremental improvements because they have the customers and the resources.[[3]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+Do not misunderstand us. We are, by no means, saying that incremental innovations are not important. They are incredibly important in any process of continuous improvement. They are a fundamental element of good management. They are an important element in market differentiation. But they are not the end of the innovation story.
+
+Which takes us to the top left quadrant (higher uncertainty/lower risk). Innovators who want to create “the next big thing” need to work in spaces where there is enough uncertainty in the technology and/or market space that there is no dominant player and, therefore, room for an entrepreneur. If it were obvious, everybody would see it and there would be no opportunity for innovation or above average gains.
+
+Innovation is always a matter of technological and/or market insights; i.e., seeing what others do not see. In other words, all innovation exploits uncertainty to a greater or lesser extent.[[4]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Innovation can take place in any quadrant, but we will focus in this book on the upper left because that is where there is enough uncertainty to offer big opportunities at modest risk.
+
+This now begs the next question we always hear from students, “If future technologies and markets are uncertain, how do you know which are the best problems to work on?” The short answer is that you don’t; rather, you build a portfolio of opportunities, think of them as lots of small bets, and then follow through on whichever ones call your name and seem to offer the best chance of creating a great solution and building a powerful business case. But, to repeat, there is no certainty here. If there were certainty, there would be no opportunity.
+
+One more thing. Our approach is not a rehash of design thinking, popularized in the last 25 years by Stanford, MIT, and IDEO.[[5]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) With roots that go back to the 1950’s and 1960’s, the traditional elements (empathize, define, ideate, prototype, test) are now a fundamental part of university curricula and corporate America, as testified to by a recent McKinsey article:
+
+Design and design thinking are buzzing in the business community more than ever. Until now, design has focused largely on how something looks; these days, it’s a dynamic idea used to describe how organizations can adjust their problem-solving approaches to respond to rapidly changing environments—and create maximum impact and shareholder value. Design is a journey *and* a destination. Design thinking is a core way of starting the journey and arriving at the right destination at the right time.
+
+Simply put, “design thinking is a methodology that we use to solve complex problems, and it’s a way of using systemic reasoning and intuition to explore ideal future states,” says McKinsey partner Jennifer Kilian. Design thinking, she continues, is “the single biggest competitive advantage that you can have, if your customers are loyal to you—because if you solve for their needs first, you’ll always win.”[[6]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+But the focus of design thinking remains on well-defined problems and well-organized problem-solving. We prefer to start earlier, in finding, from the beginning, the best problems to solve. And we do this in a structured manner, week by week, developing a toolkit while building a portfolio of innovation from which students can then choose the best problems and apply design thinking to their hearts’ content. Similarly, we do not ask students to build large spreadsheets that pretend to forecast future revenues and costs years out; nor do we ask them to do a sophisticated market sizing, pretending to calculate addressable, available, serviceable markets. If the technologies and markets are highly uncertain, what is the point? There will be time enough for all that should they successfully formulate a well-defined problem and design a solution.
+
+To summarize, we have developed a structured approach (to be explained in subsequent chapters) that uses a set of tools, techniques, and templates to explore un-defined and ill-defined problems with the goal of creating a portfolio of opportunities.
+
+From the portfolio, students form teams to turn what they believe to be the best opportunities (i.e., those that push the boundaries of uncertainty while minimizing risk) into well-defined problems that can actually be solved and for which a business case can be developed. Students then validate and iterate as they work through all three: problem, solution, business case.
+
+![image.png](attachment:e9735932-2157-4d27-8ebd-cb3ddd6b7108:image.png)
+
+[[1]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://www.barrypopik.com/index.php/new_york_city/entry/the_best_way_to_have_a_good_idea
+
+[[2]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Alexander Cocron and Lawrence Aronhime. “Risk, Uncertainty, and Innovation” in *NATO Review* (14 April 2022, online).
+
+[[3]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Clayton M. Christensen, *The Innovator’s Dilemma* (Harvard Business School Press: 1997).
+
+[[4]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) See the work of Amar V. Bhide, *The Origin and Evolution of New Businesses* (Oxford University Press: 2003).
+
+[[5]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://en.wikipedia.org/wiki/Design_thinking
+
+[[6]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://www.mckinsey.com/featured-insights/mckinsey-explainers/what-is-design-thinking?stcr=E6424906D2EC4F7FAFDD2B8316769C27&cid=other-eml-alt-mip-mck&hlkid=464791ceb6bf407b9a83ccbfbdbb0913&hctky=2420897&hdpid=b8197de5-5e88-4b55-9546-58622e85e2b4
+
+**Chapter Three – A Case Study** 
+
+We believe that it is the combination of the two models described above that offers students, as well as organizations, the ability to create a portfolio of innovation; and more importantly, the ability to do so in a structured process that exploits all three problem types. What follows is a case study illustrating this process, based on a question that was given to our students at Johns Hopkins University by the NATO Innovation Hub Medical Branch based at Norfolk, VA.
+
+About six years ago, the NATO Innovation Hub presented a team of undergraduate students what looked like a straightforward question: “What is the future of military medicine in a post-Afghanistan world?” At the time, NATO was still heavily engaged in Afghanistan, although the Alliance knew that the end of its commitment there would eventually come, which, of course it now has.
+
+How to go about addressing such a problem? The usual answer would be to do lots of research into how things are done now, talk to lots of people, and re-design NATO protocols; all done by “getting out of the building” and deeply understanding what those involved are trying to accomplish. But in our opinion, such an approach is too “present focused” and too often imagines the future as a continuation of the present, only more so. As important as it is to get out of the building, it is even more important to get out of your own head and start to imagine alternative futures.
+
+And so the students began by treating the question as an **un-defined problem**, one that could be explored for opportunities. After talking to officers in the NATO Innovation Hub Medical Branch, the team understood that combat medicine divides into two parts – pre-hospital and hospital. The team decided that they would concentrate on the pre-hospital portion. The next step (after primary and secondary research) was to prepare a scenario analysis, a classic strategy consulting tool. The goal was to develop a 2x2 matrix representing alternative futures, without predicting any particular future. These futures could then be explored for the problems, and thus opportunities, that might be found there. The team made four important assumptions: European location; contested environment; rapid evacuation not possible; kinetic only.
+
+After researching the topic, the team made a list of key trends and chose two as the axes for the 2x2 matrix: urban/non-urban; single casualty/mass casualties. They explored each quadrant and ultimately chose one to work with: non-urban, mass casualties. The next step was to create from this scenario an **ill-defined problem** that could be explored in detail for opportunities: What are the possibilities for field medicine in the future when there are mass casualties in a non-urban environment and where rapid evacuation is not possible. The key assumptions were that the non-urban environment would
+
+- have sparse resources (no hospitals, electricity, etc.);
+- make it easier to distinguish victim/perpetrator; and
+- be reliant on under-resourced medical and non-medical personnel.
+
+In addition, mass casualties in a non-urban environment presented some critical needs, such as the importance of
+
+- locating multiple distributed victims;
+- prioritizing treatment; and
+- assisting *in situ* (extraction not feasible).
+
+Using the structured set of tools, techniques, and templates we have designed at Johns Hopkins University, the team spent several months constructing a bank of over 50 ideas, including the following opportunities:
+
+1. Autotransfusion of Blood: develop for combat use a handheld mechanical device for auto-transfusion of blood;
+2. Pre-Positioning Medical Resources: additional kits/devices stored in public spaces, supported by data-driven predictions on the location of needs;
+3. Freeze Drying Blood: convert blood into a long-lasting powder that can be rehydrated as needed;
+4. Automated Tourniquet: device that can detect the correct amount of pressure to apply to a tourniquet;
+5. Detecting Internal Bleeding with a Wearable Device: develop the algorithms for use in existing wearables/devices;
+6. Blood Reactive Armor: body armor that will change color when blood comes into contact with it;
+7. Universal Tourniquet: a device that can be applied to pelvic area wounds where traditional tourniquets are ineffective;
+8. Improved Stretcher: redesign the traditional stretcher, possibly autonomous with a protective cover;
+9. Reinforced Tents: redesign tents for medical personnel and wounded;
+10. Light compact easily transportable litters, splints, and dressings;
+11. Comfortable litters for longer duration (assuming no transport out);
+12. Bluetooth enabled vital statistics chest strap or similar (viz., NASA);
+13. Man-carrying drones for evacuation (single person, low flying?) or robotic mules;
+14. Medical Equipment Drones: ability to swarm, land, and create a mobile self-assembling MTF anywhere on the battlefield; and
+15. Medical Advice Drones: fly to the injured and provide advice on self-care (telemedicine or IBM Watson) and drop first aid provisions.
+
+These fifteen were the most interesting opportunities identified by the students, and all were validated with the NATO Innovation Hub Medical Branch as well as military medical personnel in the US, UK, France, Germany, and Israel. All fifteen ideas were worth further exploration and, possibly, funding and development.
+
+As the team reviewed the portfolio, they looked at the relative uncertainty/risk profile of each opportunity, as well as impact and feasibility. In the end, they chose number five, and turned it into a **well-defined problem** that could actually be solved: create a Digital Triage Assistant (DTA) to identify the most severely wounded soldiers in real time and thereby provide life-saving care to those most in need in order to reduce mortality.
+
+First responders, emergency rooms, combat medics all have triage processes. The problem is that under the pressures of the moment, these processes can fall apart; pressures that are magnified in a non-urban setting with mass casualties, possibly scattered over a wide area. As was noted in a recent paper, “The use of triage is not well-validated in mass-casualty settings, and in the setting of intentional mass violence, new and innovative approaches are needed.”[[2]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+The team decided that the solution divided into two parts: 1) an algorithm based on vital statistics that determined the degree of injury and likely mortality, and 2) a wearable device that communicated the results to field medics in real time.
+
+The student team at Johns Hopkins worked on the first part and then combined with students at the Czech Technical University (CTU) under the direction of Miroslav Bures who used an off-the-shelf wearable watch and then built the necessary communication links and user interfaces, without using GPS. The device was field tested by the Czech Special Forces, and the project continues.
+
+To summarize, the DTA is an excellent example of how student teams and organizations can use a structured process for innovation. In this case, undergraduate engineering students at Johns Hopkins, with no medical or military experience, used this process to design and develop a potentially important innovation.
+
+First, the team explored un-defined and ill-defined problems to create a portfolio of innovation in a specific domain, i.e. the future of combat medicine. They chose one opportunity and created a well-defined problem that they could actually solve. The team then designed the solution and built it (by combining with CTU), validating the solution at every step.
+
+Importantly, the models presented above allowed the team to follow up its success by reversing the process and starting a new innovation process with the solution as the beginning. By making the solution “less well-defined,” the team could then explore how the DTA can be used, for example, to identify opportunities for better monitoring the health of soldiers in real time.
+
+Very simply, the process presented above can be taught and utilized in any classroom or organization to develop innovative capacity; not with exhortatory cliches about getting out of the building and random brainstorming, but with a structured process and toolkit that can be applied to any domain.
+
+POSSIBLE SECOND CASE STUDY FROM ALEXANDER ROVALINO ON AQUAPITAS
+
+---
+
+**Classroom Organization**
+
+At this point, we would like to explain how we use this book to organize our classrooms. Most of our classes are taught in a three-credit format (three hours per week) over a fourteen week semester. Classes are almost always taught on a Monday-Wednesday schedule (occasionally Tuesday-Thursday, but the structure is exactly the same). Class size is such that we form four teams each week. We like to mix students up week by week, at least for the first half or so of the semester, so that everybody gets a chance to work with everybody else in the class; at least until they form teams of their own choosing around the opportunities they will eventually choose to build out.
+
+New material from the textbook is introduced each Wednesday, and there is always time to practice in class. Week by week, step by step, we build the toolkit by introducing a new tool for exploring un-defined and ill-defined spaces. Sometimes students are free to choose their own domains of interest; other times we assign the domain, e.g. computer gaming or solar panels or circular economy, etc., depending on the department or division sponsoring the class.
+
+Teams are also formed every Wednesday and then students have the long weekend to prepare their presentations for Monday, about twenty minutes per team. Presentations are reviewed as a class. On Wednesday, we move on to new material, and the process repeats. The goal is not merely to build skills week by week, but to build a bank of opportunities as well.
+
+SIDEBAR ABOUT WHITING SCHOOL OF ENGINEERING AT HOPKINS
+
+---
+
+Presentations always follow the same structure:
+
+1. Introduce the team
+2. Describe the domain explored, including any necessary background research
+3. Apply the week’s technique to the domain
+4. Describe an interesting problem space
+5. Describe three opportunities in that space
+
+Once the toolkit has been built, there are several weeks where students use whatever tools they want as they explore specific domains of interest or as assigned. With about three weeks left to the term, students start to form teams around the opportunities that they find most interesting and appealing. Each team must assemble a small portfolio of opportunities, whether from the bank or ones that they have developed independently.
+
+With about two weeks left to the semester, the teams start to convert their favorite opportunities into well-defined problems. The teams finish off the semester by starting to lay out what a solution might look like and as well as the basics of the business case. All three – problem, solution, business case – must be validated. By the end of the spring term, each team must deliver a prototype and a business plan and must compete in the university’s business plan competition.
+
+[[1]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) See prior published articles by Lawrence Aronhime and Alexander Cocron: https://www.nato.int/docu/review/articles/2020/10/21/working-with-nato-the-experience-of-johns-hopkins-university/index.html; https://www.nato.int/docu/review/articles/2023/05/02/back-to-the-future-innovating-in-times-of-uncertainty-and-disruption/index.html; as well as this article published by the Johns Hopkins HUB: https://hub.jhu.edu/2021/08/20/wearable-device-for-combat-triage/
+
+[[2]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://pubmed.ncbi.nlm.nih.gov/31389325/ (Dec 24, 2022)
+
+**Chapter Four – Exploring Un-Defined Problems**
+
+Innovation is about creating the new – new products and services, new markets, new ways of working, etc. We innovate in order to respond to and take advantage of change. We innovate in order to solve new problems as well as old problems in new and better ways. But the beginning of the process is always finding the right problems to solve.
+
+At Johns Hopkins, we have created a model that uses three different kinds of problems, each asking different kinds of questions, requiring different kinds of answers, and using different kinds of tools. Un-defined and ill-defined problems are used to explore alternative futures and different technological and market spaces in order to build a portfolio of opportunities. The best opportunities can then be turned into well-defined problems that can actually be solved.
+
+We will start in this chapter with un-defined problems. Un-Defined Problems are not problems in the traditional sense of the term, in the sense of looking for a specific solution; rather, they ask what distant futures might look like, what kinds of problems we might find there, and what kinds of opportunities those problems could offer to us today. For example,
+
+- What is the future of personal mobility?
+- What is the future of work?
+- What will the transition to clean energy look like?
+- What is the future of medical care?
+- What is the future of war?
+- What is the future of education?
+- What is the future of our city?
+
+The point, of course, is that there is no one way to answer these kinds of questions, because they are all “un-defined;” and are very different kinds of questions than asking how to fit a square peg into a round hole. These questions ask you to imagine what the future will look like. The trick, of course, is that the future is not a single place.
+
+And because there is no one future out there, the way to think about them is to **imagine alternative futures**; ****what those futures might look like and what might possibly be found there, or not found there. How will people do things in those futures, or not do them? How will people live in these futures? What problems will be found there, problems that create opportunities for us today?
+
+We use four tools to explore un-defined problems:
+
+1. Trending to the absurd
+2. Scenario analysis
+3. Systems analysis
+4. Redteaming
+
+We will look at them one at a time.
+
+***Trending to the Absurd***
+
+Trending to the Absurd is the simplest way of escaping “presentism.” It involves taking a current, real trend and carrying it to its absurd conclusion, and then asking, “What kind of a world is this? What interesting problems might we find here?” We are all used to thinking in straight lines, that the future is pretty much just a continuation of the past. What we are trying to imagine is anomalies and discontinuities, not in the sense of predicting them, but in the sense of using them as vehicles for imagining alternative futures and the ill-defined problems that might be found there.
+
+Look at this photo. On November 14, 1910, Eugene Ely (1886 – 1911) made the first carrier flight in a *Curtiss Pusher* biplane from an improvised platform erected over the bow of the light cruiser USS Birmingham. After less than five minutes in the air, Ely set the plane down on a nearby beach; he had flown less than three miles.
+
+What would anyone watching that flight in 1910 have thought? How could such a tiny plane have done any harm to those great ships?
+
+https://www.businessinsider.com/eugene-ely-navy-launched-plane-from-ship-for-first-time-in-1910-2017-11
+
+---
+
+A heavily retouched Japanese photograph of HMS Prince of Wales (upper) and Repulse (lower) after being hit by Japanese torpedoes on 10 December 1941, off Malaya. A British destroyer can also be seen in the foreground. The sinkings were an appalling blow to British prestige.
+
+https://en.wikipedia.org/wiki/Sinking_of_Prince_of_Wales_and_Repulse
+
+---
+
+And yet a mere 31 years later, on December 10, 1941, land-based bombers and torpedo bombers of the Imperial Japanese Navy sank the Royal Navy’s battleship *HMS Prince of Wales* and the battlecruiser *HMS Repulse*, after they had sailed in a futile  attempt to protect the British colonies of Malaya and Singapore from invasion. Without close air support, these ships stood no chance and were destroyed in minutes.[[1]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+To make the story even more interesting, just over a year before, on the night of November 11-12, 1940, the Royal Navy launched the first all-aircraft ship-to-ship attack in history and heavily damaged the Italian fleet based at Taranto in the south of Italy; showing forever the ascendancy of air power over the big guns of battleships.[[2]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+http://maximietteita.blogspot.com/2015/09/battle-of-taranto.html
+
+---
+
+Very simply, in 1910, nobody asked what would happen if planes should become faster, bigger, and more powerful than ships than the defensive capabilities of ships. Since their origins at the beginning of the 20th century, planes had become bigger and faster. But too many naval planners still believed in the power of big guns and did not ask the simplest of questions, “What will happen if masses of aircraft attain the capability of attacking, and possibly, overwhelming ships?”
+
+In 1910, it may well have been impossible to accurately predict the future of aircraft and aviation; but that is not necessary when carrying a trend to its absurd conclusion. We are not making a prediction, only asking what such a world might look like if the current trend is taken to its absurd conclusion, and what problems might be found there; problems that can be turned into innovative opportunities.
+
+Trend lines are almost always instructive. In 1880, for example, there were millions of horses in America.[[3]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) And if the trend lines had continued there would be hundreds of millions by the mid-twentieth century, literally crowding out people. Cities were already being buried under mountains of manure and flooded by rivers of urine. Not to mention the flies. Predictions as to the future of urban living were dire. Very simply, carrying a trend to its absurd, impossible conclusion presents opportunities because what cannot continue, will not continue. What are the opportunities for urban living in cities overrun with horses?
+
+And then, unexpectedly, the automobile came along and saved cities. It was, literally, in its day, a green technology. But how many people asked at the beginning of the 20th century what the world might look like if everyone owned a car (rather than a horse)? What are the opportunities if we are overrun by automobiles?
+
+And nowadays, we can ask the opposite question. When we ask students who wants to own a car, most respond that they do not. They want to get from Point A to Point B as easily and as comfortably as possible, and exactly when they want. They do not care about ownership. So the question now becomes, “What will the world look like when nobody wants to own a car, or anything else for that matter?” What problems will we find, and what opportunities can we discover?
+
+SIDEBAR SHOWING GRAPH OF MOORE’S LAW AND A SHORT BIOGRAPHY OF GORDON MOORE AND HIS LAW
+
+---
+
+A famous example of a trendline is Moore’s Law, where some obvious problems led to innovation in circuit substrates, etching machines, and ultimately to the concept of quantum computing. But what happens when:
+
+1. transistor density increases heat to unmanageable levels?
+2. transistor circuits become too small to machine or etch into chips?
+3. circuits size declines below atomic level (basic physics constraint—the law breaks down)?
+
+SIDEBAR SHOWING GRAPH OF URBANIZATION AND A SHORT HISTORY OF CITIES
+
+---
+
+Another example is the trend of increasing urbanization. There are many different potential problems, including political, economic, social, technological, legal and environmental. For example:
+
+1. What happens when everyone lives in a city and no one in the countryside?
+2. How do cities manage the increasing population density and the implications for housing, sanitation, traffic, water use, policing/public order, etc.
+3. Will countries continue to exist or will everyone return to city-states?
+
+Needless to say, it is important that any trend taken to its absurd conclusion be real, in the sense that it is easy to visualize. Here are some more examples that we typically use in class:
+
+1. Water is increasingly scarce in many parts of the world. What if water became so scarce that every person was limited to one liter of water a day?
+2. There are now tens of millions of refugees. Since WWII, we have assumed that eventually they will go home or be absorbed in-country. But what if refugees can never go home?
+3. We all know the problems of our “throw away” society. What if you could never throw anything away ever again?
+4. What if you could never see a doctor in person ever again?
+5. What if there were no more fossil fuels, and no more plastic?
+6. How will we live if temperatures are over 120 degrees Fahrenheit every day?
+
+These are all current trends. We do not believe that they will necessarily come to pass. We are not making predictions, only asking what opportunities might be found in alternative futures.
+
+To repeat, one technique for exploring un-defined spaces is to take a current trend, carry it to its absurd conclusion, and then ask, “What problems now confront us? Where are the opportunities? What are the best problems to work on now?”
+
+1.      Choose a domain of interest to you
+
+2.      Identify relevant trends in that domain
+
+·     Make a list.
+
+3.      Research one.  What is changing and how fast?
+
+4.      Carry this trend to its absurd conclusion – ask questions like
+
+·     What if everything were…
+
+·     What if everyone were to do…
+
+·     What if nobody were to do…
+
+5.      Describe this world:
+
+·     How will people live in this world?
+
+·     What will their lives look like?
+
+6.      What **new specific problems** might people in this world possibly have?
+
+·     What is missing in this world?
+
+·     What products, services, and policies will be needed?
+
+·     What can help prevent (or slow down) unwanted trends?
+
+7.      Conclusion: What problems will we find in the future?  What opportunity spaces are worth working on today?
+
+---
+
+To summarize, the process for using the technique we have called *Trending to the Absurd* is as follows:
+
+Take a look at this 14th century painting. It looks like every classroom since the beginning of time. But do you believe that twenty years from now classrooms will continue to look like this?
+
+What will be the impact on education of:
+
+1.       Remote learning?
+
+2.       Global teams?
+
+3.       AI?
+
+4.       Teacher shortages?
+
+5.       Any other trend you can think of?
+
+Take one of these trends. Research it. Carry it to its absurd conclusion, for example:
+
+1.       What problems will we find if all learning is remote?
+
+2.       What will education look like if we can form teams with anybody in the world?
+
+3.       What will education look like if we can do all of our work with AI? What if all grading were done by AI?
+
+4.       What if nobody wants to be a teacher anymore?
+
+Remember: at this point, we are only looking for the most interesting problems to solve; not designing the solutions.
+
+---
+
+***You try it:***
+
+Henricus de Alemannia with students in a medieval university, by Laurentius de Voltolina, second half 14th century
+
+Kupferstichkabinett Berlin
+
+https://sites.google.com/site/lifeduringthemedievaltimes/education
+
+---
+
+***Scenario Analysis***
+
+Scenario analysis is a second technique we use to think differently about the future. Again, this is the entire point of un-defined problems. The key idea in this section (and really of both techniques) is that ***we are not predicting what the future will be***, but describing alternative possible futures that are rooted in what is actually happening now, i.e., trends.
+
+*Trending to the Absurd* is straightforward – take a trend, carry it forward to its absurd conclusion, and see if anything interesting shows up. Scenario analysis is different; it is more formal. It posits a set of possible futures, but attaches no probabilities and makes no predictions. Rather, it creates stories of the future along known dimensions.
+
+SIDEBAR ON GAME THEORY
+
+---
+
+At its most basic level, scenario planning is ancient. Whoever planned anything, whether a hunt or a military campaign or the spring planting, likely thought about alternatives where things might not “go according to plan.” In modern times, scenario planning has been attributed to to “Herman Kahn through his work for the US Military in the 1950s at the RAND Corporation where he developed a technique of describing the future in stories as if written by people in the future.”[[4]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) The technique was commonly used by military and geopolitical planners “gaming out” a nuclear exchange.
+
+In corporate settings, the use of scenario planning was pioneered, and popularized, by Royal Dutch Shell. The goal was to help “policy-makers and firms anticipate change, prepare responses, and create more robust strategies.”[[5]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) The idea was, again, not to predict futures but to prepare for any possible future.
+
+For example, think about our energy future and the necessary infrastructure. Is our energy future at all clear? Should cities, or countries, prepare for the imminent end of fossil fuels? Or will fossil fuels be with us for decades to come? And if fossil fuels are not in our future, how exactly will we supply clean electricity to everyone? How will we power our lives? Scenario planning can help us here by making stark alternatives clear. And by forcing us to confront alternative futures, all of which are possible, and plan appropriately for such alternative futures.
+
+Scenario planning typically follows these steps:
+
+1. Frame the challenge.
+2. Gather background information. Think in terms of political, economic, social, technological (PEST).
+3. Identify driving forces; e.g., the most important and most uncertain ones. These driving forces can be thought as the two most prominent trends.
+4. Generate four scenarios by using the two most important driving forces as axes to construct a 2x2 box.
+5. Flesh out each box and create story lines.
+
+When used as a part of strategic planning, the “conclusion” of the exercise is a plan for how to survive and prosper in any possible future.
+
+We, however, use this process in a slightly different way. We have students think about the problems that might be found in each possible future and what products, services, and policies will be needed there. And rather than look at all four scenarios, we usually have students pick one only for further analysis, as the team did in the Digital Triage Assistant discussed in the case study above.
+
+Here is a detailed example. A group of students were tasked with the following question – “What is the future of US healthcare?” Using our taxonomy, this is clearly an un-defined problem, and the first thing the students did was to gather background information. They researched the subject and identified key issues and trends, including:
+
+1. The growth of telehealth (i.e., changing methods of delivery)
+2. Changing technology:
+    1. Robotic Surgery
+    2. Use of big data in personalized treatment
+    3. Use of machine learning and AI to discover novel therapeutics
+    4. Strong Information Systems for data sharing
+3. Changing nature of healthcare funding
+4. Changing nature of how we pay for healthcare
+5. The growth of medical tourism
+6. The growing importance of population health management
+7. Increasing attention paid to preventative care
+
+This list is obviously not exhaustive; simply what the students focused on given the time available.
+
+The next step was to take this research and turn it into possible axes for actually constructing the scenario analysis:
+
+1. Healthcare Payer: Nationalized vs. Privatized
+2. Technology: Telehealth vs. In Person Visits
+3. Medical Tourism: In Country vs. Out of Country
+4. Automation in Treatment and Diagnosis: Robotic vs. Physician
+5. Primary Provider: Team vs. Single-Person
+6. Treatment Strategy: Preventative vs. Reactive
+
+Could other axes have been identified? Or could the list have been longer? The answers are obviously yes.
+
+The next question was which two axes are best. Once again, there is no way to determine that up front; there is no formula. Students chose two, worked them through, and then decided whether the scenario analysis was taking them anywhere interesting, or not. After some trial and error, the two they finally chose were:
+
+- Healthcare Payer: Nationalized vs. Privatized
+- Treatment Strategy: Preventative vs. Reactive
+
+Could the students have chosen different axes and then prepared a different scenario analysis with different alternative futures? Again, the answers are obviously yes. But this is what they did.
+
+And you can see the scenario analysis they constructed using these two axes in the diagram here.
+
+In short, the team constructed a 2x2 box and generated four scenarios. They labelled each one and attached a descriptive picture. Each square represents an alternative future.
+
+The next step was to fill in the matrix with descriptions. The key here is that the descriptions all need to parallel each other. In this case, the team chose “situation” and “players.”
+
+The descriptions were quite detailed. (A summary is all that is shown here). Again, each box represents a “story of the future” that can be explored for problems. How will people live in such a future and what will they need, i.e., new products, new services, new policies? Any “missing” product, service, or policy is a problem, and every need represents an opportunity that can be explored today. Nor every scenario has to represent a desirable future. So if you don’t like a future, then the question becomes “How do we prevent it?”
+
+Construct a basic scenario analysis to explore this un-defined problem: What is our climate future?
+
+1.       Do some research
+
+2.       Identify axes
+
+3.       Choose two axes
+
+4.       Construct a 2x2 matrix
+
+5.       Name the scenarios
+
+6.       Describe life in these scenarios
+
+---
+
+***You try it:***
+
+Here is an answer provided by a student team. After some research, the team made a list of possible axes and chose:
+
+- Geo-Engineering, i.e. technology will save us
+- Degree of Cooperation, i.e. how nicely nations play in the sandbox
+
+It is fairly obvious what future we all want – one where technology saves us and everybody cooperates and plays nicely together. The goal of scenario analysis, however, is to force us not simply to plan for the futures we want, but to force us (just as equally) to confront possible futures we don’t like. Nothing here is predictive. Nobody is saying the future ***will*** look like any of the boxes. The objective is to imagine ***possible alternative futures*** and then ask what problems will be found there. What will be needed? What is missing? New products, new services, new policies, new ways of living and working. What can we start working on today that will be innovative, transformative, disruptive in a possible future?
+
+SIDEBAR ON HISTORY OF CLIMATE RESEARCH
+
+---
+
+Here are some more examples that we use in class. What is the future of
+
+1. health and well-being.
+2. life at home.
+3. play and entertainment.
+4. shopping and consumption.
+5. learning.
+6. work.
+7. communication and information.
+8. travel and mobility.
+9. the battlefield.
+10. space.
+
+These are all fascinating questions. The specific domain researched is really a matter of student interest and taste.
+
+Scenario analysis represents a technique for exploring un-defined spaces and imagining alternative futures. Rather than take a single trend and carry it to its absurd conclusion, scenario analysis helps us create “stories of the future,” all of which are possible and which allow us to ask “What problems might confront us in a future? Where are the opportunities? What are the best problems to work on now?”
+
+Part I
+
+1.      Choose a domain of interest to you.
+
+2.      Research the space and identify trends.
+
+3.      Use the trends to prepare a list of possible axes.
+
+4.      Choose the two you think will be most fruitful.
+
+·       Iterate as necessary
+
+5.      Create a 2x2 scenario analysis:
+
+·       Step one: label the scenarios and use pictures
+
+·       Step two: flesh out the scenarios and create parallel story lines
+
+Part II
+
+6.      Focus on the scenario(s) that seems to be most the most interesting (e.g., the one that makes you most uncomfortable)
+
+7.      Explore the scenario(s) for opportunities:
+
+·       What is missing in this future?
+
+·       What products, services, and policies will be needed?
+
+8.      Conclusion: What problems will we find in the future?  What opportunities are worth working on today?
+
+---
+
+To summarize, the process for using Scenario Analysis as a technique for innovation is as follows:
+
+***Systems Analysis***
+
+SIDEBAR ON RUSSELL ACKOFF
+
+---
+
+Systems analysis and systems thinking are vast subjects. And we will not do them justice here. While systems thinking has distant origins in ancient times and across many different cultures, our ideas have been heavily influenced by the work of Russell Ackoff.[[6]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+A system is most easily understood as an interconnected set of elements that is coherently organized in a way that achieves something. Is there anything that is not a system? Yes—a conglomeration without any particular interconnections or function. Sand scattered on a road by happenstance is not, itself, a system.[[7]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+What is important for us is that systems thinking and systems analysis give us another way of exploring un-defined problems and confronting the challenge of presentism. We will not attempt to arbitrarily distinguish between the two; suffice it to say that both are rooted in systems theory which can be defined as
+
+the trans-disciplinary study of systems, i.e. cohesive groups of interrelated, interdependent components that can be natural or human-made. Every system has causal boundaries, is influenced by its context, defined by its structure, function and role, and expressed through its relations with other systems. A system is "more than the sum of its parts" by expressing synergy or emergent behavior.
+
+The goals of systems theory are to model a system's dynamics, constraints, conditions, and relations; and to elucidate principles (such as purpose, measure, methods, tools) that can be discerned and applied to other systems ***at every level of nesting***….[[8]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+SIDEBAR ON RUSSIAN MATRYOSHKA DOLLS
+
+---
+
+In other words, systems can be embedded in systems, which are embedded in yet other systems, what are called nested hierarchies. A nested hierarchy is “a hierarchical ordering of nested sets.  The concept of nesting is exemplified in Russian matryoshka dolls. Each doll is encompassed by another doll, all the way to the outer doll.[[9]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+It is probably safe to say that all systems have some sort of nested hierarchy, going from the most basic elements all the way up to big, all-inclusive paradigms. Although we will look at systems again later in this book, we will focus here on how the concept of nested hierarchies can help us explore un-defined problems.
+
+Nested hierarchies are everywhere, in both the natural world and the man-made world. Here are some simple examples:
+
+1. cell à heart, arteries, veins à circulatory system à person
+2. battle à campaign à war à national policy
+3. student à class à grade à school à school district à national educational system
+
+Nested hierarchies can be understood as parts and a whole, i.e., a system. Systems are not random collections of parts, and all systems must consist of three kinds of things:
+
+1. elements,
+2. interconnections, and
+3. a function or purpose.
+
+Systems are more than the sum of their parts. Systems may exhibit adaptive, dynamic, goal-seeking, self-preserving, and sometimes evolutionary behavior;[[10]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) where the goals and behavior of each part do not necessarily align with the goals and behavior of the whole. Therefore, the interconnections among the parts, as well as among the parts and the whole, go a long way toward explaining the behavior of the system; not to mention the “success” of the system in achieving its stated goals. To state the obvious, improving the performance of one part does not necessarily improve the performance of the whole. And, in fact, the parts may not even care about the performance of the whole.
+
+SIDEBAR ON THE HISTORY OF SUBMARINES
+
+---
+
+As an example, suppose you had been a flag officer of the United States Navy in the first decade of the 20th century and had been tasked with the following question – “What is the future of submarine warfare?” Clearly an un-defined problem, in the sense of enquiring about future states rather than seeking to develop specific solutions. Since the middle of the 16th century, inventors had been designing and building submarines for demonstration, even though they were actually “submersibles” rather than true submarines. But no matter.
+
+The first ship sunk by a submarine was the Union sloop *USS Housatonic*, destroyed by the Confederacy’s *CSS Hunley* in 1864.[[11]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) The very short career of the *CSS Hunley* (she was sunk in 1864) left naval planners cautious. Although the development of self-propelled torpedoes in the last decades of the 19th century promised to make the submarine (as well as the torpedo boat) a more effective weapon of war, by the outbreak of WWI, the role of submarines in overall naval strategy was as unclear as was their tactical handling.
+
+The only things that could be safely assumed by our flag officer in the first decade of the 20th century was that the number and range of submarines deployed by all Great Powers was increasing, and would likely continue to increase. So how would you go about your task? You could ask long-serving naval officers, but that would likely confront you rather quickly with the problem of presentism. You could try to work out a scenario analysis.
+
+Or you could start with *Trending to the Absurd*. Which would force you to confront a world with thousands of submarines cruising the world’s oceans and waterways and then ask what naval strategy and government policy might look. With this question, you could then think about submarines as a system, more specifically in terms of nested hierarchies. Take a look at this diagram:
+
+The place of submarines within the nested hierarchy shown here is fairly clear. The implications are less so, for example:
+
+1. **Sailors** – They need to be trained and led. What will a submarine corps look like?
+2. **Submarine** **subsystems** – How can the individual subsystems be made to work together more effectively?
+3. **Submarine** – How can the overall performance of the submarine be improved?)
+4. **Battle or campaign** – ****How should submarines be armed, deployed, and resupplied to achieve maximum effect?
+5. What should the **national policy** be for their employment? E.g., should they attack civilian ships? Should commerce or warships be the main focus of naval strategy?
+
+Very simply, there is no good way to answer the question, “What is the future of submarine warfare?” without thinking in terms of systems and nested hierarchies.
+
+For example, suppose your engineering team decided to improve the periscope, how would that impact the future of submarine warfare, even as it might impact the overall “performance” of the submarine, however defined. How might this improvement in the periscope impact the handling of a submarine in a battle. For example, should submarines attack under the surface with torpedoes or on the surface with their guns once they have approached a surface ship surreptitiously. Or, how can submarines communicate with each other as well as with surface ships and aircraft? At the top of the pyramid, how would these innovations impact the future of submarine warfare as an instrument of naval strategy and national policy.
+
+Remembering that our objective here is not a strategy paper, but opportunities for innovation, we need to get beyond thinking of submarines as isolated “things-in-themselves.” Rather, they are part of a system comprising interlocking elements, connections, and purposes, all of which can be explored for opportunities; i.e., for the products, services, and policies that will be needed to make the elements, interlocking connections, and purposes all work better. For example:
+
+1. How can sailors and subsystems be made more efficient/effective/productive within the system?
+2. How can subsystems be made to work better to improve the overall performance of the submarine?
+3. How can communications and interactions among submarines, and with the rest of the navy, be made more effective?
+4. How can the purpose/meaning of naval warfare be re-imagined?
+
+To summarize, un-defined problems ask about future states and give us the opportunity to imagine alternative futures that can be explored for innovation opportunities. In this case, a world where there are thousands of submarines, possibly with the power to overwhelm capital ships and choke off global commerce.
+
+Here are some more examples that we use in class. What is the future of
+
+1. teen mental health
+2. fake meat
+3. schools
+4. care for disabled adults
+5. news
+6. recycling
+7. eldercare
+8. social media
+9. marriage
+10. cities
+11. office buildings
+
+These are all fascinating questions. The specific domain researched is really a matter of student interest and taste.
+
+Systems analysis allows us to put the domain of interest into a broader, more strategic, context; just as it forces us to consider not merely the efficiency of the elements, but the effectiveness of the relationships among the elements, as well as the relevance of any purpose claimed by the whole. Systems analysis and nested hierarchies represent one more technique for exploring un-defined spaces and for imagining how things might be different in an alternative future: “What problems might confront us in a future? Where are the opportunities? What are the best problems to work on now?”
+
+To summarize, the process for using *Systems Analysis and Nested Hierarchies* is as follows:
+
+1.      Choose a domain of interest to you. Ask “What is the future of…?”
+
+2.      Identify the key elements in that domain
+
+3.      Place the domain within a larger system of nested hierarchies
+
+·       Prepare a systems map showing the hierarchies
+
+4.      Identify relevant trends in that domain
+
+·       What is changing and how fast?
+
+·       Show your research
+
+5.      Take one trend and carry it to its absurd conclusion
+
+·       What are the implications for the rest of the system?
+
+6.      Where are the opportunities (minimum 3) to improve the overall performance of the domain of interest by
+
+·       making the elements more efficient/productive within the system;
+
+·       making the interactions among the elements of the system more effective; and
+
+·       re-imagining the purpose/meaning of the entire system?
+
+---
+
+***Red Teaming***
+
+The term red team dates back to the early 1800s, when the Prussian army began using *Kriegsspiel*, or “war gaming,” to train its officers. One group of officers would develop a battle plan, while another group would assume the role of the enemy and try to thwart it. The idea was to expose flaws or weaknesses in Prussian tactics in the safety of the war room rather than wait for them to be revealed upon the battlefield. These tabletop simulations used wooden blocks as stand-ins for military units. Because most Prussian soldiers wore blue uniforms, the home team was represented by blue game pieces. The enemy force was represented by red markers and referred to as “the red team.” It was their job to probe for weaknesses in the Prussians’ plans and strategies. The name stuck.
+
+Hoffman, Bryce G.. Red Teaming (pp. 34-35). Crown. Kindle Edition.
+
+---
+
+The last technique we will look at in this section is *Red Teaming*. Its distant origins are in the position created by the Roman Catholic Church, i.e. the Devil’s Advocate, who “argued against the canonization (sainthood) of a candidate in order to uncover any character flaws or misrepresentation of the evidence favoring canonization.”[[12]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+SIDEBAR ON GROUPTHINK
+
+---
+
+In more modern times, its origins go back to the Prussian General Staff’s war games. And in even more modern times, the idea was revived within the context of the Rand Corporation’s simulations for the US military during the Cold War. The technique was further developed by the Israeli military in the wake of its decision-making failures before the outbreak of the Yom Kippur War in 1973, specifically to attack the problem of groupthink.[[13]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+Just as scenario analysis is now a well-known and well-established technique that we have turned to a different purpose, we will use red teaming in a slightly different way than has become the norm in the world of strategy consulting.
+
+The advantages of red teaming include
+
+1. challenging your plans and the assumption upon which they are based;
+2. forcing you to think differently about your business and consider alternative points of view;
+3. helping you scan the business environment for both threats and opportunities; and
+4. helping mitigate cognitive biases and groupthink.
+
+To be clear, red teaming is **not** a substitute for planning and it is not fortune-telling. Rather, red teaming is a way of challenging assumptions, paradigms, and accepted ways of thinking. And again, critically, it is a way of challenging groupthink.[[14]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+We typically use red teaming by first asking students to name a product or service they really like. And then ask them what would be needed to drive it completely from the marketplace. The most obvious example for students these days is their smartphone. What would have to happen (or become true) for smartphones to disappear from our lives? Here are a few more examples:
+
+1. What would have to happen (or become true) for plastic to disappear from our lives?
+2. What would have to happen (or become true) for fish to disappear from our lives?
+3. What would have to happen (or become true) for Amazon (or any other large company) be replaced?
+4. What would have to happen (or become true) for us to believe the news again?
+5. What would have to happen (or become true) for current logistical systems to be replaced?
+6. What would have to happen (or become true) for current systems of agriculture to be replaced?
+7. How would we live if no one had access to space?
+
+Like in any traditional red teaming exercise, we are looking for students to challenge paradigms, i.e., the major products and services and policies that currently dominate our lives as well as the companies and organizations that create, sell, and deliver them.
+
+What makes this a technique for addressing un-defined problems is the need to imagine alternative futures where these products and services no longer exist. In other words, what will the future need to look like to challenge these paradigms? What will it take to overturn them? What will need to be true? What will have to happen? What new product, services, and policies will need to be created?
+
+***Summary***
+
+Un-defined problems give us a chance to explore alternative futures. In this chapter, we have proposed a set of four tools that allow this exploration to be done in a structured manner. The “solution” to an un-defined problem is not a solution in the normal sense of the word, i.e. a product, service, or policy that can be designed and delivered to the market or public. Rather it is an imaginatively constructed space that can be more deeply explored for ill-defined problems and the opportunities that can be discovered there.
+
+[[1]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://en.wikipedia.org/wiki/Sinking_of_Prince_of_Wales_and_Repulse
+
+[[2]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://en.wikipedia.org/wiki/Battle_of_Taranto
+
+[[3]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Our appreciation to Professor Charles Kirschbaum of Insper (Sao Paulo, Brazil) for this example.
+
+[[4]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://en.wikipedia.org/wiki/Scenario_planning
+
+[[5]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Ibid.
+
+[[6]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) See, for example, ………………………………………………………………..
+
+[[7]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Donella H. Meadows, ﻿edited by Diana Wright. *Thinking in Systems by* (Sustainability Institute: Chelsea Green Publishing, 2008).
+
+[[8]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://en.wikipedia.org/wiki/Systems_theory
+
+[[9]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://en.wikipedia.org/wiki/Hierarchy#External_links
+
+[[10]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Donella H. Meadows, ﻿edited by Diana Wright. *Thinking in Systems by* (Sustainability Institute: Chelsea Green Publishing, 2008).
+
+[[11]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://en.wikipedia.org/wiki/Submarine
+
+[[12]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Helterbran, Valeri R. (1 January 2008). *Exploring Idioms*. Maupin House Publishing, Inc. p. 40.
+
+[[13]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://en.wikipedia.org/wiki/Red_team
+
+[[14]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Hoffman, Bryce G.. Red Teaming. Crown. Kindle Edition.
+
+**Chapter Five – Exploring Ill-Defined Problems**
+
+Innovation begins with finding problems worth solving. Our point is that there are different kinds of problems with different time horizons, different degrees of uncertainty and risk, and they cannot be addressed or “solved” in all the same way. Un-defined problems are addressed by exploring possible alternative futures and seeing what kinds of problems might be found there that can be addressed starting today. In other words, we explore un-defined problems by starting with the future and looking backwards; by contrast, we will explore ill-defined problems in the more traditional sense of ***present forward***.
+
+Ill-defined problems look at what is **plausible** in a current technology or market space or customer experience in order to find the next big problem worth working on. Many, many opportunities could answer the question, “What’s the next big thing here?” And so, as with un-defined problems, ill-defined problems help us create a portfolio of innovation.
+
+SIDEBAR ON TYPES OF ELECTRIC VEHICLES AND THEIR HISTORY
+
+---
+
+Take for example, the question: *What’s Next Big Thing for Electric Vehicles?* The question is clearly not, “What is the future of electric vehicles?” We are not trying to imagine distant possible futures. Rather, we are operating on a shorter time horizon and asking, “What’s the next big thing here, **in this specific space**?” In the technological space, one obvious answer relates to battery life and size; in the market space, an obvious answer relates to available infrastructure. In short, there is no single answer to the question, “What’s the next big thing for electric vehicles?” And so we create lists of opportunities, using the tools that we will explore below.
+
+Here is another example. A group of students wanted to do a project focused on Baltimore. One day, they took themselves down to the harbor and were simply horrified by the amount of pollution there. They did not ask, “What is the future of the Baltimore Harbor?” (clearly an un-defined problem); rather they asked, “How can we clean up the pollution in the harbor?” The possibilities are near endless, which is one of the things that make this question an ill-defined problem.
+
+Ill-defined problems, by their very nature, are missing something; i.e., something is needed to constrain the problem. Supplying those constraints is what then allows us to begin building the lists or opportunities that are the “answer” to an ill-defined problem. It is the ability to drive the creation of such lists that represents the true power of ill-defined problems.
+
+The first thing the students did to address the problem of pollution in the Baltimore Harbor was to supply the missing elements by clarifying what kind of waterway, and what kind of pollution. For example, pollution could mean sewage, domestic effluents, industrial effluents, oil, agricultural runoff, trash, etc. While waterways could mean either the ocean or inland waterways.
+
+The team decided to focus on how to clean up trash in inland waterways. They then did their research, used some of the tools that we will be presenting in this chapter, and created a list of opportunities (similar to the example of the Digital Triage Assistant above).
+
+After some thought, the team selected one opportunity and turned it into a well-defined problem: “How can we continuously clean up trash from inland waterways with minimal human intervention and oversight?” This is now a well-defined problem because the criteria for success are clear. In other words, any solution is now falsifiable – either it works or it does not. A well-defined problem says nothing about how easy or difficult the solution will be to devise and build and disseminate, only what it must deliver.
+
+They designed and built a robot that used machine learning and computer vision to clean up the harbor – something like a water-based Roomba, but one capable of distinguishing, for example, trash from dead fish. What you see here is the original prototype. The design included plans for automatically emptying the trash, automatically avoiding obstacles, automatically re-charging the battery as needed, and 24/7 use. Long after the team graduated, we saw companies develop this same kind of device.[[1]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+To summarize, we use ill-defined problems to explore a technological or market space and find the opportunities that are inherent in the situation, some of which can then be turned into well-defined problems that can actually be solved. Ill-defined problems address such questions as:
+
+1. What’s next big thing here?
+2. What’s missing in the marketplace?
+3. How can we pivot?
+4. How do we disrupt our business before our competitors do?
+
+Here are some examples:
+
+1. Technology: What big problems can blockchain address?
+2. User Experience: How can the doctor/patient experience be improved?
+3. Industry space: What’s next for smartwatches?
+
+There are two basic approaches for exploring ill-defined problems:
+
+1. Extensive searching – a broad survey over many domains looking for connections, patterns, and intersections that may prove valuable; and
+2. Intensive searching – a deep dive into a single domain, researching and exploring that domain intensively.
+
+On the following pages, we will describe each approach in more detail and offer a set of tools appropriate for each one. In fact, this entire book can be thought of as a toolkit. And just as we learned in our shop classes in high school (yes, we had to take shop classes – metal, wood, drafting – back in the day) how to use tools one at a time, before we learned how to combine them to actually make something. So our intention is to guide you through a set of tools, one at a time, for you to use as the situation, and your own inclinations, suggest.
+
+***Extensive Searching***
+
+A good way of thinking about extensive searching comes from a book by Frans Johansson, where he describes “intersectional ideas,” a theory that he developed by asking why the Renaissance was such an extraordinarily creative period. In fact, much of our thinking about techniques for exploring ill-defined problems comes also from our reading of the Renaissance. Johannsson writes that
+
+the major difference between a directional idea and an intersectional one is that we know where we are going with the former…. Directional innovation improves a product in fairly predictable steps, along a well-defined dimension…. The goal is to evolve an established idea by using refinements and adjustments. The rewards for doing so are reasonably predictable and attained relatively quickly.
+
+Intersectional innovations, on the other hand, change the world in leaps along new directions. They usually pave the way for a new field and therefore make it possible for the people who originated them to become the leaders in the fields they created. Intersectional innovations also do not require as much expertise as directional innovation and can therefore be executed by the people you least suspect.[[2]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+Directional innovations make an existing product better, faster, cheaper. But they do not change the game. Intersectional ideas, by contrast, create a new game. Intersectional ideas are where we put two things together **“in** **surprising, unusual, non-obvious, and fascinating ways.”**
+
+The key is that the combination is unexpected. According to Johansson, this is the way the world has always progressed, and the way technology has always advanced. Everything “new” is really just a new combination of existing ideas; because no “new thing” comes out of nothing.
+
+Just think of the automobile and the smartphone. You can improve a wagon all you want, but you will never get an automobile until you combine it with an internal combustion engine. Just as you can improve a mobile phone all you want, but you will never get a smartphone until you combine your brick of a mobile phone with a computer. Or think of new fields such as computational biology and behavioral economics. Or think of the way that evolutionary theory, originating in the field of biology, has now been applied to all kinds of other fields, including history, economics, and management.
+
+Here is another example: combining an oven with a microwave is old hat, and even combining an oven with air fryers seems kind of obvious nowadays, but what about an oven and a freezer:
+
+Two Baltimore natives and Johns Hopkins graduates have created a smart appliance system to make it easier for families and working professionals to have a home-prepared meal without having to cook it themselves.
+
+*Celcy* stores frozen meals on one side of the appliance, moves them to its oven side when they’re ready to be prepared, cooks the meals, and tracks users’ preferences to offer suggestions.
+
+Users can schedule meals at a particular time and, using a mobile app, direct *Celcy* to unpack and cook meals. [[3]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+Intersectional Ideas are where we don’t know where we are going and are often the product of serendipity. The real question for us here is how we might possibly create intersectional ideas, or the opportunities to discover them serendipitously. This is the process we typically use in
+
+1.      Start with something of importance to you.
+
+2.      Put it together with as wide range of unrelated ideas or products or services that you can think of.
+
+3.      What **surprising, unusual, non-obvious, and fascinating (intersectional) ideas** result from the combination?
+
+4.      Where are the opportunities?
+
+---
+
+class:
+
+Alternatively, we ask students to think of something of importance to them and then have them make a list of all the people they would be interested in speaking to about this something, so long as their interlocutors come from unrelated fields. They can then play a mind game with other people in the class – how could this interesting person shed light on our topic of interest?
+
+***Intensive Searching***
+
+A more intensive approach comes from our reading of the book *The Four Lenses* by Rowan Gibson, which also comes from his research on the Renaissance. He writes that all innovation has two elements:
+
+1. an insight, and
+2. the big idea that comes from the insight.
+
+Insight in the sense of seeing what others do not see, opportunities that they have missed. And where do these insights come from? From four lenses:
+
+1. **Harnessing Trends**: Recognizing the future potential of emerging developments, and using these trends to open up new opportunities.
+2. **Understanding Needs**: Paying attention to issues and frustrations others have ignored, and experimenting with new solutions to problems.
+3. **Challenging Orthodoxies**: Questioning deeply entrenched beliefs and assumptions (i.e. received wisdom), and exploring new and highly unconventional answers.
+4. **Leveraging Resources**: Understanding our limitless capacity for redeploying skills and assets in new ways, combinations, or contexts.[[4]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+We commonly use these lenses as an organizing principle in our classes and have converted them into a set of tools and techniques that students use to explore ill-defined problems class by class (see below). The insights gained can then be used to identify opportunities, and possibly big ideas.
+
+***Harnessing Trends***
+
+In our opinion, at the root of all innovation is change. In the prior chapter, we took a change and carried it to its absurd end in an effort to escape presentism and imagine alternative futures that might open our eyes to new possibilities and new opportunities. In this chapter, we will explore the first of Gibson’s four lenses by “recognizing the future potential of emerging developments, and using these trends to open up new opportunities.” The key is that changes “out there” always wreck something; but out of that wreckage comes opportunities.
+
+SIDEBAR ON HISTORY OF AMAZON
+
+---
+
+For example, the origin of Amazon is not in bookselling per se, but in Jeff Bezos’ observation that internet usage was growing at 2300% a year and that there were enormous opportunities for e-commerce.[[5]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Bezos was a banker; books were simply a convenient way to begin.
+
+Or think about Blockbuster. It is hard to explain to undergrads now how much Blockbuster changed our lives. The company did not invent movies, or tape players, or the idea of rent and return. It simply took advantage of all these trends happening “out there” and combined them with the desire of consumers to stay home and watch movies otherwise inaccessible on regular television stations.
+
+Both Amazon and Blockbuster took advantage of changing technology and consumer sentiment to create enormously successful businesses. And in Blockbuster’s case, changing technology and consumer sentiment would undo them just as quickly. Amazon did not invent e-commerce and Blockbuster did not invent the home movie experience. Rather, both companies understood what was changing, what was passing, and built businesses that could take advantage of the changes.
+
+Change can be understood in lots of ways. Perhaps the simplest is PEST – political, economic, social, technological. Developed in the 1960’s as an “environmental scanning framework,”[[6]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) it quickly became a standard tool of strategic analysis. We find it to be a convenient way of thinking through macro-changes “out there” and then asking students what these changes are likely to destroy in our current political, economic, social, and technological frameworks.
+
+There are many frameworks for thinking about macro-trends, as a quick search on the internet clearly demonstrates. Any or all can be used depending on the circumstances and interests of the class. Charles Kirschbaum, a colleague teaching at Insper in Sao Paulo, Brazil uses these:
+
+1. Growing demand for **eco-friendly products**
+2. The health and wellness industry is experiencing significant growth, driven by factors such as an **aging population**
+3. The COVID-19 pandemic accelerated the **adoption of remote work** and many employees do not want to return to face-to-face work
+4. Consumers increasingly seek **personalized experiences and products**
+5. Growing demand for businesses that prioritize **social and environmental impact**
+
+Other trends that we have found useful as points of departure for discussion include AI (obviously), aging populations, advanced connectivity and the idea that every thing will be connected to every other thing, the growing economies of Asia, the growth of immersive reality, the growth of nearshoring, the growth of remote work, decreasing trust in experts, the lack of health care workers, the increasing cost of higher education, the decreasing number of teachers. The list is endless.[[7]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) But how we use these trends is always the same – what is changing, what will this change wreck, what are the opportunities that come out of the wreckage?
+
+The prospect of technological and scientific changes are particularly interesting here. But first, it is important to understand the nature of technology more deeply. There is an enormous range of thought and opinion in any attempt to define technology, often depending on the discipline under consideration; thus giving rise to problems of focus and degree of specificity.
+
+A good definition of technology comes from John Howells: “knowledge of how to organize people and tools to achieve specific ends.”[[8]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) He then introduces the idea of the technology complex “as a device that relates the general definition of technology to its subdefinitions.”[[9]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+Critically, Howells states that the “elements within the **technology complex** have been ordered to range from the physical and artifactual to the social and the cultural. This captures the idea that there are multiple ‘levels’ within society at which people organize artifacts to create working technologies. Any or all of these elements be analyzed in a working technology – a technology ‘in use’.”[[10]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) According to Howells, the technology complex, therefore, includes:
+
+1. Material
+2. Energy source
+3. Artifacts/hardware
+4. Layout
+5. Procedures (programs, software)
+6. Knowledge/skills/qualified people
+7. Work organization
+8. Management techniques
+9. Organizational structure
+10. Cost/capital
+11. Industry structure (suppliers, users, promoters)
+12. Location
+13. Social relations
+14. Culture
+
+Think, for example, of all that is involved in designing, building, and using a computer. How all the elements of the complex described by Howells are affected; and how, in turn, they all impact the working of a computer and its functioning in our lives. Other obvious examples include the automobile, the airplane, the smartphone, a treadmill, an oven, tele-conferencing.
+
+SIDEBAR ON HISTORY OF THE ANTIKYTHERA DEVICE
+
+---
+
+Technological artefacts are not simple things, and all can be “ordered to range from the physical and artifactual to the social and the cultural.” And the same goes for innovation. Innovation can occur at any level of the complex; something like the idea of technological artefacts as part of nested hierarchies.
+
+Technology also changes over time, both the artefacts themselves and the complexes which comprise them, undermining the competitive advantages of incumbent firms. How technology transitions and evolves is a subject beyond our purposes here.[[11]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Needless to say, how technologies change, and the drivers of change, provide opportunities to innovators.
+
+One famous model states that “the rate of a technology’s performance improvement and the rate at which technology is adopted in the marketplace have repeatedly been shown to conform to an S-curve.”[[12]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) It is now a commonplace that technology
+
+starts out expensive, bulky, not very widely adopted; Improvement is slow as the fundamental concepts are being figured out. A period of rapid innovation and massive adoption follows, up to a slowdown in meaningful improvement and little new customers. We’ve reached the top of the S-curve — only leaving room for a whole new technology with its own S-curve to come on top.[[13]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+The implication is that improvement in the technology per unit of input diminishes over time. In other words, technological improvement runs up against barriers, either physical or market, and that is when opportunities for disruptive innovations present themselves – what can be thought of as an innovation window.[[14]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+Innovation opportunities present themselves where and when technologies reach their limit. So how do you know if they have reached their limit? Often it is in the literature, the marketing data, or simply in the air. For example, how much more power can companies build into your phone or laptop before you stop caring, and stop wanting to pay for it? Have internal combustion engine automobiles reached the top of the S-curve? A little closer to home, has the value of a four-year degree at an expensive private college or university reached its limit?
+
+Technological change can also be thought of as an evolutionary process where a long series of small changes is abruptly ended by a big change. Big changes lead to what are called technological discontinuities, which create enormous opportunities for innovators. Another way to think about this is in terms of micro-and macro-inventions. Micro-inventions can be explained by basic economics, marketing, and the hunt for capitalist profit. The bigger question is where macro-inventions come from – getting from a wagon to a car cannot be explained by simple economics. Macro-inventions can often be thought of as intersectional ideas (a new combination of things). For example, cars come from combining wagons and internal combustion engines.
+
+Ideas of macro- and micro-inventions can be combined to create a model of technological change, the model you see here. The concept of a dominant design was introduced by James M. Utterback and William J. Abernathy in 1975: “A dominant design is the one that wins the allegiance of the marketplace, the one to which competitors and innovators must adhere if they hope to command significant market following.”[[15]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+Why does every USB stick fit into every USB port? Why does every light bulb screw into every light bulb socket? Why does your smartphone automatically connect to Wi-Fi? Why does every classroom look like every other classroom? The answer is that there is a dominant design. Dominant designs can be thought of as paradigms or standards, whether technological or economic or social or political. They are generally accepted ways of working and organizing and thinking. But at some point, they begin to fall apart. You can feel it in the air; and that is when enormous opportunities present themselves.
+
+We get a dominant design in three ways:
+
+1. One player wins in the marketplace and forces all the others to adopt their standard.
+2. The industry gets together and comes to an agreement.
+3. The government forces a standard onto the marketplace.
+
+Once a dominant design is created, changes tend to be incremental; i.e. think low uncertainty and low risk. And it is the incumbent companies that will dominate such markets.[[16]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) But when a dominant design breaks apart, we enter an era of ferment, which creates opportunities for innovators; i.e. think high uncertainty and low risk. These are the spaces we want our students exploring. Examples today include charging infrastructure for electric vehicles, the structure of higher education, primary care in medicine, the impact of AI on almost everything.
+
+In other words, technological change can be thought of as an evolutionary process where a long series of small changes is abruptly ended by a big change; what can be thought of as a technological discontinuity, which will ultimately lead to the creation of a dominant design. This dominant design changes incrementally, improved by micro-inventions brought into the marketplace by incumbent companies. Until it all starts to break apart, opening up a high uncertainty space for innovators.
+
+But where do these discontinuities come from? And the answer is again the macro political, economic, social, and technological trends and changes happening “out there.” They can destroy dominant designs and create opportunities. In his classic book, *Only the Paranoid Survive*, Andy Grove describes the computer industry in 1980 as “vertical,” what you see here.
+
+But by 1995, the computer industry had become “horizontal,” with a host of new companies and new technologies and different business models. But when did it all change? What made it all change? How could you have seen it coming? And how could you have taken advantage of the change?[[17]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+It is critical to recognize that dominant designs are not just technological; they can be political, economic, and social as well. They simply represent accepted, normalized, ways of doing things. And they always seem to make sense until they don’t; and always seem to be permanent until they aren’t.
+
+SIDEBAR ON ANDY GROVE
+
+---
+
+Grove calls this kind of change a strategic inflection point. He describes a set of indicators of such points:[[18]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+1. Has your most dangerous competitor changed?
+2. Do the people you have worked with for years suddenly make no sense?
+3. Are there customers out there rejecting your offering for something else entirely?
+4. Are customers paying attention to new technologies that you are ignoring?
+5. Is there a growing divergence between what important competitors are saying and doing?
+6. Is there a growing divergence between what the corporate data systems are saying and what your people are saying, especially those working with customers?
+7. Are lower-level people not bringing you news anymore, i.e. are they afraid to be the bearers of bad news?
+8. The Christensen thesis: is there a new approach or technology out there that is capturing market share, especially in niches where you no longer compete?
+
+We would add more:
+
+1. Is there general dis-satisfaction with the current state of things, enough so that it is a constant topic in the news and social media?
+2. And simply, can you feel the change in the air?
+
+This is where we ask students to identify dominant designs that they think are in the process of breaking apart, whether political, economic, social, or technological. How do you know they are breaking apart? Where are the opportunities coming from the macro-changes driving the demise of a dominant design? How would you find them? And what are the implications?
+
+One popular way of trying to figure out the implications of, and the opportunities arising from, macro-changes such as the collapse of a dominant design is the *Futures Wheel*, invented by Jerome Glenn in 1971 as “a method for graphical visualization of direct and indirect future consequences of a particular change or development.”[[19]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) A random Google query quickly shows how complicated such wheels can become. For example, what kind of wheel might you end up with thinking through the implications of adopting generative AI in university classrooms?
+
+SIDEBAR ON THE HISTORY OF AUTOMOBILES AND THE RATE OF ADOPTION
+
+---
+
+While the Futures Wheel can certainly be helpful, we have developed a different tool. For example, what kind of futures wheel would you construct to think through the implications of changes in the adoption of different technologies? Specifically, what might the implications be for the widescale adoption of automobiles? Think about it like this – if you were standing in 1910, what would your futures wheel look like? It is easy to imagine one that quickly becomes overwhelmingly complex.
+
+Instead, we have gone back to the idea of systems diagrams, which we believe offers a simpler and more effective alternative. Take a look at the diagram below. The first task is to choose a set of relevant categories. The second task is to ask how rapid adoption of automobiles might impact each category. Think in terms what will change, what will be wrecked, what new products and services and policies will be needed, what new skills will need to be learned, what other markets and industries will be impacted, etc. The goal is to ask the kinds of questions that can guide the identification of innovation opportunities.
+
+1.      Choose a domain and macro-trend of interest to you.
+
+2.      Identify relevant PEST categories and construct a systems diagram.
+
+·       What is changing within each category?
+
+·       What is being destroyed?
+
+·       What dominant designs are breaking down?
+
+·       Where are the discontinuities?  What are the first, second, and third order consequences within each category?
+
+3.      What are the next big problems worth solving?
+
+4.      Where are the opportunities to build on (replace?) what is being destroyed?
+
+---
+
+This is the process we typically use in class:
+
+***Understanding Needs***
+
+SIDEBAR ON THE HISTORY OF GLASSES
+
+---
+
+The second of Gibson’s *Four Lenses* is understanding user needs; i.e., looking for opportunities in unsatisfied user experiences, or by re-thinking the user experience completely. An interesting example here is Warby Parker, an American retailer of prescription glasses, founded 2010.[[20]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Think about how we have traditionally bought glasses – you go to the eye doctor, get a prescription, drag your mother or best friend to the glasses store, and then agonize over what to buy. The misery of this user experience led to early attempts to bring this process online using software that never quite worked.
+
+By contrast, Warby Parker’s approach is so simple – you order five pairs of frames to your home; and then organize a dinner party to model the different frames to all your family and friends, select one or more, mail them all back with your prescription, and then wait a week or so for you glasses to arrive.
+
+Warby Parker did not invent prescription glasses, online shopping, or the postal service. What they did invent was a new way of buying glasses – they changed the user experience, and that changed everything.
+
+SIDEBAR ON THE HISTORY OF MEMORY FOAM AND NASA
+
+---
+
+Casper Sleep is a similar example.[[21]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Think of how we HAVE traditionally bought mattresses. You go to a store (with or without your significant other), lie down on a dozen different mattresses for a few seconds each, and without remembering how any of them felt, pick one at random. And then after three weeks of back pain, you realize that you did not choose wisely.
+
+Casper changed the user experience by offering a free home trial. You order your mattress online. It comes in a box, and you have some period of time to see how it feels before making up your mind whether to keep the mattress or not. All this was made possible by the invention of memory foam in the 1960s under a NASA contract; and the development forty years later of light-weight gel memory foam, more suitable for mattresses.[[22]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) But it was the ability to stuff the mattress into a box and ship it easily that made all the difference, when combined with the risk-free trial. Again, all Casper did was change the user experience, and that changed everything.
+
+SIDEBAR ON THE TASTEE TAPE TEAM
+
+---
+
+Here is another example, a little closer to home. A group of engineering students at Hopkins decided that the burrito eating experience needed improvement. As we all know, burritos tend to fall apart when eating them. Determined to fix that problem, the students developed *Tastee Tape*, “which is edible, safe, and has the tensile strength you can trust to hold together a fat burrito.”[[23]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Again, the students did not invent the burrito; they changed the user experience by focusing on something that was both important and poorly satisfied.
+
+The list of user experiences that can be explored is endless. Whether big stuff like how we interact with government or physicians, or little stuff, like how we interact with burritos. But it starts by looking around and seeing the world and our lives with new eyes; almost as if we were little kids again and seeing the world for the first time.[[24]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+The key tool for understanding and exploring user needs is process mapping. Very simply, you take any process and lay it out step by step, in whatever detail seems appropriate, all the while rating each step for two things:
+
+1. how important it is to the overall goal, and
+2. how well satisfied it is
+
+We usually have students rank each step on a five-point scale. The sweet spot for innovation is those steps that are both important and poorly satisfied. Additionally, process maps allow you to visualize which steps might be combined or even eliminated. All of which present opportunities for innovation.
+
+SIDEBAR ON THE HISTORY OF COFFEE
+
+---
+
+As a short in-class exercise, we usually ask students to lay out the steps required to make a cup of coffee, specifically an American-type pour over. The process begins with acquiring beans and goes all the way to disposing of the grinds and washing the cup. We then look at how students ranked the steps and see where the opportunities are. For example, there was a time in America when it was not so easy to get good beans; but now that step is well-satisfied. And so it goes.
+
+PICTURE OF COFFEE POT
+
+---
+
+Another critical step in making a proper pour over that for a long time was poorly satisfied, was how to get the temperature of the water right. The temperature should be off the boil, but as it takes several minutes to actually make the cup of coffee, the water can cool to unacceptable levels. Hence the development of pots with specific temperature controls that allow you to hold the desired temperature for the entire coffee making process.
+
+SIDEBAR ON CLAYTON CHRISTENSEN AND HIS DISCUSSION OF SUSTAINING AND DISRUPTIVE INNOVATIONS
+
+---
+
+**Jobs to be done** is an important variation on this theme. As described in much work by Clayton Christensen and his colleagues, a job is “the progress that an individual seeks in a given circumstance;[[25]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) with the result that we “hire” products and services to help us do the job.
+
+Take coffee, for example. I buy a cup of coffee in the morning on the way to work to help clear my head. I then have a cup in the afternoon – it gives me an excuse to get away from my desk and chat with others in the kitchenette. After work, I go out with friends where the coffee is simply an excuse for a social gathering. From a marketing perspective, all we see is that I bought three cups of coffee in the day. Marketers can then analyze the purchases and find all kinds of patterns reflected in the demographics and psychographics of the purchaser. But none of this data explains exactly why I bought any of the three cups of coffee. For each of the three, I had a different “job” to do. The question is whether some other product or service offering would help me to do any of these jobs better. And therein lie opportunities for innovation.
+
+The same can be said about almost any product or service I might buy. Think about how and why we use televisions, smart phones, exercise equipment, cookbooks, dating apps. The list is endless. It is not so much the product itself that matters, but the jobs we are trying to do, the progress we are seeking in any given circumstance. And anytime a job is not done well enough presents an opportunity. And again, process maps can be very helpful here.[[26]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+Opportunities, therefore, arise when people are not making sufficient progress in their lives. Once you understand a job deeply, what people are actually trying to accomplish (and according to Christensen we can only discover jobs, not invent them), then you can start to devise innovations (products, services, and policies) that can help them better do this job; or eliminate the things that prevent them from doing the job well. Christensen writes that jobs are not statistics, but stories. They require deep knowledge of what people are doing and trying to do.
+
+Here is a true story from one of the authors:
+
+For many years, I would get a call from my 80-year-old mother every day asking me the same question every day, “Why don’t your children ever call me (meaning her grandchildren)? And every day, I would answer the same, “Because you don’t communicate with them the way that they like to communicate (i.e. texting and email).” I tried twice to get my mother to use a computer. But it was hopeless. She could not figure out right and left clicks and was constantly getting lost in the system. I gave up and suffered with her daily phone calls.
+
+In 2010, the first iPad appeared. And for the life of me, I could not figure out what anybody would do with one. I had a computer and a smartphone and an iPod. I was convinced it was an Apple folly. But it did not disappear into the dumpster of bad products. So one day, I went to the store and got one of the youngsters working there to show me an iPad and how it worked. It slowly dawned on me that this could be the answer. It was intuitive in the sense that you used your finger, not a mouse, and if you got lost, you just hit the home button.
+
+I bought one and took it to my mother. Within a week, she was texting her grandchildren and facetiming with her great-grandchildren every day. She was chatting with women she had gone to nursing school with during World War II and had not seen in decades. She was playing scrabble with strangers all over the world. And had assembled a library of her favorite opera singers from the 1930s.
+
+There is not a doubt in my mind that my mother is alive today because of that iPad. The job she wanted to do was simple, to connect with people she loved and cared about, and the tools at hand, telephones and computers were inadequate. The iPad changed everything. But the device only mattered because it allowed my mother to make progress in the circumstances that mattered to her.
+
+1.      Choose a domain of interest to you and that you know well.
+
+2.      Identify a job to be done in that domain.
+
+·       In other words, what are people trying to accomplish; what progress are they looking to make, i.e., what specific outcomes are they looking for?
+
+3.      What is preventing them from doing the job they want to do?
+
+·       Use a process map.
+
+·       Rate the steps in the process according to importance and satisfaction?
+
+4.      Where are the opportunities?
+
+---
+
+This is the process we typically use in class:
+
+***Challenging Orthodoxies***
+
+Another of Gibson’s Four Lenses is challenging orthodoxies, assumptions, accepted wisdom, and paradigms.
+
+??????????????????
+
+**Challenging Orthodoxies – What’s Next for an Industry Space**
+
+1. In this class we will look for the next great problem to solve by asking what opportunities companies can find as they ponder technologies, macro-trends, user experiences, and their own products and markets
+    1. In other words, what’s missing out there in a particular market space
+    2. And we can do this by challenging orthodoxies, another of Gibson’s four lenses
+2. Example: Netflix
+    1. Netflix used to mail out disks
+    2. But with the growth of the internet, they asked themselves what was next;
+        1. What orthodoxy did they challenge
+        2. Streaming was the answer – a combination of tech and social trends and rethinking the user experience
+    3. The answer seems obvious only in retrospect
+    4. And after streaming, what was the next big thing? – content
+    5. And now what is the next big thing for them
+3. Example: Starbucks
+    1. Howard Schultz did not invent the coffee shop
+        1. And Starbucks did not invent the café
+    2. What orthodoxies did Starbucks challenge
+    3. What do you do in a café?
+    4. Schultz tried to bring the idea of an Italian café to America – it did not work
+    5. Instead, he invented the idea of an American café – a third place between home and work, but really what we do there is work – Starbucks reinvented the user experience
+    6. But what’s next for Starbucks?
+4. How Did They Do It?
+    1. How did these companies reinvent their industry spaces – by challenging assumptions and paradigms
+    2. And if you can get beyond current orthodoxies and paradigms, what do you see?
+        1. And how can it help you see what the next big thing might be
+        2. What new possibilities open up
+5. A More Beautiful Question
+    1. In a similar vein, Warren Berger has written a lovely little book where he challenges us to look at the world as if we were seeing it for the first time
+    2. Something like John Rawls’ question – how would you organize the world if you did not know ahead of time the place and circumstances into which you would be born
+6. Three Part Model
+    1. But after asking why, innovators need to go the next step and start to imagine a different world (that idea again), and how we might get there
+    2. **Why, what if, how**
+7. Class Exercise
+    1. Now try it yourself
+    2. Choose something and ask why it is the way that it is
+        1. What can be challenged?
+        2. How can received wisdom be challenged?
+- Which dominant designs should be challenged?
+1. It is a matter of asking why the world is the way it is. What’s missing? Couldn’t it be better?
+
+[[1]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) See, for example, the PixieDrone: https://searial-cleaners.com/our-cleaners/pixiedrone-mobile-waste-collector/
+
+[[2]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Frans Johansson, *The Medici Effect* (Harvard Business Press: 2006)
+
+[[3]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://celcy.com
+
+[[4]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Rowan Gibson. *The Four Lenses of Innovation* (John Wiley & Sons: 2015).
+
+[[5]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://en.wikipedia.org/wiki/Jeff_Bezos
+
+[[6]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://en.wikipedia.org/wiki/PEST_analysis
+
+[[7]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) See, for example, Scott A. Shane, *Finding Fertile Ground* (FT Press: 2004); Richard Dobbs, et.al., *No Ordinary Disruption* (Public Affairs: 2015); Google Trends; McKinsey Technology Trends Outlook; studies by Bloomberg News.
+
+[[8]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) John Howells, *The Management of Innovation and Technology* (Sage Publications: 2005).
+
+[[9]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Ibid.
+
+[[10]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Ibid.
+
+[[11]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) See for example Scott A. Shane, Finding Fertile Ground (FT Press: 2004); Steven Johnson, Where Good Ideas Come From (Riverhead Books: 2010); David S. Landes, *The Unbound Prometheus: Technological Change and Industrial Development in Western Europe from 1750 to the Present* (Cambridge University Press: 2003); Eric D. Beinhocker, *The Origin of Wealth* (Harvard Business Press: 2007).
+
+[[12]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Melissa Schilling, *Managing Technology* (New York: Norton, 1995).
+
+[[13]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://medium.com/groveventures/technologys-favorite-curve-the-s-curve-and-why-it-matters-to-you-249367792bd7
+
+[[14]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Ibid.
+
+[[15]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://en.wikipedia.org/wiki/Dominant_design. See also Johann Murmann and Michael Tushman, *From the Technology Cycle to the Entrepreneurship Dynamic*.
+
+[[16]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) See Clayton Christensen, *The Innovator’s Dilemma* (Harvard Business School Press: 1997).
+
+[[17]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Andrew S. Grove, *Only the Paranoid Survive* (Currency Doubleday: 1996).
+
+[[18]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) http://www.intel.com/pressroom/archive/speeches/ag080998.htm
+
+[[19]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://en.wikipedia.org/wiki/Futures_wheel
+
+[[20]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://en.wikipedia.org/wiki/Warby_Parker
+
+[[21]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://en.wikipedia.org/wiki/Casper_Sleep
+
+[[22]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://en.wikipedia.org/wiki/Memory_foam
+
+[[23]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://hub.jhu.edu/2022/04/29/students-wrap-up-design-day-projects
+
+[[24]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) See Warren Berger, *A More Beautiful Question* (Bloomsbury: 2014).
+
+[[25]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Clayton Christensen, et. al. *Competing Against Luck* (Harper Collins: 2016). See also Clayton Christensen, et. al. *Know Your Customers’ “Jobs to be Done”* (Harvard Business Review: Sept 2016).
+
+[[26]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) See Anthony Ulwick, *What Customers Want* (McGraw-Hill:2005).
+
+**Chapter Six – Exploring Specific Domains**
+
+Until now, we have spent time building a toolkit. But at this point in the course, rather than focus on practicing with a specific tool, students begin to use whatever tool (or tools) seems appropriate to the space they want to explore. Our goal now is to have them explore the technological and market limits embodied in ill-defined problems specific to particular domains.
+
+A good example of this is the idea of a “reverse salient,” first described by Thomas P. Hughes in his famous study of the process of electrification:
+
+SIDEBAR ON THE HISTORY OF ELECTRIFICATION
+
+---
+
+Having explored the nature of the invention, development, and transfer of Edison’s direct current system, we now turn to the endeavor of inventors and engineers to maintain the momentum by solving the critical problems that frustrated growth of the system. “Evolution” is an apt metaphor for an electric supply system like Edison’s because internal forces alone did not direct its growth; the system grew within a context of geographical, economic, political, and organizational factors.
+
+http://www.diva-portal.se/smash/get/diva2:953334/FULLTEXT01.pdf
+
+---
+
+… ****The idea of a reverse salient suggests the need for concentrated action (invention and development) if expansion is to proceed. **A reverse salient appears in an expanding system when a component of the system does not march along harmoniously with other components.** As the system evolves toward a goal, some components fall behind or out of line. As a result of the reverse salient, growth of the entire enterprise is hampered, or thwarted, and thus remedial action is required. The reverse salient usually appears as a result of accidents and confluences that persons presiding over or managing the system do not foresee, or, if they do foresee them, are unable to counter expeditiously. The causes of the lag can arise from within the system; from its environment, or context; or from some complex combination thereof. The reverse salient will not be seen, however, unless inventors, engineers, and others view the technology as a goal-seeking system.
+
+… Innumerable (probably most) inventions and technological developments result from efforts to correct reverse salients .[[1]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+In other words, the development of a system, i.e. technological change, is “held up” when one part of the system does not keep pace with advances in other parts of the system, reminding us again of the idea of nested hierarchies. Salients serve as opportunities for innovation and a way of focusing the toolkit developed in these chapters on specific domains and areas of interest.
+
+SIDEBAR WITH OTHER CASE STUDIES – ALEXANDER ROVALINO CAN HELP HERE
+
+---
+
+The exact solution to the problems of electrification is beyond the scope of this book, although the “essence of the concept was a unified system embracing, or coupling, generators (supply) and loads of varying characteristics (demand).”[[2]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Similar stories can be found in the history of the development of other large technological systems, for example automobiles, airplanes, nuclear power, integrated circuits, air-conditioning, smartphones, where specific “holdups” led to innovative activity. In other words, wherever a limit has been reached, something new is required.
+
+And the same can clearly be said of more “contemporary” technological systems. Here are some examples we use with students:
+
+1. Green electrification (energy density)
+2. AI (energy consumption)
+3. Space travel (weight capacity)
+4. Genome sequencing (cost)
+5. Chip production (physics, workforce expertise, manufacturing systems)
+6. Nuclear fusion (confinement subsystem)
+7. Recycling (quality degradation)
+8. Water infrastructure (age)
+9. Rail infrastructure (track speed, track ownership)
+10. Livestock farming (land utilization)
+
+1.      Research a domain.
+
+2.      Prepare a domain map.
+
+3.      Identify the reverse salient.
+
+- Why is this a reverse salient?
+- What measures of efficiency, effectiveness, reliability, profitability, useability, etc. are not being met?
+
+4.      Identify opportunities. Use tools as appropriate. Be clear as to which tools you used.
+
+5.      Think in terms of
+
+- Intersectional innovations
+- New scientific and technological trends
+- Jobs to be done
+- The four actions framework
+- Scenarios
+- Systems analysis
+
+---
+
+In summary, when asking what is the next big thing in a particular space, the idea of a reverse salient can be very helpful in directing innovative activities, independent of the tools utilized. This is the process we typically use in class:
+
+Another way to explore domains using a broad toolkit is to take advantage of product life cycles in their entirety. The idea of a life cycle is obviously biological in origin, and per the Encyclopedia Britannica, it represents the “series of changes that the members of a species undergo as they pass from the beginning of a given developmental stage to the inception of that same developmental stage in a subsequent generation.”[[3]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+Product life cycles are often familiar to students after they have had classes in marketing. But what we have in mind here is less the birth-growth-maturation-death of a specific product, and more the entire production-use-disposal cycle of a product. For those of us who have long been enamored of Pietra Rivoli’s *The Travels of a T-Shirt in the Global Economy*,[[4]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) the idea of a product life cycle from the extraction of raw materials to the final disposal of a product can be thought of as something like a product’s “biography.”[[5]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) And like most biographies, there are lots of good and happy moments as well as sad ones and plenty of places for regret. It is these latter that provide opportunities for innovation.
+
+Along similar lines, a recent article in the *Washington Post* analyzed “The Steep Price of Blue Jeans:”[[6]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21)
+
+Let’s imagine your favorite jeans. They started off in a field of cotton — or more likely hundreds of different fields — probably in India, China, the US, Brazil or Pakistan, the five countries that make up 75% of global cotton production. Once the fibers have been separated from the seeds, in a process known as ginning, they’ll be spun into yarn and subsequently dyed. For denim, that usually means an indigo dye. Once woven and sewn into garments, fashionable faded looks are created through finishing processes such sandblasting, stonewashing and acid-washing. It’s a long and complicated supply chain spanning multiple countries and businesses.
+
+SIDEBAR ON HISTORY BLUE JEANS AND LEVI STRAUSS
+
+---
+
+**Every step comes with a significant environmental effect**. According to Levi Strauss & Co., a pair of 501 jeans, the company’s signature cut, used nearly 3,000 liters of water by the time it hit the shop floor and emitted 20 kilograms of CO2e (a measure that encompasses all greenhouse gases) in 2015. Prolific use of pesticides and fertilizers are bad for both nature and human workers. Indigo dye used to be natural, made from the leaves of the *indigofera tinctoria* plant, or true indigo. Now, however, the vast majority of dye is synthetic and contains toxic pollutants, including formaldehyde and cyanide. In some parts of the world, waste from the dye process is dumped straight into waterways, tinting rivers the colors of the forthcoming fashion season. Finishing processes can be equally polluting, resource-intensive and dangerous for workers who, too often, aren’t given the right protective equipment.
+
+**…if we’re going to make truly planet-friendly jeans, companies will have to immerse themselves in every part of their products’ life cycles**, break down those silos and swallow some higher costs.
+
+A casual search of Google Images for “life cycle of jeans” brings up any number of interesting diagrams, for example the one you see here:[[7]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) The point, of course, is that any part of this life cycle map offers opportunities for innovation, including changes in the design of the product itself in order to encourage reuse and recycling, new standards for efficient use of raw materials and energy, changes in the manufacturing and distribution processes, changes in marketing campaigns and product meaning, and changes in government policy. The toolkit as developed in this book can help in
+
+1.      Research a domain.
+
+2.      Prepare a life cycle map.
+
+3.      Where are the inefficiencies? What is suboptimal?
+
+- How can this be measured?
+
+·       What needs to be changed?
+
+4.      Identify opportunities. Use tools as appropriate. Be clear as to which tools you used.
+
+5.      Think in terms of
+
+- Jobs to be done
+- User experiences
+- The four actions framework
+- Trending to the absurd
+- Red teaming
+- Changes of meaning
+- White space mapping
+
+---
+
+any and all of these. This is the process we typically use in class:
+
+A third way to explore domains using a broad toolkit is to take advantage of using core technologies to find new jobs to be done.
+
+Example – where else could we use a Roomba
+
+[[1]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Thomas P. Hughes, *Networks of Power* (The Johns Hopkins University Press: 1983).
+
+[[2]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Ibid.
+
+[[3]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://www.britannica.com/science/life-cycle
+
+[[4]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Pietra Rivoli, *The Travels of a T-Shirt in the Global Economy* (Wiley: 2009).
+
+[[5]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) Ibid.
+
+[[6]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://www.washingtonpost.com/business/2023/10/18/blue-jeans-in-line-for-an-environmental-redesign/67cc4e32-6d75-11ee-b01a-f593caa04363_story.html?isMobile=1
+
+[[7]](https://www.notion.so/PWS-Innovation-Under-Uncertainty-A-Structured-Approach-19f218d946948085a72aff60d559a969?pvs=21) https://www.semanticscholar.org/paper/A-Comparative-Life-Cycle-Assessment-of-Denim-Jeans-Hackett/c291b6a85f47e93c2b001b21f7fa9ef86833ad8d
