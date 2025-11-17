@@ -698,15 +698,23 @@ Adapt your response accordingly! Use appropriate frameworks and language for thi
     except Exception as e:
         return f"Error: {str(e)}"
 
-# Initialize session state
+# Initialize session state with automatic secret loading
 if 'messages' not in st.session_state:
     st.session_state.messages = []
 
 if 'api_key' not in st.session_state:
-    st.session_state.api_key = None
+    # Try to load from Streamlit secrets first, then .env
+    try:
+        st.session_state.api_key = st.secrets.get("GOOGLE_AI_API_KEY", os.getenv('GOOGLE_AI_API_KEY'))
+    except:
+        st.session_state.api_key = os.getenv('GOOGLE_AI_API_KEY')
 
 if 'exa_api_key' not in st.session_state:
-    st.session_state.exa_api_key = None
+    # Try to load from Streamlit secrets first, then .env
+    try:
+        st.session_state.exa_api_key = st.secrets.get("EXA_API_KEY", os.getenv('EXA_API_KEY'))
+    except:
+        st.session_state.exa_api_key = os.getenv('EXA_API_KEY')
 
 if 'persona' not in st.session_state:
     st.session_state.persona = 'general'
@@ -772,34 +780,70 @@ with left_col:
 
     # API Key Configuration
     st.markdown("### 🔑 Configuration")
-    api_key_input = st.text_input(
-        "Google AI API Key",
-        type="password",
-        value=st.session_state.api_key or "",
-        help="Get your API key from https://aistudio.google.com/apikey"
-    )
 
-    if api_key_input:
-        st.session_state.api_key = api_key_input
-        st.success("✅ Google AI configured!")
+    # Check if API keys are loaded from secrets
+    google_key_from_secrets = False
+    exa_key_from_secrets = False
+
+    try:
+        if "GOOGLE_AI_API_KEY" in st.secrets:
+            google_key_from_secrets = True
+        if "EXA_API_KEY" in st.secrets:
+            exa_key_from_secrets = True
+    except:
+        pass
+
+    # Google AI API Key
+    if google_key_from_secrets and st.session_state.api_key:
+        st.success("✅ Google AI configured from secrets!")
+        if st.checkbox("Override Google AI API Key", value=False):
+            api_key_input = st.text_input(
+                "Google AI API Key",
+                type="password",
+                value="",
+                help="Override the secret with a different key"
+            )
+            if api_key_input:
+                st.session_state.api_key = api_key_input
     else:
-        st.warning("⚠️ Please enter Google AI key")
+        api_key_input = st.text_input(
+            "Google AI API Key",
+            type="password",
+            value=st.session_state.api_key or "",
+            help="Get your API key from https://aistudio.google.com/apikey"
+        )
+        if api_key_input:
+            st.session_state.api_key = api_key_input
+            st.success("✅ Google AI configured!")
+        else:
+            st.warning("⚠️ Please enter Google AI key")
 
     st.markdown("---")
 
-    # Exa API Key Configuration
-    exa_key_input = st.text_input(
-        "Exa.ai API Key (Optional)",
-        type="password",
-        value=st.session_state.exa_api_key or os.getenv('EXA_API_KEY', ''),
-        help="Get your API key from https://exa.ai/ - Enables cutting-edge research search"
-    )
-
-    if exa_key_input:
-        st.session_state.exa_api_key = exa_key_input
-        st.success("✅ Exa.ai configured! 🔍")
+    # Exa API Key
+    if exa_key_from_secrets and st.session_state.exa_api_key:
+        st.success("✅ Exa.ai configured from secrets! 🔍")
+        if st.checkbox("Override Exa.ai API Key", value=False):
+            exa_key_input = st.text_input(
+                "Exa.ai API Key",
+                type="password",
+                value="",
+                help="Override the secret with a different key"
+            )
+            if exa_key_input:
+                st.session_state.exa_api_key = exa_key_input
     else:
-        st.info("💡 Add Exa.ai key for current research")
+        exa_key_input = st.text_input(
+            "Exa.ai API Key (Optional)",
+            type="password",
+            value=st.session_state.exa_api_key or "",
+            help="Get your API key from https://exa.ai/ - Enables cutting-edge research search"
+        )
+        if exa_key_input:
+            st.session_state.exa_api_key = exa_key_input
+            st.success("✅ Exa.ai configured! 🔍")
+        else:
+            st.info("💡 Add Exa.ai key for current research")
 
     # Load store info
     store_info = load_store_info()
