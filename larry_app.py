@@ -277,32 +277,30 @@ with st.sidebar:
         st.success("✅ Google AI Configured")
     else:
         st.warning("⚠️ Google AI Key Missing")
-
-    api_key_input = st.text_input(
-        "Google AI API Key",
-        type="password",
-        value="",
-        help="Enter your Google AI key"
-    )
-    if api_key_input:
-        st.session_state.api_key = api_key_input
-        st.rerun()
+        api_key_input = st.text_input(
+            "Google AI API Key",
+            type="password",
+            value="",
+            help="Enter your Google AI key"
+        )
+        if api_key_input:
+            st.session_state.api_key = api_key_input
+            st.rerun()
 
     # Exa API Key
     if st.session_state.exa_api_key:
         st.info("🔍 Exa.ai Configured")
     else:
         st.info("💡 Exa.ai Key Optional")
-
-    exa_key_input = st.text_input(
-        "Exa.ai API Key (Optional)",
-        type="password",
-        value="",
-        help="Enables web search"
-    )
-    if exa_key_input:
-        st.session_state.exa_api_key = exa_key_input
-        st.rerun()
+        exa_key_input = st.text_input(
+            "Exa.ai API Key (Optional)",
+            type="password",
+            value="",
+            help="Enables web search"
+        )
+        if exa_key_input:
+            st.session_state.exa_api_key = exa_key_input
+            st.rerun()
 
     # Knowledge Base Status
     store_info = load_store_info()
