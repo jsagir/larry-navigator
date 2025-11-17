@@ -18,7 +18,7 @@ from larry_framework_recommender import (
     get_framework_notification,
     get_all_frameworks_sorted
 )
-from larry_neo4j_rag import get_neo4j_rag_context, is_neo4j_configured
+from larry_neo4j_rag import get_neo4j_rag_context, is_neo4j_configured, is_faiss_configured, get_faiss_rag_context
 
 # --- 1. Utility Functions ---
 
@@ -124,6 +124,12 @@ def chat_with_larry(user_message, api_key, store_info, persona, problem_type, ex
                 st.error(f"Neo4j RAG Error: {neo4j_error}")
                 neo4j_context = None
 
+        # --- 3. Perform FAISS Vector RAG (Simulated) ---
+        faiss_context = None
+        if is_faiss_configured():
+            with st.spinner("🧠 Searching Vector Store (FAISS)..."):
+                faiss_context = get_faiss_rag_context(user_message)
+
         # --- 3. Build Enhanced Prompt ---
         enhanced_prompt = f"""{LARRY_SYSTEM_PROMPT}
 
@@ -139,6 +145,10 @@ Adapt your response accordingly! Use appropriate frameworks and language for thi
 
         if neo4j_context:
             enhanced_prompt += f"\n\n**NETWORK-EFFECT GRAPH CONTEXT:**\n{neo4j_context}\n\nUse this structured knowledge to provide a more insightful, relationship-aware answer."
+
+        # Add FAISS context if available
+        if faiss_context:
+            enhanced_prompt += f"\n\n**FAISS VECTOR CONTEXT:**\n{faiss_context}\n\nIntegrate this vector-based context into your response."
 
         # --- 4. Generate Content ---
         tools_config = []
@@ -168,6 +178,10 @@ Adapt your response accordingly! Use appropriate frameworks and language for thi
             full_response += f"**[WEB SEARCH RESULTS]**\n{search_results}\n\n---\n\n"
         if neo4j_context:
             full_response += f"**[NETWORK-EFFECT GRAPH CONTEXT]**\n{neo4j_context}\n\n---\n\n"
+        
+        # Add FAISS context to the final output
+        if faiss_context:
+            full_response += f"**[FAISS VECTOR CONTEXT]**\n{faiss_context}\n\n---\n\n"
 
         if response and response.text:
             full_response += response.text
@@ -297,9 +311,14 @@ with st.sidebar:
         st.caption("File Search: Not configured")
 
     if is_neo4j_configured():
-        st.caption("Network-Effect: Active")
+        st.caption("Network-Effect (Neo4j): Active")
     else:
-        st.caption("Network-Effect: Not configured")
+        st.caption("Network-Effect (Neo4j): Not configured")
+        
+    if is_faiss_configured():
+        st.caption("Vector Store (FAISS): Active (Simulated)")
+    else:
+        st.caption("Vector Store (FAISS): Not configured")
 
     st.markdown("---")
 
