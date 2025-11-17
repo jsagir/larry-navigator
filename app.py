@@ -2,11 +2,12 @@
 """
 Larry - Your Personal Uncertainty Navigator
 Web Interface using Streamlit
+Production version with latest Gemini model and enhanced features
 """
 
 import streamlit as st
 import os
-from larry_chatbot import LarryNavigator, STORE_INFO_FILE
+from larry_production import LarryProduction, STORE_INFO_FILE, GEMINI_MODEL
 
 # Page configuration
 st.set_page_config(
@@ -48,23 +49,26 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 def initialize_larry():
-    """Initialize Larry Navigator"""
+    """Initialize Production Larry Navigator"""
     # Get API key from environment variable or Streamlit secrets
     api_key = os.getenv('GOOGLE_AI_API_KEY')
     if not api_key and hasattr(st, 'secrets') and 'GOOGLE_AI_API_KEY' in st.secrets:
         api_key = st.secrets['GOOGLE_AI_API_KEY']
 
     if not api_key:
-        # Fallback to the hardcoded key in larry_chatbot.py
-        from larry_chatbot import GOOGLE_AI_API_KEY
+        # Fallback to the hardcoded key
+        from larry_production import GOOGLE_AI_API_KEY
         api_key = GOOGLE_AI_API_KEY
 
-    return LarryNavigator(api_key=api_key, store_info_file=STORE_INFO_FILE)
+    return LarryProduction(api_key=api_key, store_info_file=STORE_INFO_FILE)
 
 def main():
     # Header
     st.markdown('<div class="main-header">🎯 Larry - Your Personal Uncertainty Navigator</div>', unsafe_allow_html=True)
     st.markdown('<div class="sub-header">Teaching innovation using Lawrence Aronhime\'s Problems Worth Solving methodology</div>', unsafe_allow_html=True)
+
+    # Model info
+    st.markdown(f'<div style="text-align: center; color: #888; font-size: 0.9rem; margin-bottom: 1rem;">Powered by {GEMINI_MODEL}</div>', unsafe_allow_html=True)
 
     # Sidebar
     with st.sidebar:
@@ -104,6 +108,24 @@ def main():
             st.session_state.messages = []
             st.rerun()
 
+        # Knowledge base status
+        if 'larry' in st.session_state:
+            st.markdown("### 📊 System Status")
+            if st.session_state.larry.file_search_enabled:
+                st.success("✅ Knowledge Base Active")
+                st.caption(f"Files: {st.session_state.larry.store_info.get('file_count', 'N/A')}")
+                st.caption(f"Chunks: {st.session_state.larry.store_info.get('total_chunks', 'N/A')}")
+            else:
+                st.warning("⚠️ Knowledge Base Inactive")
+                st.caption("Using general AI knowledge")
+
+            # Session stats button
+            if st.button("📈 Session Stats"):
+                stats = st.session_state.larry.get_session_stats()
+                st.write(f"**Duration:** {stats['duration_minutes']} min")
+                st.write(f"**Messages:** {stats['total_messages']}")
+                st.write(f"**Model:** {stats['model']}")
+
     # Initialize session state
     if 'messages' not in st.session_state:
         st.session_state.messages = []
@@ -114,7 +136,7 @@ def main():
                 st.session_state.larry = initialize_larry()
             except Exception as e:
                 st.error(f"Error initializing Larry: {e}")
-                st.info("Please make sure you have run `build_larry_navigator.py` first to create the store info file.")
+                st.info("Tip: Run `python3 build_larry_navigator_v2.py` to enable the PWS knowledge base.")
                 return
 
     # Display chat history
