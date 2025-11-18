@@ -2,28 +2,23 @@
 """
 Larry Navigator - Streamlit Web Interface
 Hyper-Modern Minimal De Stijl Redesign
+Powered by LangChain Agent & Anthropic Claude
 """
 
 import streamlit as st
 import os
 import re
 from pathlib import Path
-from google import genai
-from google.genai import types
 import json
-from larry_web_search import integrate_search_with_response
-from larry_framework_recommender import (
-    recommend_frameworks,
-    calculate_uncertainty_risk,
-    get_framework_notification,
-    get_all_frameworks_sorted
-)
-from larry_neo4j_rag import get_neo4j_rag_context, is_neo4j_configured, is_faiss_configured, get_faiss_rag_context
-from streamlit_integration import send_to_rasa, parse_rasa_response, map_streamlit_session_to_rasa, update_streamlit_from_rasa
+
+# Import LangChain components
+from larry_agent import initialize_larry_agent, chat_with_larry_agent, get_current_state
+
+# Import existing utilities for sidebar display
+from larry_neo4j_rag import is_neo4j_configured, is_faiss_configured
 
 # --- 1. Utility Functions ---
 
-# Load environment variables
 def load_env():
     """Load environment variables from .env file"""
     env_path = Path(__file__).parent / ".env"
@@ -36,100 +31,6 @@ def load_env():
                     os.environ[key.strip()] = value.strip()
 
 load_env()
-
-# Load store info
-def load_store_info():
-    """Load File Search store information"""
-    store_file = Path(__file__).parent / "larry_store_info.json"
-    if store_file.exists():
-        with open(store_file, "r") as f:
-            return json.load(f)
-    return None
-
-def detect_persona(message):
-    """Detect user persona from message"""
-    message_lower = message.lower()
-
-    if any(word in message_lower for word in ["startup", "founder", "validate", "customer", "market fit"]):
-        return "entrepreneur"
-    elif any(word in message_lower for word in ["corporate", "company", "team", "organization", "portfolio"]):
-        return "corporate"
-    elif any(word in message_lower for word in ["exam", "test", "study", "homework", "course", "assignment"]):
-        return "student"
-    elif any(word in message_lower for word in ["research", "theory", "literature", "scholar", "academic"]):
-        return "researcher"
-    elif any(word in message_lower for word in ["client", "workshop", "facilitate", "advise", "consult"]):
-        return "consultant"
-    else:
-        return "general"
-
-def classify_problem_type(message):
-    """Classify problem type from message context"""
-    message_lower = message.lower()
-
-    if any(word in message_lower for word in ["future", "trend", "macro", "scenario", "long-term", "disrupt"]):
-        return "undefined", 0
-    elif any(word in message_lower for word in ["opportunity", "near-term", "adjacent", "expansion", "growth"]):
-        return "ill-defined", 50
-    elif any(word in message_lower for word in ["implement", "build", "execute", "prototype", "mvp", "solution"]):
-        return "well-defined", 85
-    else:
-        return "general", 50
-
-def parse_response_for_message_types(response_text):
-    # This function is no longer strictly needed as Rasa provides structured responses
-    # It is kept as a placeholder to avoid breaking the render_message function below
-    messages = []
-    sections = response_text.split("\n\n")
-    for section in sections:
-        if not section.strip():
-            continue
-        messages.append(("regular", section))
-    return messages
-
-def render_message(message_type, content):
-    # Updated to handle new custom message types from Rasa
-    if message_type == "provocative":
-        with st.expander("🚨 Provocative Question", expanded=True):
-            st.markdown(f"<div class=\"accent-block provocative-block\">{content}</div>", unsafe_allow_html=True)
-    elif message_type == "framework":
-        with st.expander("💡 Framework Suggestion", expanded=True):
-            st.markdown(f"<div class=\"accent-block framework-block\">{content}</div>", unsafe_allow_html=True)
-    elif message_type == "action":
-        with st.expander("✅ Action Plan", expanded=True):
-            st.markdown(f"<div class=\"accent-block action-block\">{content}</div>", unsafe_allow_html=True)
-    elif message_type == "case":
-        with st.expander("📚 Case Study", expanded=True):
-            st.markdown(f"<div class=\"accent-block case-block\">{content}</div>", unsafe_allow_html=True)
-    elif message_type == "diagnostic":
-        st.error(content)
-    else: # Regular assistant message
-        with st.chat_message("assistant"):
-            st.markdown(content)
-
-def chat_with_larry(user_message):
-    """Send message to Larry via the Rasa Middleware."""
-    sender_id = map_streamlit_session_to_rasa(st.session_state)
-    
-    with st.spinner("🧠 Larry is thinking... Orchestrating intelligent RAG via Rasa..."):
-        # 1. Send message to Rasa
-        rasa_response = send_to_rasa(user_message, sender_id)
-        
-        # 2. Parse Rasa response into Streamlit format
-        parsed_messages = parse_rasa_response(rasa_response)
-        
-        # 3. Get latest slots from Rasa (to update sidebar indicators)
-        # This is a placeholder. In a full deployment, the custom actions would update the slots
-        # and we would need a separate API call to the Rasa tracker to fetch them.
-        # For now, we rely on the custom actions to send back the necessary slot updates
-        # and manually update the persona/problem_type based on the latest message's intent
-        
-        # Fallback to manual update if Rasa is not fully integrated yet
-        if "rasa_sender_id" not in st.session_state:
-            st.session_state.persona = detect_persona(user_message)
-            st.session_state.problem_type, _ = classify_problem_type(user_message)
-            
-        return parsed_messages
 
 # --- 2. Streamlit App Setup ---
 
@@ -148,19 +49,17 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-from larry_system_prompt_v3 import LARRY_SYSTEM_PROMPT_V3
-LARRY_SYSTEM_PROMPT = LARRY_SYSTEM_PROMPT_V3
-
-# --- 3. Session State Initialization ---
+# --- 3. Session State and Agent Initialization ---
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-if "api_key" not in st.session_state:
+# Use ANTHROPIC_API_KEY for the primary LLM
+if "anthropic_api_key" not in st.session_state:
     try:
-        st.session_state.api_key = st.secrets.get("GOOGLE_AI_API_KEY", os.getenv("GOOGLE_AI_API_KEY"))
+        st.session_state.anthropic_api_key = st.secrets.get("ANTHROPIC_API_KEY", os.getenv("ANTHROPIC_API_KEY"))
     except:
-        st.session_state.api_key = os.getenv("GOOGLE_AI_API_KEY")
+        st.session_state.anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
 
 if "exa_api_key" not in st.session_state:
     try:
@@ -168,31 +67,35 @@ if "exa_api_key" not in st.session_state:
     except:
         st.session_state.exa_api_key = os.getenv("EXA_API_KEY")
 
-if "persona" not in st.session_state:
-    st.session_state.persona = "general"
-
-if "problem_type" not in st.session_state:
-    st.session_state.problem_type = "general"
-
-if "uncertainty_score" not in st.session_state:
-    st.session_state.uncertainty_score = 50
-
-if "risk_score" not in st.session_state:
-    st.session_state.risk_score = 50
-
-if "uncertainty_level" not in st.session_state:
-    st.session_state.uncertainty_level = "medium"
-
-if "risk_level" not in st.session_state:
-    st.session_state.risk_level = "medium"
-
-if "recommended_frameworks" not in st.session_state:
-    st.session_state.recommended_frameworks = []
+# Initialize the LangChain Agent
+if "larry_agent_executor" not in st.session_state and st.session_state.anthropic_api_key:
+    st.session_state.larry_agent_executor = initialize_larry_agent(
+        api_key=st.session_state.anthropic_api_key, # Pass the key for initialization
+        history=st.session_state.messages
+    )
 
 # --- 4. Sidebar (Simplified Left Panel) ---
 
 with st.sidebar:
     st.markdown("### ⚙️ Configuration & Context")
+
+    # Get current state from the agent
+    if "larry_agent_executor" in st.session_state:
+        current_state = get_current_state(st.session_state.larry_agent_executor)
+        st.session_state.persona = current_state.get("persona", "general")
+        st.session_state.problem_type = current_state.get("problem_type", "general")
+        st.session_state.uncertainty_score = current_state.get("uncertainty_score", 50)
+        st.session_state.risk_score = current_state.get("risk_score", 50)
+        st.session_state.recommended_frameworks = current_state.get("recommended_frameworks", [])
+    else:
+        st.session_state.persona = "general"
+        st.session_state.problem_type = "general"
+        st.session_state.uncertainty_score = 50
+        st.session_state.risk_score = 50
+        st.session_state.recommended_frameworks = []
+
+    uncertainty_level = "low" if st.session_state.uncertainty_score > 75 else ("high" if st.session_state.uncertainty_score < 25 else "medium")
+    risk_level = "low" if st.session_state.risk_score < 25 else ("high" if st.session_state.risk_score > 75 else "medium")
 
     st.markdown("#### 🎭 Persona")
     st.markdown(f"<div class=\"minimal-persona-badge\">{st.session_state.persona.upper()}</div>", unsafe_allow_html=True)
@@ -200,41 +103,30 @@ with st.sidebar:
     st.markdown("#### ⚖️ Uncertainty & Risk")
     st.markdown(f"""
     <div class=\"minimal-indicator\">
-        Uncertainty: <span>{st.session_state.uncertainty_score}%</span> ({st.session_state.uncertainty_level.upper()})
+        Uncertainty: <span>{st.session_state.uncertainty_score}%</span> ({uncertainty_level.upper()})
     </div>
     <div class=\"minimal-indicator\">
-        Risk: <span>{st.session_state.risk_score}%</span> ({st.session_state.risk_level.upper()})
+        Risk: <span>{st.session_state.risk_score}%</span> ({risk_level.upper()})
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("---")
 
     st.markdown("#### 🔑 API Keys")
-
-    if st.session_state.api_key:
-        st.success("✅ Google AI Configured")
+    if st.session_state.anthropic_api_key:
+        st.success("✅ Anthropic Claude Configured")
     else:
-        st.warning("⚠️ Google AI Key Missing")
-        api_key_input = st.text_input(
-            "Google AI API Key",
-            type="password",
-            value="",
-            help="Enter your Google AI key"
-        )
+        st.warning("⚠️ Anthropic Claude Key Missing")
+        api_key_input = st.text_input("Anthropic Claude API Key", type="password", value="", help="Enter your Anthropic Claude key")
         if api_key_input:
-            st.session_state.api_key = api_key_input
+            st.session_state.anthropic_api_key = api_key_input
             st.rerun()
 
     if st.session_state.exa_api_key:
         st.info("🔍 Exa.ai Configured")
     else:
         st.info("💡 Exa.ai Key Optional")
-        exa_key_input = st.text_input(
-            "Exa.ai API Key (Optional)",
-            type="password",
-            value="",
-            help="Enables web search"
-        )
+        exa_key_input = st.text_input("Exa.ai API Key (Optional)", type="password", value="", help="Enables web search")
         if exa_key_input:
             st.session_state.exa_api_key = exa_key_input
             st.rerun()
@@ -242,22 +134,9 @@ with st.sidebar:
     st.markdown("---")
 
     st.markdown("#### 📚 Knowledge Sources")
-
-    store_info = load_store_info()
-    if store_info:
-        st.caption(f"File Search: Active ({store_info.get('total_chunks', '2,988')} chunks)")
-    else:
-        st.caption("File Search: Not configured")
-
-    if is_neo4j_configured():
-        st.caption("Network-Effect (Neo4j): Active")
-    else:
-        st.caption("Network-Effect (Neo4j): Not configured")
-        
-    if is_faiss_configured():
-        st.caption("Vector Store (FAISS): Active (Simulated)")
-    else:
-        st.caption("Vector Store (FAISS): Not configured")
+    st.caption(f"File Search: {'Active' if os.path.exists('larry_store_info.json') else 'Not configured'}")
+    st.caption(f"Network-Effect (Neo4j): {'Active' if is_neo4j_configured() else 'Not configured'}")
+    st.caption(f"Vector Store (FAISS): {'Active (Simulated)' if is_faiss_configured() else 'Not configured'}")
 
     st.markdown("---")
 
@@ -265,18 +144,15 @@ with st.sidebar:
     with st.expander("View Recommended Frameworks", expanded=False):
         if st.session_state.recommended_frameworks:
             for framework in st.session_state.recommended_frameworks:
-                st.markdown(f"""
-                **{framework["name"]}**
-                <small>{framework["description"]}</small>
-                """, unsafe_allow_html=True)
+                st.markdown(f"**{framework['name']}**\n<small>{framework['description']}</small>", unsafe_allow_html=True)
                 st.markdown("---")
         else:
             st.info("No specific frameworks recommended yet. Start a conversation!")
 
     if st.button("🗑️ Clear Chat", use_container_width=True):
         st.session_state.messages = []
-        st.session_state.persona = "general"
-        st.session_state.problem_type = "general"
+        if "larry_agent_executor" in st.session_state:
+            del st.session_state.larry_agent_executor
         st.rerun()
 
 # --- 5. Main Content (Single Column Chat) ---
@@ -292,50 +168,62 @@ if not st.session_state.messages:
     st.markdown("""
     <div class=\"accent-block\">
         <h3>Welcome to Larry, the Hyper-Minimal Uncertainty Navigator.</h3>
-        <p>I'm here to help you structure ill-defined problems. Start by asking a question about innovation, strategy, or problem-solving.</p>
-        <p>Your persona and problem type will be automatically detected and displayed in the sidebar. Advanced features like framework recommendations are now opt-in, accessible via the sidebar.</p>
+        <p>I now use a LangChain Agent powered by Anthropic Claude to provide deep, sequential reasoning and a provocative "killer feature" to challenge your thinking.</p>
     </div>
     """, unsafe_allow_html=True)
 
 for message in st.session_state.messages:
-    if message["role"] == "user":
-        with st.chat_message("user"):
-            st.markdown(message["content"])
-    else:
-        parsed_messages = parse_response_for_message_types(message["content"])
-        for msg_type, msg_content in parsed_messages:
-            render_message(msg_type, msg_content)
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
-if st.session_state.api_key:
+if st.session_state.anthropic_api_key:
+    if "larry_agent_executor" not in st.session_state:
+        st.info("Initializing LangChain Agent with Anthropic Claude... Please wait.")
+        st.rerun()
+
     user_input = st.chat_input("Ask Larry about innovation, problem-solving, or PWS methodology...")
 
     if user_input:
-        # The following logic is now handled by the Rasa Action Server for stateful management:
-        # - Persona detection and refinement
-        # - Problem type classification
-        # - Uncertainty/Risk calculation
-        # - Framework recommendation
-        # The Streamlit UI will be updated via the Rasa slots.
-
         st.session_state.messages.append({"role": "user", "content": user_input})
+        with st.chat_message("user"):
+            st.markdown(user_input)
 
-        # 4. Get response from Larry via Rasa Middleware
-        rasa_messages = chat_with_larry(user_message=user_input)
+        with st.spinner("🧠 Larry is thinking... Orchestrating RAG with LangChain & Claude..."):
+            response_text = chat_with_larry_agent(
+                agent_executor=st.session_state.larry_agent_executor,
+                user_message=user_input
+            )
+        
+        # The response_text is a structured JSON string from the tool
+        try:
+            structured_response = json.loads(response_text)
+            final_answer = structured_response.get("final_answer", "Error: Could not parse final answer.")
+            provocative_question = structured_response.get("provocative_question", "No provocative question generated.")
+        except (json.JSONDecodeError, TypeError):
+            final_answer = response_text # Fallback to raw text if not valid JSON
+            provocative_question = "No provocative question generated."
 
-        # 5. Render response and update history
-        for message in rasa_messages:
-            render_message(message["type"], message["content"])
-            st.session_state.messages.append({"role": "assistant", "type": message["type"], "content": message["content"]})
+        # 1. Render the Provocative Question (Killer Feature)
+        if provocative_question != "No provocative question generated.":
+            with st.expander("🚨 Provocative Question", expanded=True):
+                st.markdown(f"<div class=\"accent-block provocative-block\">{provocative_question}</div>", unsafe_allow_html=True)
+        
+        # 2. Render the Final Answer
+        with st.chat_message("assistant"):
+            st.markdown(final_answer)
 
-        # 6. Rerun to update the sidebar with new persona/problem type (updated by Rasa slots)
+        # 3. Append to history
+        st.session_state.messages.append({"role": "assistant", "content": final_answer})
+        
+        # Rerun to update the sidebar with the latest state from the agent
         st.rerun()
 else:
-    st.info("👈 Please enter your Google AI API key in the sidebar to start chatting!")
+    st.info("👈 Please enter your Anthropic Claude API key in the sidebar to start chatting!")
 
 st.markdown("---")
 st.markdown("""
 <div style=\"text-align: center; color: #666; padding: 1rem;\">
     <strong>Larry - Your Personal Uncertainty Navigator</strong><br>
-    Powered by Google Gemini 2.5 Flash | Lawrence Aronhime's PWS Methodology
+    Powered by LangChain & Anthropic Claude | Lawrence Aronhime's PWS Methodology
 </div>
 """, unsafe_allow_html=True)
