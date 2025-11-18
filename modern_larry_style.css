@@ -1,0 +1,785 @@
+/*
+Larry Navigator - Modern Professional UI
+User-Friendly Redesign with Soft Color Palette
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ============================================
+   1. COLOR PALETTE & VARIABLES
+   ============================================ */
+:root {
+    /* Primary Colors */
+    --primary-blue: #4A90E2;
+    --accent-orange: #F5A623;
+    --success-green: #7ED321;
+    --warning-amber: #F8E71C;
+    --danger-red: #D0021B;
+    
+    /* Neutrals */
+    --background-light: #F5F7FA;
+    --text-primary: #2C3E50;
+    --text-secondary: #7F8C8D;
+    --white: #FFFFFF;
+    --border-light: #E1E8ED;
+    
+    /* Spacing System (8px base) */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 40px;
+    
+    /* Typography */
+    --font-body: 14px;
+    --font-label: 16px;
+    --font-heading: 24px;
+    --font-large: 48px;
+    
+    /* Shadows */
+    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+    
+    /* Transitions */
+    --transition-base: all 0.2s ease;
+}
+
+/* ============================================
+   2. GLOBAL STYLING
+   ============================================ */
+* {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background-light);
+    color: var(--text-primary);
+    font-size: var(--font-body);
+    line-height: 1.5;
+}
+
+/* ============================================
+   3. STREAMLIT OVERRIDES
+   ============================================ */
+.main {
+    padding: 0 !important;
+    background-color: var(--background-light);
+}
+
+[data-testid="stHeader"], [data-testid="stToolbar"] {
+    display: none !important;
+}
+
+.block-container {
+    padding: var(--spacing-md) var(--spacing-sm);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+[data-testid="stSidebar"] {
+    background: var(--white);
+    border-right: 1px solid var(--border-light);
+    padding: var(--spacing-md);
+}
+
+[data-testid="stSidebar"] > div:first-child {
+    padding-top: var(--spacing-md);
+}
+
+/* ============================================
+   4. HEADER
+   ============================================ */
+.modern-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border-light);
+    padding: var(--spacing-md) 0;
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+.modern-header h1 {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.modern-header p {
+    color: var(--text-secondary);
+    font-size: var(--font-label);
+    margin-top: var(--spacing-xs);
+    font-weight: 400;
+}
+
+/* ============================================
+   5. DASHBOARD METRICS
+   ============================================ */
+.dashboard-section {
+    background: var(--white);
+    border-radius: 8px;
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    box-shadow: var(--shadow-card);
+}
+
+.dashboard-title {
+    font-size: var(--font-heading);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-sm);
+}
+
+.metric-card {
+    background: var(--white);
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
+    padding: var(--spacing-md);
+    text-align: center;
+    transition: var(--transition-base);
+    position: relative;
+}
+
+.metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.metric-card.low-level {
+    border-left: 4px solid var(--success-green);
+}
+
+.metric-card.medium-level {
+    border-left: 4px solid var(--accent-orange);
+}
+
+.metric-card.high-level {
+    border-left: 4px solid var(--danger-red);
+}
+
+.metric-icon {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.metric-value {
+    font-size: var(--font-large);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: var(--spacing-xs) 0;
+}
+
+.metric-label {
+    font-size: var(--font-body);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.metric-status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: var(--spacing-xs);
+}
+
+.metric-status.low {
+    background: rgba(126, 211, 33, 0.1);
+    color: var(--success-green);
+}
+
+.metric-status.medium {
+    background: rgba(245, 166, 35, 0.1);
+    color: var(--accent-orange);
+}
+
+.metric-status.high {
+    background: rgba(208, 2, 27, 0.1);
+    color: var(--danger-red);
+}
+
+/* ============================================
+   6. QUICK START SECTION
+   ============================================ */
+.quick-start-section {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.quick-start-section h2 {
+    color: var(--text-primary);
+    font-size: var(--font-heading);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.quick-start-section p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.quick-start-section ul {
+    list-style: none;
+    padding: 0;
+    margin: var(--spacing-sm) 0;
+}
+
+.quick-start-section ul li {
+    padding: 4px 0;
+    color: var(--text-primary);
+}
+
+.suggestion-pills {
+    margin-top: var(--spacing-md);
+}
+
+.suggestion-pills h3 {
+    font-size: var(--font-label);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.pill-button {
+    display: inline-block;
+    background: var(--background-light);
+    color: var(--text-primary);
+    padding: 12px 20px;
+    border-radius: 24px;
+    border: 1px solid var(--border-light);
+    margin: 4px;
+    cursor: pointer;
+    transition: var(--transition-base);
+    font-size: var(--font-body);
+    font-weight: 500;
+}
+
+.pill-button:hover {
+    background: var(--primary-blue);
+    color: var(--white);
+    border-color: var(--primary-blue);
+    transform: translateY(-1px);
+}
+
+.cta-text {
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-top: var(--spacing-md);
+    font-size: var(--font-body);
+}
+
+/* ============================================
+   7. MESSAGE CARDS
+   ============================================ */
+.message-card {
+    border-radius: 12px;
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    transition: var(--transition-base);
+}
+
+.user-message {
+    background: var(--background-light);
+    margin-left: 15%;
+    border: 1px solid var(--border-light);
+}
+
+.larry-message {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    margin-right: 15%;
+    box-shadow: var(--shadow-card);
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xs);
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.avatar {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.timestamp {
+    font-size: 12px;
+}
+
+.message-content {
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.message-content h4 {
+    color: var(--text-primary);
+    font-size: var(--font-label);
+    font-weight: 600;
+    margin: var(--spacing-sm) 0 var(--spacing-xs) 0;
+}
+
+.message-content ul, .message-content ol {
+    margin: var(--spacing-xs) 0;
+    padding-left: var(--spacing-md);
+}
+
+.uncertainty-analysis,
+.risks-identified,
+.killer-questions {
+    background: var(--background-light);
+    border-left: 3px solid var(--primary-blue);
+    padding: var(--spacing-sm);
+    margin: var(--spacing-sm) 0;
+    border-radius: 4px;
+}
+
+.killer-questions {
+    border-left-color: var(--accent-orange);
+}
+
+.message-actions {
+    display: flex;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    background: transparent;
+    border: 1px solid var(--primary-blue);
+    color: var(--primary-blue);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition-base);
+    font-size: var(--font-body);
+    font-weight: 500;
+}
+
+.action-btn:hover {
+    background: var(--primary-blue);
+    color: var(--white);
+}
+
+/* ============================================
+   8. CLARITY INDICATOR
+   ============================================ */
+.clarity-indicator {
+    background: var(--background-light);
+    padding: var(--spacing-sm);
+    border-radius: 8px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.clarity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.clarity-percentage {
+    font-size: var(--font-heading);
+    color: var(--primary-blue);
+}
+
+.clarity-bar {
+    height: 8px;
+    background: var(--border-light);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: var(--spacing-xs);
+}
+
+.clarity-progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-orange) 0%, var(--success-green) 100%);
+    transition: width 0.5s ease;
+}
+
+.clarity-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-body);
+}
+
+.status-ready {
+    color: var(--success-green);
+    font-weight: 600;
+}
+
+.status-exploring {
+    color: var(--accent-orange);
+    font-weight: 600;
+}
+
+.explore-btn {
+    background: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: var(--transition-base);
+}
+
+.explore-btn:hover {
+    background: #3a7bc8;
+}
+
+/* ============================================
+   9. INTERACTIVE SLIDERS
+   ============================================ */
+.slider-control {
+    margin: var(--spacing-md) 0;
+}
+
+.slider-control label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: var(--font-label);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.slider-description {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.slider-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    min-width: 40px;
+}
+
+.uncertainty-slider,
+.risk-slider {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border-light);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.uncertainty-slider::-webkit-slider-thumb,
+.risk-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-blue);
+    cursor: pointer;
+    transition: var(--transition-base);
+}
+
+.uncertainty-slider::-webkit-slider-thumb:hover,
+.risk-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.2);
+}
+
+.slider-value {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-xs);
+}
+
+.current-value {
+    font-size: var(--font-heading);
+    font-weight: 700;
+    color: var(--primary-blue);
+}
+
+.value-label {
+    font-size: var(--font-body);
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.slider-hint {
+    background: var(--background-light);
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-top: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ============================================
+   10. PERSONA SELECTOR
+   ============================================ */
+.persona-selector {
+    margin: var(--spacing-md) 0;
+}
+
+.persona-selector h3 {
+    font-size: var(--font-label);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.persona-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-sm);
+}
+
+.persona-card {
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
+    padding: var(--spacing-md);
+    cursor: pointer;
+    transition: var(--transition-base);
+    position: relative;
+}
+
+.persona-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.persona-card:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-card);
+}
+
+.persona-card.active,
+.persona-card input[type="radio"]:checked + .persona-content {
+    border-color: var(--primary-blue);
+    background: var(--background-light);
+}
+
+.persona-card input[type="radio"]:checked ~ * {
+    border-color: var(--primary-blue);
+}
+
+.persona-content h4 {
+    color: var(--text-primary);
+    font-size: var(--font-label);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+.persona-content p {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin: 0;
+}
+
+/* ============================================
+   11. THINKING INDICATOR
+   ============================================ */
+.thinking-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm);
+    background: var(--background-light);
+    border-radius: 8px;
+    margin: var(--spacing-sm) 0;
+}
+
+.thinking-text {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.thinking-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.thinking-dots .dot {
+    width: 8px;
+    height: 8px;
+    background: var(--primary-blue);
+    border-radius: 50%;
+    animation: thinking 1.4s infinite;
+}
+
+.thinking-dots .dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.thinking-dots .dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes thinking {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+/* ============================================
+   12. SIDEBAR ENHANCEMENTS
+   ============================================ */
+.sidebar-section {
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.sidebar-section:last-child {
+    border-bottom: none;
+}
+
+.sidebar-section h4 {
+    font-size: var(--font-label);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ============================================
+   13. BUTTONS & INTERACTIVE ELEMENTS
+   ============================================ */
+.primary-btn {
+    background: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-base);
+    font-size: var(--font-body);
+}
+
+.primary-btn:hover {
+    background: #3a7bc8;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-card);
+}
+
+.secondary-btn {
+    background: transparent;
+    color: var(--primary-blue);
+    border: 1px solid var(--primary-blue);
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-base);
+    font-size: var(--font-body);
+}
+
+.secondary-btn:hover {
+    background: var(--primary-blue);
+    color: var(--white);
+}
+
+/* ============================================
+   14. RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 768px) {
+    .block-container {
+        padding: var(--spacing-sm);
+    }
+    
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .user-message,
+    .larry-message {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .persona-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .metric-value {
+        font-size: 2.5rem;
+    }
+}
+
+/* ============================================
+   15. STREAMLIT COMPONENT OVERRIDES
+   ============================================ */
+[data-testid="stChatMessage"] {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+[data-testid="stChatInput"] {
+    border-radius: 8px;
+    border: 2px solid var(--border-light);
+    transition: var(--transition-base);
+}
+
+[data-testid="stChatInput"]:focus-within {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.stButton > button {
+    background: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: var(--transition-base);
+}
+
+.stButton > button:hover {
+    background: #3a7bc8;
+    transform: translateY(-1px);
+}
+
+/* Expander styling */
+[data-testid="stExpander"] {
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    background: var(--white);
+    margin: var(--spacing-sm) 0;
+}
+
+[data-testid="stExpander"] > div:first-child {
+    background-color: var(--background-light);
+    border-bottom: 1px solid var(--border-light);
+    border-radius: 8px 8px 0 0;
+}
