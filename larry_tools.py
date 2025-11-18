@@ -8,6 +8,8 @@ from langchain_community.graphs import Neo4jGraph
 from langchain_community.tools.file_management import FileSearchTool
 from langchain_anthropic import ChatAnthropic
 from langchain_google_genai import ChatGoogleGenerativeAI
+import google.generativeai as genai
+from google.generativeai import types
 from langchain.chains import GraphCypherQAChain
 from langchain.prompts import PromptTemplate
 

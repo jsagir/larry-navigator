@@ -3,7 +3,7 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 from langchain_anthropic import ChatAnthropic
-from langchain.agents import initialize_agent, AgentType
+from langchain.agents import initialize_agent, AgentExecutor, AgentType, AgentType
 from langchain.memory import ConversationBufferWindowMemory
 
 # Import the tools and system prompt
