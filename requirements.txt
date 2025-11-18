@@ -2,8 +2,8 @@ google-genai>=1.50.0
 streamlit>=1.31.0
 exa_py>=1.0.0
 
-neo4j
-
-langchain
-langchain-community
-faiss-cpu
+neo4j>=5.14.0
+langchain>=0.1.0,<0.3.0
+langchain-community>=0.0.20,<0.3.0
+langchain-google-genai>=0.0.5
+faiss-cpu>=1.7.4
