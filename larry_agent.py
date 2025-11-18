@@ -3,8 +3,10 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 from langchain_anthropic import ChatAnthropic
-from langchain.agents import initialize_agent, AgentExecutor, AgentType
+from langchain.agents import AgentExecutor, create_react_agent
+from langchain_community.agent_toolkits import create_conversational_retrieval_agent
 from langchain.memory import ConversationBufferWindowMemory
+from langchain import hub
 
 # Import the tools and system prompt
 from larry_tools import UncertaintyNavigatorTool, ContextUpdateTool
@@ -42,21 +44,31 @@ def initialize_larry_agent():
         output_key="output"
     )
 
-    # 4. Initialize Agent
-    # Use the stable initialize_agent function with the CONVERSATIONAL_REACT_DESCRIPTION agent type
-    agent = initialize_agent(
-        tools,
-        llm,
-        agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION,
-        verbose=True,
+    # 4. Initialize Agent with LangChain 0.2+ API
+    # Create a conversational prompt template
+    from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+    
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", LARRY_SYSTEM_PROMPT),
+        MessagesPlaceholder(variable_name="chat_history"),
+        ("human", "{input}"),
+        MessagesPlaceholder(variable_name="agent_scratchpad")
+    ])
+    
+    # Create the agent
+    agent = create_react_agent(llm, tools, prompt)
+    
+    # Create the agent executor
+    agent_executor = AgentExecutor(
+        agent=agent,
+        tools=tools,
         memory=memory,
+        verbose=True,
         handle_parsing_errors=True,
-        agent_kwargs={
-            "system_message": LARRY_SYSTEM_PROMPT
-        }
+        max_iterations=5
     )
     
-    return agent
+    return agent_executor
 
 def chat_with_larry_agent(user_input: str, agent):
     """Executes a single turn of the conversation with the LangChain Agent."""
