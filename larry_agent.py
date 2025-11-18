@@ -3,10 +3,9 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 from langchain_anthropic import ChatAnthropic
-from langchain.agents import AgentExecutor, create_react_agent
-from langchain_community.agent_toolkits import create_conversational_retrieval_agent
+from langchain.agents import AgentExecutor
+from langchain.agents.react.agent import create_react_agent
 from langchain.memory import ConversationBufferWindowMemory
-from langchain import hub
 
 # Import the tools and system prompt
 from larry_tools import UncertaintyNavigatorTool, ContextUpdateTool
