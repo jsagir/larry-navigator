@@ -2,7 +2,7 @@ import os
 from neo4j import GraphDatabase, basic_auth
 from langchain_community.graphs import Neo4jGraph
 from langchain.chains import GraphCypherQAChain
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_anthropic import ChatAnthropic
 from langchain.prompts import PromptTemplate
 
 # --- Configuration ---
@@ -40,17 +40,15 @@ def get_neo4j_rag_context(user_message, persona, problem_type, api_key):
     if not graph:
         return None, "Neo4j is not configured or connection failed."
 
-    # Use Gemini for Cypher generation and QA
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
-        google_api_key=api_key,
-        temperature=0.0 # Low temperature for deterministic Cypher generation
+    # Use Claude for Cypher generation and QA (consistent with the rest of the app)
+    llm = ChatAnthropic(
+        model="claude-3-5-sonnet-20240620",
+        temperature=0.0  # Low temperature for deterministic Cypher generation
     )
 
     # Custom prompt to guide the LLM for Cypher generation
     CYPHER_GENERATION_TEMPLATE = """
     You are an expert Neo4j Cypher query generator. Your task is to translate a user's question into a single, valid, read-only Cypher query.
-    The user's context is: Persona: {persona}, Problem Type: {problem_type}.
     The graph schema is:
     {schema}
     
@@ -62,7 +60,7 @@ def get_neo4j_rag_context(user_message, persona, problem_type, api_key):
     """
     
     cypher_prompt = PromptTemplate(
-        input_variables=["schema", "question", "persona", "problem_type"],
+        input_variables=["schema", "question"],
         template=CYPHER_GENERATION_TEMPLATE,
     )
 
@@ -78,7 +76,7 @@ def get_neo4j_rag_context(user_message, persona, problem_type, api_key):
         # LangChain's GraphCypherQAChain will generate Cypher, execute it, and then
         # use the LLM to answer the question based on the result.
         # We only want the intermediate steps (Cypher and result) for RAG context.
-        result = chain({"query": user_message, "persona": persona, "problem_type": problem_type})
+        result = chain({"query": user_message})
         
         # Extract the generated Cypher and the graph result
         cypher_query = result["intermediate_steps"][0]["query"]

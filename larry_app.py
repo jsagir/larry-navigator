@@ -39,16 +39,6 @@ def load_env():
                     os.environ[key.strip()] = value.strip()
 
 # --- 2. Streamlit App Setup ---
-def load_env():
-    """Load environment variables from .env file"""
-    env_path = Path(__file__).parent / ".env"
-    if env_path.exists():
-        with open(env_path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith("#") and "=" in line:
-                    key, value = line.split("=", 1)
-                    os.environ[key.strip()] = value.strip()
 
 def inject_css():
     css_path = Path(__file__).parent / "minimal_destijl_style.css"
@@ -83,12 +73,11 @@ if "exa_api_key" not in st.session_state:
     except:
         st.session_state.exa_api_key = os.getenv("EXA_API_KEY")
 
-# Initialize the LangChain Agent
+# Initialize the LangChain Agent (only once)
 if "larry_agent_executor" not in st.session_state and st.session_state.anthropic_api_key:
-    st.session_state.larry_agent_executor = initialize_larry_agent(
-        api_key=st.session_state.anthropic_api_key, # Pass the key for initialization
-        history=st.session_state.messages
-    )
+    # Set the API key as environment variable before initialization
+    os.environ["ANTHROPIC_API_KEY"] = st.session_state.anthropic_api_key
+    st.session_state.larry_agent_executor = initialize_larry_agent()
 
 # --- 4. Sidebar (Simplified Left Panel) ---
 
@@ -136,6 +125,7 @@ with st.sidebar:
         api_key_input = st.text_input("Anthropic Claude API Key", type="password", value="", help="Enter your Anthropic Claude key")
         if api_key_input:
             st.session_state.anthropic_api_key = api_key_input
+            os.environ["ANTHROPIC_API_KEY"] = api_key_input
             st.rerun()
 
     if st.session_state.exa_api_key:
@@ -145,6 +135,7 @@ with st.sidebar:
         exa_key_input = st.text_input("Exa.ai API Key (Optional)", type="password", value="", help="Enables web search")
         if exa_key_input:
             st.session_state.exa_api_key = exa_key_input
+            os.environ["EXA_API_KEY"] = exa_key_input
             st.rerun()
 
     st.markdown("---")
@@ -206,8 +197,8 @@ if st.session_state.anthropic_api_key:
 
         with st.spinner("🧠 Larry is thinking... Orchestrating RAG with LangChain & Claude..."):
             response_text = chat_with_larry_agent(
-                agent_executor=st.session_state.larry_agent_executor,
-                user_message=user_input
+                user_input=user_input,
+                agent=st.session_state.larry_agent_executor
             )
         
         # The response_text is a structured JSON string from the tool

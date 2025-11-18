@@ -3,11 +3,11 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 from langchain_anthropic import ChatAnthropic
-from langchain.agents import initialize_agent, AgentExecutor, AgentType, AgentType
+from langchain.agents import initialize_agent, AgentExecutor, AgentType
 from langchain.memory import ConversationBufferWindowMemory
 
 # Import the tools and system prompt
-from larry_tools import UncertaintyNavigatorTool
+from larry_tools import UncertaintyNavigatorTool, ContextUpdateTool
 from larry_system_prompt_v3 import LARRY_SYSTEM_PROMPT
 
 # --- Agent Initialization and Execution ---
@@ -18,7 +18,7 @@ def initialize_larry_agent():
     # Use the ANTHROPIC_API_KEY environment variable
     try:
         llm = ChatAnthropic(
-            model="claude-3-sonnet-20240229",
+            model="claude-3-5-sonnet-20240620",
             temperature=0.2,
             max_tokens=4096
         )
@@ -29,7 +29,8 @@ def initialize_larry_agent():
 
     # 2. Define Tools
     tools = [
-        UncertaintyNavigatorTool()
+        UncertaintyNavigatorTool(),
+        ContextUpdateTool()
     ]
 
     # 3. Initialize Memory
@@ -71,11 +72,35 @@ def chat_with_larry_agent(user_input: str, agent):
 
 def get_current_state(agent):
     """Retrieves the current state (persona, problem type, etc.) from the agent's memory or context."""
-    # For this simple agent, we can't easily retrieve the internal state, 
-    # but we can return a placeholder based on the system prompt's intent.
-    # In a real-world scenario, the agent would have a custom tool to set/get state.
+    # Extract state from the agent's memory
+    # The ContextUpdateTool stores state in the conversation history
+    try:
+        memory = agent.memory
+        if memory and hasattr(memory, 'chat_memory'):
+            messages = memory.chat_memory.messages
+            # Search for the most recent state update from ContextUpdateTool
+            for message in reversed(messages):
+                if hasattr(message, 'content') and 'persona' in message.content:
+                    try:
+                        import json
+                        state = json.loads(message.content)
+                        return {
+                            "persona": state.get("persona", "general"),
+                            "problem_type": state.get("problem_type", "general"),
+                            "uncertainty_score": state.get("uncertainty_score", 50),
+                            "risk_score": state.get("risk_score", 50),
+                            "recommended_frameworks": []
+                        }
+                    except:
+                        pass
+    except:
+        pass
+    
+    # Default state if no updates found
     return {
-        "persona": "Entrepreneur",
-        "problem_type": "Ill-Defined",
-        "risk_level": "High"
+        "persona": "general",
+        "problem_type": "general",
+        "uncertainty_score": 50,
+        "risk_score": 50,
+        "recommended_frameworks": []
     }

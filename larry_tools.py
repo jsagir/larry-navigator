@@ -20,10 +20,15 @@ from larry_framework_recommender import calculate_uncertainty_risk
 from larry_system_prompt_v3 import LARRY_SYSTEM_PROMPT
 
 # --- 1. Anthropic Claude Initialization ---
-# We will use Claude for the core reasoning and final answer generation
+# Global LLM instance for reuse (avoid re-initialization)
+_claude_llm_instance = None
+
 def get_claude_llm():
-    # Uses ANTHROPIC_API_KEY environment variable
-    return ChatAnthropic(model="claude-3-5-sonnet-20240620", temperature=0.2)
+    """Get or create a reusable Claude LLM instance."""
+    global _claude_llm_instance
+    if _claude_llm_instance is None:
+        _claude_llm_instance = ChatAnthropic(model="claude-3-5-sonnet-20240620", temperature=0.2)
+    return _claude_llm_instance
 
 # --- 2. Uncertainty Navigator Tool (The Killer Feature) ---
 
@@ -84,33 +89,43 @@ class UncertaintyNavigatorTool(BaseTool):
 
         # 3. PWS File Search (Core Documents)
         api_key = os.getenv("GOOGLE_AI_API_KEY")
-        if api_key:
+        if api_key and os.path.exists("larry_store_info.json"):
             try:
-                # Load store info (assuming larry_store_info.json is available)
+                # Load store info
                 with open("larry_store_info.json", "r") as f:
                     store_info = json.load(f)
                 store_name = store_info.get("store_name")
                 
-                client = genai.Client(api_key=api_key)
-                
-                # Use the Gemini API for the File Search tool (since the store is Gemini-based)
-                response = client.models.generate_content(
-                    model="gemini-2.5-flash",
-                    contents=f"Based on the PWS documents, answer the following question: {query}",
-                    config=types.GenerateContentConfig(
-                        tools=[
-                            types.Tool(
-                                file_search=types.FileSearch(
-                                    file_search_store_names=[store_name]
+                if store_name:
+                    client = genai.Client(api_key=api_key)
+                    
+                    # Use the Gemini API for File Search
+                    response = client.models.generate_content(
+                        model="gemini-2.5-flash",
+                        contents=f"Based on the PWS documents, answer the following question: {query}",
+                        config=types.GenerateContentConfig(
+                            tools=[
+                                types.Tool(
+                                    file_search=types.FileSearch(
+                                        file_search_store_names=[store_name]
+                                    )
                                 )
-                            )
-                        ]
+                            ]
+                        )
                     )
-                )
-                rag_context.append(f"PWS DOCUMENT CONTEXT: {response.text}")
+                    rag_context.append(f"PWS DOCUMENT CONTEXT: {response.text}")
+                else:
+                    rag_context.append("PWS DOCUMENT INFO: Store name not found in configuration.")
                 
+            except FileNotFoundError:
+                rag_context.append("PWS DOCUMENT INFO: Store configuration file not found.")
             except Exception as e:
                 rag_context.append(f"PWS DOCUMENT ERROR: Could not perform File Search. {str(e)}")
+        else:
+            if not api_key:
+                rag_context.append("PWS DOCUMENT INFO: File Search not configured (missing GOOGLE_AI_API_KEY).")
+            elif not os.path.exists("larry_store_info.json"):
+                rag_context.append("PWS DOCUMENT INFO: File Search not configured (missing store info file).")
 
         full_context = "\n\n---\n\n".join(rag_context)
         
@@ -250,13 +265,4 @@ class ContextUpdateTool(BaseTool):
             "message": "Internal state updated successfully."
         })
 
-# --- 4. List of all tools for the Agent ---
 
-def get_larry_tools(persona: str, problem_type: str):
-    """
-    Returns the list of tools. The UncertaintyNavigatorTool is the main tool.
-    """
-    return [
-        UncertaintyNavigatorTool(),
-        ContextUpdateTool()
-    ]
