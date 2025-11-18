@@ -27,8 +27,7 @@ def set_secrets_as_env():
         if key not in os.environ:
             os.environ[key] = str(value)
 
-def load_env()
-set_secrets_as_env():
+def load_env():
     """Load environment variables from .env file"""
     env_path = Path(__file__).parent / ".env"
     if env_path.exists():
