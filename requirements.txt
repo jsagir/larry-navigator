@@ -1,23 +1,9 @@
 google-genai>=1.50.0
 streamlit>=1.31.0
 exa_py>=1.0.0
-
-<<<<<<< HEAD
 neo4j>=5.14.0
-langchain>=0.1.0,<0.3.0
-langchain-community>=0.0.20,<0.3.0
+langchain==0.1.16
+langchain-community>=0.0.38
 langchain-google-genai>=0.0.5
-faiss-cpu>=1.7.4
-=======
-neo4j
-
-langchain
-langchain-community
-faiss-cpu
-langchain
-langchain-google-genai
-langchain-community
-neo4j
 anthropic
 langchain-anthropic
->>>>>>> e414c47 (feat: Implement LangChain Agent with Anthropic Claude and Uncertainty Navigator Tool)
