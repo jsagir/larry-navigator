@@ -10,8 +10,8 @@ from langchain_anthropic import ChatAnthropic
 from langchain_google_genai import ChatGoogleGenerativeAI
 import google.generativeai as genai
 from google.generativeai import types
-from langchain.chains import GraphCypherQAChain
-from langchain.prompts import PromptTemplate
+from langchain_community.chains.graph_qa.cypher import GraphCypherQAChain
+from langchain_core.prompts import PromptTemplate
 
 # Import existing utilities
 from larry_web_search import integrate_search_with_response

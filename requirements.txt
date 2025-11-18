@@ -1,9 +1,17 @@
-google-genai>=1.50.0
-streamlit>=1.31.0
-exa_py>=1.0.0
-neo4j>=5.14.0
-langchain>=0.2.0
-langchain-community>=0.2.0
-langchain-google-genai>=1.0.0
-anthropic>=0.25.0
-langchain-anthropic>=0.1.15
+# Core dependencies
+streamlit==1.31.0
+google-genai==1.50.1
+google-generativeai==0.7.2
+exa_py==1.0.0
+neo4j==5.14.0
+
+# LangChain ecosystem - pinned to 0.1.x for stability
+langchain==0.1.16
+langchain-core==0.1.52
+langchain-community==0.0.38
+langchain-anthropic==0.1.15
+langchain-google-genai==1.0.10
+langchain-text-splitters==0.0.2
+
+# Anthropic
+anthropic==0.25.0

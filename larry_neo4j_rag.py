@@ -1,9 +1,9 @@
 import os
 from neo4j import GraphDatabase, basic_auth
 from langchain_community.graphs import Neo4jGraph
-from langchain.chains import GraphCypherQAChain
+from langchain_community.chains.graph_qa.cypher import GraphCypherQAChain
 from langchain_anthropic import ChatAnthropic
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 
 # --- Configuration ---
 NEO4J_URI = os.getenv("NEO4J_URI")

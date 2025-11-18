@@ -12,6 +12,8 @@ from datetime import datetime
 
 # Import LangChain components
 from larry_agent import initialize_larry_agent, chat_with_larry_agent, get_current_state
+import google.generativeai as genai
+from google.generativeai import types
 
 # Import existing utilities
 from larry_neo4j_rag import is_neo4j_configured, is_faiss_configured

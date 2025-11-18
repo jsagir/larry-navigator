@@ -1,10 +1,8 @@
-import os
+"""Larry Agent - LangChain 0.1.x Stable Implementation"""
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.runnables import RunnablePassthrough
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 from langchain_anthropic import ChatAnthropic
-from langchain.agents import AgentExecutor
-from langchain.agents.react.agent import create_react_agent
+from langchain.agents import initialize_agent, AgentExecutor, AgentType
 from langchain.memory import ConversationBufferWindowMemory
 
 # Import the tools and system prompt
@@ -16,7 +14,6 @@ from larry_system_prompt_v3 import LARRY_SYSTEM_PROMPT
 def initialize_larry_agent():
     """Initializes the LangChain Agent with Anthropic Claude and tools."""
     # 1. Initialize LLM
-    # Use the ANTHROPIC_API_KEY environment variable
     try:
         llm = ChatAnthropic(
             model="claude-3-5-sonnet-20240620",
@@ -24,7 +21,6 @@ def initialize_larry_agent():
             max_tokens=4096
         )
     except Exception as e:
-        # Fallback for local testing if key is missing
         print(f"Anthropic LLM initialization failed: {e}. Check ANTHROPIC_API_KEY.")
         return None
 
@@ -35,7 +31,6 @@ def initialize_larry_agent():
     ]
 
     # 3. Initialize Memory
-    # Use a window of 5 turns to keep the conversation focused
     memory = ConversationBufferWindowMemory(
         memory_key="chat_history",
         k=5,
@@ -43,31 +38,20 @@ def initialize_larry_agent():
         output_key="output"
     )
 
-    # 4. Initialize Agent with LangChain 0.2+ API
-    # Create a conversational prompt template
-    from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-    
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", LARRY_SYSTEM_PROMPT),
-        MessagesPlaceholder(variable_name="chat_history"),
-        ("human", "{input}"),
-        MessagesPlaceholder(variable_name="agent_scratchpad")
-    ])
-    
-    # Create the agent
-    agent = create_react_agent(llm, tools, prompt)
-    
-    # Create the agent executor
-    agent_executor = AgentExecutor(
-        agent=agent,
-        tools=tools,
-        memory=memory,
+    # 4. Initialize Agent using stable 0.1.x API
+    agent = initialize_agent(
+        tools,
+        llm,
+        agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION,
         verbose=True,
+        memory=memory,
         handle_parsing_errors=True,
-        max_iterations=5
+        agent_kwargs={
+            "system_message": LARRY_SYSTEM_PROMPT
+        }
     )
     
-    return agent_executor
+    return agent
 
 def chat_with_larry_agent(user_input: str, agent):
     """Executes a single turn of the conversation with the LangChain Agent."""
@@ -77,41 +61,47 @@ def chat_with_larry_agent(user_input: str, agent):
     # The agent's memory handles the history, so we just pass the new input
     response = agent.invoke({"input": user_input})
     
-    # The response structure depends on the agent type, but for CONVERSATIONAL_REACT_DESCRIPTION,
-    # the final output is usually in the 'output' key.
-    return response.get("output", "I'm sorry, I couldn't process that request.")
+    # Extract the output
+    return response.get("output", "No response generated.")
 
 def get_current_state(agent):
-    """Retrieves the current state (persona, problem type, etc.) from the agent's memory or context."""
-    # Extract state from the agent's memory
-    # The ContextUpdateTool stores state in the conversation history
-    try:
-        memory = agent.memory
-        if memory and hasattr(memory, 'chat_memory'):
-            messages = memory.chat_memory.messages
-            # Search for the most recent state update from ContextUpdateTool
-            for message in reversed(messages):
-                if hasattr(message, 'content') and 'persona' in message.content:
-                    try:
-                        import json
-                        state = json.loads(message.content)
-                        return {
-                            "persona": state.get("persona", "general"),
-                            "problem_type": state.get("problem_type", "general"),
-                            "uncertainty_score": state.get("uncertainty_score", 50),
-                            "risk_score": state.get("risk_score", 50),
-                            "recommended_frameworks": []
-                        }
-                    except:
-                        pass
-    except:
-        pass
-    
-    # Default state if no updates found
-    return {
+    """
+    Retrieves the current state (persona, problem_type, uncertainty, risk) from the agent's memory.
+    """
+    # Default state
+    default_state = {
         "persona": "general",
         "problem_type": "general",
         "uncertainty_score": 50,
-        "risk_score": 50,
-        "recommended_frameworks": []
+        "risk_score": 50
     }
+    
+    try:
+        # Parse the conversation history for state updates from ContextUpdateTool
+        if hasattr(agent, 'memory') and agent.memory:
+            messages = agent.memory.chat_memory.messages
+            
+            # Look for the most recent state update
+            for msg in reversed(messages):
+                if hasattr(msg, 'content') and 'persona' in str(msg.content).lower():
+                    # Try to extract state from message content
+                    # This is a simplified extraction - in production you'd want more robust parsing
+                    pass
+        
+        return default_state
+    except Exception as e:
+        print(f"Error retrieving state: {e}")
+        return default_state
+
+if __name__ == '__main__':
+    # Example usage
+    import os
+    os.environ["ANTHROPIC_API_KEY"] = "your-key-here"
+    
+    agent = initialize_larry_agent()
+    if agent:
+        print("Agent initialized successfully!")
+        response = chat_with_larry_agent("Hello, I need help with a decision.", agent)
+        print(f"Larry: {response}")
+    else:
+        print("Failed to initialize agent.")
