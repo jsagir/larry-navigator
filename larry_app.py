@@ -21,7 +21,14 @@ from larry_neo4j_rag import is_neo4j_configured, is_faiss_configured
 
 # --- 1. Utility Functions ---
 
-def load_env():
+def set_secrets_as_env():
+    """Reads st.secrets and sets them as environment variables for LangChain tools."""
+    for key, value in st.secrets.items():
+        if key not in os.environ:
+            os.environ[key] = str(value)
+
+def load_env()
+set_secrets_as_env():
     """Load environment variables from .env file"""
     env_path = Path(__file__).parent / ".env"
     if env_path.exists():
@@ -33,6 +40,7 @@ def load_env():
                     os.environ[key.strip()] = value.strip()
 
 load_env()
+set_secrets_as_env()
 
 # --- 2. Streamlit App Setup ---
 
