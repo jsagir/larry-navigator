@@ -15,7 +15,7 @@ from langchain.prompts import PromptTemplate
 from larry_web_search import integrate_search_with_response
 from larry_neo4j_rag import is_neo4j_configured
 from larry_framework_recommender import calculate_uncertainty_risk
-from larry_system_prompt_v3 import LARRY_SYSTEM_PROMPT_V3
+from larry_system_prompt_v3 import LARRY_SYSTEM_PROMPT
 
 # --- 1. Anthropic Claude Initialization ---
 # We will use Claude for the core reasoning and final answer generation
