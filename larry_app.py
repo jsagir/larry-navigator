@@ -36,12 +36,7 @@ def load_env():
                 line = line.strip()
                 if line and not line.startswith("#") and "=" in line:
                     key, value = line.split("=", 1)
-                    os.environ[key.strip()] = value.strip()
-
-load_env()
-set_secrets_as_env()
-
-# --- 2. Streamlit App Setup ---
+                    os.environ[key.strip()] = value.strip()def load_env(): --- 2. Streamlit App Setup ---
 
 def inject_css():
     css_path = Path(__file__).parent / "minimal_destijl_style.css"
