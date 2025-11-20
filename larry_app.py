@@ -347,9 +347,19 @@ if st.session_state.anthropic_api_key:
         with st.spinner("🤔 Larry is thinking..."):
             # Get response from agent
             if "larry_agent_executor" not in st.session_state:
-                st.session_state.larry_agent_executor = initialize_larry_agent()
-            
-            response = chat_with_larry_agent(message_text, st.session_state.larry_agent_executor)
+                try:
+                    st.session_state.larry_agent_executor = initialize_larry_agent()
+                    if st.session_state.larry_agent_executor is None:
+                        response = "Error: Failed to initialize Larry. Please check that your ANTHROPIC_API_KEY is valid and has credits."
+                    else:
+                        response = chat_with_larry_agent(message_text, st.session_state.larry_agent_executor)
+                except Exception as e:
+                    response = f"Error initializing agent: {str(e)}"
+            else:
+                try:
+                    response = chat_with_larry_agent(message_text, st.session_state.larry_agent_executor)
+                except Exception as e:
+                    response = f"Error: {str(e)}"
         
         # Add assistant message
         st.session_state.messages.append({

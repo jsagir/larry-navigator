@@ -16,13 +16,13 @@ def initialize_larry_agent():
     # 1. Initialize LLM
     try:
         llm = ChatAnthropic(
-            model="claude-3-5-sonnet-20240620",
+            model="claude-3-5-sonnet-20241022",  # Updated to latest model
             temperature=0.2,
             max_tokens=4096
         )
     except Exception as e:
         print(f"Anthropic LLM initialization failed: {e}. Check ANTHROPIC_API_KEY.")
-        return None
+        raise Exception(f"Failed to initialize Claude: {str(e)}")
 
     # 2. Define Tools
     tools = [
@@ -39,19 +39,22 @@ def initialize_larry_agent():
     )
 
     # 4. Initialize Agent using stable 0.1.x API
-    agent = initialize_agent(
-        tools,
-        llm,
-        agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION,
-        verbose=True,
-        memory=memory,
-        handle_parsing_errors=True,
-        agent_kwargs={
-            "system_message": LARRY_SYSTEM_PROMPT
-        }
-    )
-    
-    return agent
+    try:
+        agent = initialize_agent(
+            tools,
+            llm,
+            agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION,
+            verbose=True,
+            memory=memory,
+            handle_parsing_errors=True,
+            agent_kwargs={
+                "system_message": LARRY_SYSTEM_PROMPT
+            }
+        )
+        return agent
+    except Exception as e:
+        print(f"Agent initialization failed: {e}")
+        raise Exception(f"Failed to initialize agent: {str(e)}")
 
 def chat_with_larry_agent(user_input: str, agent):
     """Executes a single turn of the conversation with the LangChain Agent."""
