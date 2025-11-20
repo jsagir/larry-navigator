@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Larry Navigator - Modern Redesigned Streamlit Interface
 User-Friendly Professional UI with Interactive Components
@@ -9,15 +10,19 @@ import json
 from pathlib import Path
 from datetime import datetime
 
-# --- CRITICAL: Load secrets FIRST before any other imports ---
+# Import LangChain components
+from larry_agent import initialize_larry_agent, chat_with_larry_agent, get_current_state
+
+# Import existing utilities
+from larry_neo4j_rag import is_neo4j_configured, is_faiss_configured
+
+# --- 1. Utility Functions ---
+
 def set_secrets_as_env():
     """Reads st.secrets and sets them as environment variables for LangChain tools."""
-    try:
-        for key, value in st.secrets.items():
-            if key not in os.environ:
-                os.environ[key] = str(value)
-    except Exception as e:
-        pass  # Secrets might not be configured in local development
+    for key, value in st.secrets.items():
+        if key not in os.environ:
+            os.environ[key] = str(value)
 
 def load_env():
     """Load environment variables from .env file"""
@@ -29,16 +34,6 @@ def load_env():
                 if line and not line.startswith("#") and "=" in line:
                     key, value = line.split("=", 1)
                     os.environ[key.strip()] = value.strip()
-
-# Load environment variables BEFORE importing other modules
-load_env()
-set_secrets_as_env()
-
-# NOW import LangChain components (after secrets are loaded)
-from larry_agent import initialize_larry_agent, chat_with_larry_agent, get_current_state
-from larry_neo4j_rag import is_neo4j_configured, is_faiss_configured
-
-# --- 1. Utility Functions ---
 
 def inject_css():
     """Load the modern CSS stylesheet"""
@@ -74,7 +69,8 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Inject CSS
+# Load environment and inject CSS
+load_env()
 inject_css()
 
 # --- 3. Session State Initialization ---
@@ -106,23 +102,19 @@ if "larry_agent_executor" not in st.session_state and st.session_state.anthropic
 # State variables
 if "persona" not in st.session_state:
     st.session_state.persona = "general"
-
 if "problem_type" not in st.session_state:
     st.session_state.problem_type = "general"
-
 if "uncertainty_score" not in st.session_state:
     st.session_state.uncertainty_score = 50
-
 if "risk_score" not in st.session_state:
     st.session_state.risk_score = 50
-
 if "clarity_score" not in st.session_state:
     st.session_state.clarity_score = 20
 
-# --- 4. Sidebar Configuration ---
+# --- 4. Sidebar ---
 
 with st.sidebar:
-    st.markdown("## ⚙️ Configuration")
+    st.markdown("### ⚙️ Configuration")
     
     # API Keys Section
     st.markdown("#### 🔑 API Keys")
@@ -172,11 +164,7 @@ with st.sidebar:
     # Knowledge Sources
     st.markdown("#### 📚 Knowledge Sources")
     st.caption(f"File Search: {'✓ Active' if os.path.exists('larry_store_info.json') else '✗ Not configured'}")
-    
-    # Check Neo4j configuration
-    neo4j_status = is_neo4j_configured()
-    st.caption(f"Neo4j Graph: {'✓ Active' if neo4j_status else '✗ Not configured'}")
-    
+    st.caption(f"Neo4j Graph: {'✓ Active' if is_neo4j_configured() else '✗ Not configured'}")
     st.caption(f"Web Search: {'✓ Active' if st.session_state.exa_api_key else '✗ Not configured'}")
     
     st.markdown("---")
@@ -210,50 +198,52 @@ if "larry_agent_executor" in st.session_state:
 
 # Dashboard Metrics Section
 st.markdown("""
-<div class="dashboard-container">
-    <h2>📊 Your Uncertainty Dashboard</h2>
+<div class="dashboard-section">
+    <div class="dashboard-title">📊 Your Uncertainty Dashboard</div>
 </div>
 """, unsafe_allow_html=True)
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    uncertainty_class = get_level_class(st.session_state.uncertainty_score)
+    uncertainty_level = get_level_class(st.session_state.uncertainty_score)
+    uncertainty_label = get_level_label(st.session_state.uncertainty_score)
     st.markdown(f"""
-    <div class="metric-card {uncertainty_class}">
+    <div class="metric-card {uncertainty_level}-level">
         <div class="metric-icon">🌡️</div>
         <div class="metric-value">{st.session_state.uncertainty_score}%</div>
         <div class="metric-label">Uncertainty</div>
-        <div class="metric-status">{get_level_label(st.session_state.uncertainty_score)}</div>
+        <span class="metric-status {uncertainty_level}">{uncertainty_label}</span>
     </div>
     """, unsafe_allow_html=True)
 
 with col2:
-    risk_class = get_level_class(st.session_state.risk_score)
+    risk_level = get_level_class(st.session_state.risk_score)
+    risk_label = get_level_label(st.session_state.risk_score)
     st.markdown(f"""
-    <div class="metric-card {risk_class}">
+    <div class="metric-card {risk_level}-level">
         <div class="metric-icon">⚠️</div>
         <div class="metric-value">{st.session_state.risk_score}%</div>
         <div class="metric-label">Risk Level</div>
-        <div class="metric-status">{get_level_label(st.session_state.risk_score)}</div>
+        <span class="metric-status {risk_level}">{risk_label}</span>
     </div>
     """, unsafe_allow_html=True)
 
 with col3:
     st.markdown(f"""
-    <div class="metric-card">
+    <div class="metric-card low-level">
         <div class="metric-icon">💬</div>
         <div class="metric-value">{st.session_state.chat_count}</div>
         <div class="metric-label">Conversations</div>
-        <div class="metric-status">{'START ONE!' if st.session_state.chat_count == 0 else 'ACTIVE'}</div>
+        <span class="metric-status low">{'ACTIVE' if st.session_state.chat_count > 0 else 'START ONE!'}</span>
     </div>
     """, unsafe_allow_html=True)
 
 # Quick Start Section (only show if no messages)
-if len(st.session_state.messages) == 0:
+if not st.session_state.messages:
     st.markdown("""
-    <div class="quick-start-container">
-        <h3>🚀 Quick Start</h3>
+    <div class="quick-start-section">
+        <h2>🚀 Quick Start</h2>
         <p>Welcome! I'm Larry, your AI thinking partner.</p>
         <p>I help you navigate tough decisions by:</p>
         <ul>
@@ -261,115 +251,150 @@ if len(st.session_state.messages) == 0:
             <li>✓ Exploring alternative perspectives</li>
             <li>✓ Mapping uncertainty in your decisions</li>
         </ul>
-        <p class="quick-start-hint">💡 Try these to get started:</p>
+        <div class="suggestion-pills">
+            <h3>💡 Try these to get started:</h3>
+        </div>
     </div>
     """, unsafe_allow_html=True)
     
-    # Suggestion pills
-    col1, col2, col3, col4 = st.columns(4)
-    suggestions = [
-        "I'm facing a tough decision about...",
-        "Help me think through...",
-        "What am I not considering about...",
-        "Challenge my assumptions on..."
-    ]
+    # Suggestion pills as buttons
+    col_a, col_b = st.columns(2)
+    with col_a:
+        if st.button("📝 Analyze a decision I'm facing", use_container_width=True):
+            st.session_state.pill_input = "I need help analyzing a difficult decision I'm facing. Can you help me think through it?"
+    with col_b:
+        if st.button("🎯 Map stakeholders in a complex situation", use_container_width=True):
+            st.session_state.pill_input = "I'm dealing with a complex situation involving multiple stakeholders. Can you help me map them out?"
     
-    for col, suggestion in zip([col1, col2, col3, col4], suggestions):
-        with col:
-            if st.button(suggestion, key=f"suggest_{suggestion[:10]}", use_container_width=True):
-                st.session_state.quick_start_text = suggestion
+    col_c, col_d = st.columns(2)
+    with col_c:
+        if st.button("🔍 Challenge my assumptions about X", use_container_width=True):
+            st.session_state.pill_input = "I have some assumptions about my situation that I'd like you to challenge. Can we explore them?"
+    with col_d:
+        if st.button("🌊 Explore a wicked problem I'm stuck on", use_container_width=True):
+            st.session_state.pill_input = "I'm stuck on a wicked problem with no clear solution. Can you help me explore it?"
     
-    st.markdown('<p class="quick-start-hint">Or just start typing below ↓</p>', unsafe_allow_html=True)
+    st.markdown('<p class="cta-text">Or just start typing below ↓</p>', unsafe_allow_html=True)
 
-# Clarity Indicator
-if st.session_state.chat_count > 0:
-    clarity_percent = min(100, st.session_state.clarity_score)
-    clarity_status = "Ready to decide" if clarity_percent >= 70 else "Key unknowns remain"
+# Clarity Indicator (show if conversation has started)
+if st.session_state.messages:
+    clarity_percentage = min(100, st.session_state.clarity_score + (len(st.session_state.messages) * 5))
+    st.session_state.clarity_score = clarity_percentage
+    
+    if clarity_percentage >= 75:
+        status_html = '<span class="status-ready">✅ Ready to decide</span>'
+    else:
+        status_html = '<span class="status-exploring">⚠️ Key unknowns remain</span>'
     
     st.markdown(f"""
     <div class="clarity-indicator">
-        <div class="clarity-label">Decision Clarity: {clarity_percent}%</div>
-        <div class="clarity-bar">
-            <div class="clarity-fill" style="width: {clarity_percent}%"></div>
+        <div class="clarity-header">
+            <span>Current Clarity:</span>
+            <span class="clarity-percentage">{clarity_percentage}%</span>
         </div>
-        <div class="clarity-status">{clarity_status}</div>
+        <div class="clarity-bar">
+            <div class="clarity-progress" style="width: {clarity_percentage}%"></div>
+        </div>
+        <div class="clarity-status">
+            {status_html}
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
-# Chat Messages
-for message in st.session_state.messages:
+# Conversation Display
+for idx, message in enumerate(st.session_state.messages):
     role = message["role"]
     content = message["content"]
-    timestamp = message.get("timestamp", "")
     
     if role == "user":
         st.markdown(f"""
         <div class="message-card user-message">
             <div class="message-header">
-                <span class="message-avatar">👤 YOU</span>
-                <span class="message-time">{timestamp}</span>
+                <span class="avatar">👤 YOU</span>
+                <span class="timestamp">Just now</span>
             </div>
-            <div class="message-content">{content}</div>
+            <div class="message-content">
+                {content}
+            </div>
         </div>
         """, unsafe_allow_html=True)
     else:
         st.markdown(f"""
         <div class="message-card larry-message">
             <div class="message-header">
-                <span class="message-avatar">🎯 LARRY</span>
-                <span class="message-time">{timestamp}</span>
+                <span class="avatar">🎯 LARRY</span>
+                <span class="timestamp">Just now</span>
             </div>
-            <div class="message-content">{content}</div>
+            <div class="message-content">
+                {content}
+            </div>
         </div>
         """, unsafe_allow_html=True)
 
 # Chat Input
 if st.session_state.anthropic_api_key:
-    # Check if there's a quick start suggestion
-    default_text = st.session_state.get("quick_start_text", "")
-    if default_text:
-        del st.session_state.quick_start_text
+    if "larry_agent_executor" not in st.session_state:
+        st.info("🔄 Initializing Larry... Please wait.")
+        st.rerun()
     
-    user_input = st.chat_input("Type your message here...", key="chat_input")
+    # Check if pill was clicked
+    user_input = None
+    if "pill_input" in st.session_state:
+        user_input = st.session_state.pill_input
+        del st.session_state.pill_input
+    else:
+        user_input = st.chat_input("Ask Larry about your decision, problem, or uncertainty...")
     
-    if user_input or default_text:
-        message_text = user_input if user_input else default_text
-        
+    if user_input:
         # Add user message
-        timestamp = datetime.now().strftime("%H:%M")
-        st.session_state.messages.append({
-            "role": "user",
-            "content": message_text,
-            "timestamp": timestamp
-        })
+        st.session_state.messages.append({"role": "user", "content": user_input})
+        st.session_state.chat_count += 1
         
         # Show thinking indicator
-        with st.spinner("🤔 Larry is thinking..."):
-            # Get response from agent
-            if "larry_agent_executor" not in st.session_state:
-                st.session_state.larry_agent_executor = initialize_larry_agent()
+        with st.spinner(""):
+            st.markdown("""
+            <div class="thinking-indicator">
+                <span class="thinking-text">Larry is thinking</span>
+                <span class="thinking-dots">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </span>
+            </div>
+            """, unsafe_allow_html=True)
             
-            response = chat_with_larry_agent(message_text, st.session_state.larry_agent_executor)
+            # Get response from agent
+            response_text = chat_with_larry_agent(
+                user_input=user_input,
+                agent=st.session_state.larry_agent_executor
+            )
+        
+        # Parse response
+        try:
+            structured_response = json.loads(response_text)
+            final_answer = structured_response.get("final_answer", response_text)
+            provocative_question = structured_response.get("provocative_question", "")
+        except (json.JSONDecodeError, TypeError):
+            final_answer = response_text
+            provocative_question = ""
+        
+        # Add provocative question if present
+        if provocative_question:
+            with st.expander("💡 Provocative Question", expanded=True):
+                st.markdown(f"**{provocative_question}**")
         
         # Add assistant message
-        st.session_state.messages.append({
-            "role": "assistant",
-            "content": response,
-            "timestamp": datetime.now().strftime("%H:%M")
-        })
-        
-        # Update chat count and clarity
-        st.session_state.chat_count += 1
-        st.session_state.clarity_score = min(100, 20 + (st.session_state.chat_count * 5))
+        st.session_state.messages.append({"role": "assistant", "content": final_answer})
         
         st.rerun()
 else:
-    st.info("👈 Please enter your Anthropic Claude API key in the sidebar to start chatting!")
+    st.warning("👈 Please enter your Anthropic Claude API key in the sidebar to start chatting!")
 
 # Footer
+st.markdown("---")
 st.markdown("""
-<div class="footer">
-    <p>Larry - Your AI Thinking Partner</p>
-    <p>Powered by Anthropic Claude & LangChain | Lawrence Aronhime's PWS Methodology</p>
+<div style="text-align: center; color: var(--text-secondary); padding: var(--spacing-md);">
+    <strong>Larry - Your AI Thinking Partner</strong><br>
+    Powered by Anthropic Claude & LangChain | Lawrence Aronhime's PWS Methodology
 </div>
 """, unsafe_allow_html=True)
