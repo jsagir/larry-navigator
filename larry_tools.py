@@ -27,7 +27,11 @@ def get_claude_llm():
     """Get or create a reusable Claude LLM instance."""
     global _claude_llm_instance
     if _claude_llm_instance is None:
-        _claude_llm_instance = ChatAnthropic(model="claude-3-5-sonnet-20240620", temperature=0.2)
+        _claude_llm_instance = ChatAnthropic(
+            model="claude-sonnet-4-20250514",  # Claude Sonnet 4.5
+            temperature=0.2,
+            max_tokens=8192
+        )
     return _claude_llm_instance
 
 # --- 2. Web Search Tool (Standalone) ---

@@ -42,8 +42,9 @@ def get_neo4j_rag_context(user_message, persona, problem_type, api_key):
 
     # Use Claude for Cypher generation and QA (consistent with the rest of the app)
     llm = ChatAnthropic(
-        model="claude-3-5-sonnet-20240620",
-        temperature=0.0  # Low temperature for deterministic Cypher generation
+        model="claude-sonnet-4-20250514",  # Claude Sonnet 4.5
+        temperature=0.0,  # Low temperature for deterministic Cypher generation
+        max_tokens=8192
     )
 
     # Custom prompt to guide the LLM for Cypher generation

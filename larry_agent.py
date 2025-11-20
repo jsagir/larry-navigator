@@ -16,9 +16,9 @@ def initialize_larry_agent():
     # 1. Initialize LLM
     try:
         llm = ChatAnthropic(
-            model="claude-3-5-sonnet-20241022",  # Updated to latest model
+            model="claude-sonnet-4-20250514",  # Claude Sonnet 4.5
             temperature=0.2,
-            max_tokens=4096
+            max_tokens=8192
         )
     except Exception as e:
         error_msg = f"Failed to initialize Claude: {str(e)}"
