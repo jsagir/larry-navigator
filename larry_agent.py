@@ -21,8 +21,9 @@ def initialize_larry_agent():
             max_tokens=4096
         )
     except Exception as e:
-        print(f"Anthropic LLM initialization failed: {e}. Check ANTHROPIC_API_KEY.")
-        raise Exception(f"Failed to initialize Claude: {str(e)}")
+        error_msg = f"Failed to initialize Claude: {str(e)}"
+        print(f"Anthropic LLM initialization failed: {error_msg}")
+        raise Exception(error_msg)
 
     # 2. Define Tools
     tools = [
@@ -52,10 +53,12 @@ def initialize_larry_agent():
                 "system_message": LARRY_SYSTEM_PROMPT
             }
         )
+        print("✅ Larry agent initialized successfully")
         return agent
     except Exception as e:
-        print(f"Agent initialization failed: {e}")
-        raise Exception(f"Failed to initialize agent: {str(e)}")
+        error_msg = f"Failed to create agent: {str(e)}"
+        print(f"Agent initialization failed: {error_msg}")
+        raise Exception(error_msg)
 
 def chat_with_larry_agent(user_input: str, agent):
     """Executes a single turn of the conversation with the LangChain Agent."""

@@ -102,10 +102,13 @@ if "exa_api_key" not in st.session_state:
 if st.session_state.exa_api_key:
     os.environ["EXA_API_KEY"] = st.session_state.exa_api_key
 
-# Initialize Agent
-if "larry_agent_executor" not in st.session_state and st.session_state.anthropic_api_key:
-    os.environ["ANTHROPIC_API_KEY"] = st.session_state.anthropic_api_key
-    st.session_state.larry_agent_executor = initialize_larry_agent()
+# Don't initialize agent on startup - do it lazily on first message
+# This prevents the app from crashing if there's an initialization error
+if "larry_agent_executor" not in st.session_state:
+    st.session_state.larry_agent_executor = None
+
+if "agent_init_error" not in st.session_state:
+    st.session_state.agent_init_error = None
 
 # State variables
 if "persona" not in st.session_state:
@@ -350,20 +353,29 @@ if st.session_state.anthropic_api_key:
         # Show thinking indicator
         with st.spinner("🤔 Larry is thinking..."):
             # Get response from agent
-            if "larry_agent_executor" not in st.session_state:
+            if st.session_state.larry_agent_executor is None:
+                # Try to initialize agent
                 try:
+                    os.environ["ANTHROPIC_API_KEY"] = st.session_state.anthropic_api_key
+                    if st.session_state.exa_api_key:
+                        os.environ["EXA_API_KEY"] = st.session_state.exa_api_key
+                    
                     st.session_state.larry_agent_executor = initialize_larry_agent()
-                    if st.session_state.larry_agent_executor is None:
-                        response = "Error: Failed to initialize Larry. Please check that your ANTHROPIC_API_KEY is valid and has credits."
-                    else:
-                        response = chat_with_larry_agent(message_text, st.session_state.larry_agent_executor)
+                    st.session_state.agent_init_error = None
+                    
+                    # Now chat with the initialized agent
+                    response = chat_with_larry_agent(message_text, st.session_state.larry_agent_executor)
+                    
                 except Exception as e:
-                    response = f"Error initializing agent: {str(e)}"
+                    error_msg = str(e)
+                    st.session_state.agent_init_error = error_msg
+                    response = f"🚫 **Initialization Error**\n\nLarry couldn't start due to:\n```\n{error_msg}\n```\n\n**Common fixes:**\n- Check your ANTHROPIC_API_KEY is valid\n- Ensure your API key has credits\n- Verify you have access to Claude 3.5 Sonnet\n\nTry refreshing the page or contact support if the issue persists."
             else:
+                # Agent already initialized, just chat
                 try:
                     response = chat_with_larry_agent(message_text, st.session_state.larry_agent_executor)
                 except Exception as e:
-                    response = f"Error: {str(e)}"
+                    response = f"⚠️ **Chat Error**\n\n{str(e)}\n\nTry starting a new conversation or refreshing the page."
         
         # Add assistant message
         st.session_state.messages.append({
