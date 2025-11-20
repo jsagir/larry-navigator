@@ -783,3 +783,114 @@ body {
     border-bottom: 1px solid var(--border-light);
     border-radius: 8px 8px 0 0;
 }
+
+
+/* ============================================
+   16. RESPONSIVE DESIGN - Mobile & Tablet
+   ============================================ */
+
+/* Tablets (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .block-container {
+        max-width: 100%;
+        padding: var(--spacing-sm);
+    }
+
+    .metric-card {
+        font-size: 0.9rem;
+    }
+    
+    .modern-header h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 767px) {
+    .block-container {
+        padding: var(--spacing-xs);
+    }
+
+    /* Stack metrics vertically on mobile */
+    .metric-card {
+        margin-bottom: var(--spacing-sm);
+        padding: var(--spacing-sm);
+    }
+
+    .metric-value {
+        font-size: var(--font-heading);
+    }
+
+    /* Make header more compact */
+    .modern-header h1 {
+        font-size: var(--font-heading);
+    }
+    
+    .modern-header p {
+        font-size: 0.9rem;
+    }
+
+    /* Stack quick start buttons vertically */
+    .quick-start-container {
+        padding: var(--spacing-sm);
+    }
+    
+    .quick-start-container ul {
+        padding-left: var(--spacing-md);
+    }
+
+    /* Message cards take full width */
+    .message-card {
+        padding: var(--spacing-sm);
+        margin: var(--spacing-xs) 0;
+    }
+    
+    .message-content {
+        font-size: 0.95rem;
+    }
+    
+    /* Dashboard container */
+    .dashboard-container h2 {
+        font-size: 1.3rem;
+    }
+    
+    /* Clarity indicator */
+    .clarity-indicator {
+        padding: var(--spacing-sm);
+    }
+    
+    .clarity-label {
+        font-size: 0.9rem;
+    }
+}
+
+/* Very small mobile (< 480px) */
+@media (max-width: 479px) {
+    .metric-icon {
+        font-size: 1.5rem;
+    }
+
+    .metric-value {
+        font-size: 1.5rem;
+    }
+    
+    .metric-label {
+        font-size: 0.75rem;
+    }
+    
+    .metric-status {
+        font-size: 0.7rem;
+    }
+    
+    .modern-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .message-avatar {
+        font-size: 0.8rem;
+    }
+    
+    .message-time {
+        font-size: 0.7rem;
+    }
+}

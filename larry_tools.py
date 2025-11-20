@@ -1,6 +1,7 @@
 import os
 import json
 from typing import Type, Optional, List
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pydantic import BaseModel, Field
 
 from langchain_core.tools import BaseTool
@@ -18,19 +19,20 @@ from larry_web_search import integrate_search_with_response
 from larry_neo4j_rag import is_neo4j_configured
 from larry_framework_recommender import calculate_uncertainty_risk
 from larry_system_prompt_v3 import LARRY_SYSTEM_PROMPT
+from larry_config import CLAUDE_MODEL, CLAUDE_MAX_TOKENS, CLAUDE_TEMPERATURE_DEFAULT
 
 # --- 1. Anthropic Claude Initialization ---
 # Global LLM instance for reuse (avoid re-initialization)
 _claude_llm_instance = None
 
 def get_claude_llm():
-    """Get or create a reusable Claude LLM instance."""
+    """Returns a singleton instance of ChatAnthropic."""
     global _claude_llm_instance
     if _claude_llm_instance is None:
         _claude_llm_instance = ChatAnthropic(
-            model="claude-sonnet-4-20250514",  # Claude Sonnet 4.5
-            temperature=0.2,
-            max_tokens=8192
+            model=CLAUDE_MODEL,
+            max_tokens=CLAUDE_MAX_TOKENS,
+            temperature=CLAUDE_TEMPERATURE_DEFAULT
         )
     return _claude_llm_instance
 
@@ -92,33 +94,34 @@ class UncertaintyNavigatorTool(BaseTool):
     args_schema: Type[BaseModel] = UncertaintyNavigatorToolInput
     
     def _run(self, query: str, persona: str, problem_type: str) -> str:
-        # --- A. RAG Orchestration ---
+        # --- A. Parallel RAG Orchestration ---
         
-        rag_context = []
-        
-        # 1. Neo4j Graph RAG (Claude-powered sequential reasoning)
-        if is_neo4j_configured():
+        # Define RAG source functions for parallel execution
+        def fetch_neo4j_context():
+            """Query Neo4j graph database."""
+            if not is_neo4j_configured():
+                return None
+            
             try:
                 graph = Neo4jGraph()
                 claude_llm = get_claude_llm()
-                
-                # Use Claude for the Cypher QA Chain
                 chain = GraphCypherQAChain.from_llm(
                     llm=claude_llm,
                     graph=graph,
                     verbose=False,
                     return_intermediate_steps=False
                 )
-                
-                graph_result = chain.invoke({"query": query})
-                rag_context.append(f"NETWORK-EFFECT GRAPH CONTEXT: {graph_result.get('result', 'No relevant graph data found.')}")
-                
+                result = chain.invoke({"query": query})
+                return f"NETWORK-EFFECT GRAPH CONTEXT: {result.get('result', 'No relevant graph data found.')}"
             except Exception as e:
-                rag_context.append(f"NETWORK-EFFECT GRAPH ERROR: Could not connect or query Neo4j. {str(e)}")
-
-        # 2. Exa.ai Web Search (Latest Trends)
-        exa_api_key = os.getenv("EXA_API_KEY")
-        if exa_api_key:
+                return f"NETWORK-EFFECT GRAPH ERROR: {str(e)}"
+        
+        def fetch_web_context():
+            """Query Exa.ai web search."""
+            exa_api_key = os.getenv("EXA_API_KEY")
+            if not exa_api_key:
+                return None
+            
             try:
                 web_result = integrate_search_with_response(
                     user_message=query,
@@ -126,129 +129,120 @@ class UncertaintyNavigatorTool(BaseTool):
                     problem_type=problem_type,
                     exa_api_key=exa_api_key
                 )
-                rag_context.append(f"WEB SEARCH CONTEXT: {web_result}")
+                return f"WEB SEARCH CONTEXT: {web_result}" if web_result else None
             except Exception as e:
-                rag_context.append(f"WEB SEARCH ERROR: Could not perform Exa.ai search. {str(e)}")
-
-        # 3. PWS File Search (Core Documents)
-        api_key = os.getenv("GOOGLE_AI_API_KEY")
-        if api_key and os.path.exists("larry_store_info.json"):
+                return f"WEB SEARCH ERROR: {str(e)}"
+        
+        def fetch_file_context():
+            """Query Gemini file search."""
+            api_key = os.getenv("GOOGLE_AI_API_KEY")
+            if not api_key or not os.path.exists("larry_store_info.json"):
+                return None
+            
             try:
-                # Load store info
                 with open("larry_store_info.json", "r") as f:
                     store_info = json.load(f)
                 store_name = store_info.get("store_name")
                 
-                if store_name:
-                    client = genai.Client(api_key=api_key)
-                    
-                    # Use the Gemini API for File Search
-                    response = client.models.generate_content(
-                        model="gemini-2.5-flash",
-                        contents=f"Based on the PWS documents, answer the following question: {query}",
-                        config=types.GenerateContentConfig(
-                            tools=[
-                                types.Tool(
-                                    file_search=types.FileSearch(
-                                        file_search_store_names=[store_name]
-                                    )
-                                )
-                            ]
-                        )
-                    )
-                    rag_context.append(f"PWS DOCUMENT CONTEXT: {response.text}")
-                else:
-                    rag_context.append("PWS DOCUMENT INFO: Store name not found in configuration.")
+                if not store_name:
+                    return "PWS DOCUMENT INFO: Store name not found in configuration."
                 
-            except FileNotFoundError:
-                rag_context.append("PWS DOCUMENT INFO: Store configuration file not found.")
+                client = genai.Client(api_key=api_key)
+                response = client.models.generate_content(
+                    model="gemini-2.5-flash",
+                    contents=f"Based on the PWS documents, answer the following question: {query}",
+                    config=types.GenerateContentConfig(
+                        tools=[
+                            types.Tool(
+                                file_search=types.FileSearch(
+                                    file_search_store_names=[store_name]
+                                )
+                            )
+                        ]
+                    )
+                )
+                return f"PWS DOCUMENT CONTEXT: {response.text}"
             except Exception as e:
-                rag_context.append(f"PWS DOCUMENT ERROR: Could not perform File Search. {str(e)}")
-        else:
-            if not api_key:
-                rag_context.append("PWS DOCUMENT INFO: File Search not configured (missing GOOGLE_AI_API_KEY).")
-            elif not os.path.exists("larry_store_info.json"):
-                rag_context.append("PWS DOCUMENT INFO: File Search not configured (missing store info file).")
-
+                return f"PWS DOCUMENT ERROR: {str(e)}"
+        
+        # Execute all sources in parallel
+        rag_context = []
+        
+        with ThreadPoolExecutor(max_workers=3) as executor:
+            # Submit all tasks
+            futures = {
+                executor.submit(fetch_neo4j_context): 'neo4j',
+                executor.submit(fetch_web_context): 'web',
+                executor.submit(fetch_file_context): 'files'
+            }
+            
+            # Collect results as they complete (with 10 second timeout)
+            for future in as_completed(futures, timeout=10):
+                try:
+                    result = future.result()
+                    if result:  # Only add non-None results
+                        rag_context.append(result)
+                except Exception as e:
+                    source_name = futures[future]
+                    rag_context.append(f"{source_name.upper()} ERROR: {str(e)}")
+        
         full_context = "\n\n---\n\n".join(rag_context)
         
-        # --- B. Claude-Powered Diagnostic and Generation ---
+        # --- B. Combined Claude API Call (Cost Optimization) ---
         
         claude_llm = get_claude_llm()
         
-        # 1. Provocative Question Generation Prompt
-        provocative_prompt = PromptTemplate.from_template(
+        # Combined prompt that generates both provocative question AND final answer
+        combined_prompt = PromptTemplate.from_template(
             """
-            Based on the following user query and the retrieved RAG context, generate a single, high-impact, provocative question that challenges the user's assumptions or forces them to consider a critical blind spot.
+            You are Larry, the Uncertainty Navigator. Provide a response in TWO parts:
+            
+            1. First, generate a PROVOCATIVE QUESTION that challenges the user's assumptions.
+            2. Then, provide your COMPREHENSIVE ANSWER using the De Stijl style.
             
             User Query: {query}
-            
             Context: {context}
-            
             Persona: {persona}
             Problem Type: {problem_type}
-            
-            Your output MUST be ONLY the question itself, starting with "Provocative Question:".
-            """
-        )
-        
-        # 2. Final Answer Generation Prompt
-        final_answer_prompt = PromptTemplate.from_template(
-            """
-            You are Larry, the Uncertainty Navigator. Your goal is to provide a structured, insightful answer in the hyper-minimalist De Stijl mentor style.
-            
-            User Query: {query}
-            
-            Context: {context}
-            
-            Persona: {persona}
-            Problem Type: {problem_type}
-            
-            Provocative Question: {provocative_question}
             
             {system_prompt}
             
-            Your final output MUST be a single, cohesive response that:
-            1. Directly answers the user's query using the provided context.
-            2. Incorporates the spirit of the Provocative Question into your guidance.
-            3. Uses the De Stijl style (minimal, direct, structured).
-            4. Does NOT include the "Provocative Question:" prefix in the final output.
+            Format your response EXACTLY as follows:
+            
+            PROVOCATIVE QUESTION:
+            [Your single, high-impact provocative question]
+            
+            ANSWER:
+            [Your detailed answer incorporating the provocative question's spirit]
             """
         )
         
-        # --- C. Sequential Execution (Claude's Strength) ---
-        
-        # Step 1: Generate Provocative Question
-        provocative_chain = provocative_prompt | claude_llm
-        provocative_response = provocative_chain.invoke({
-            "query": query,
-            "context": full_context,
-            "persona": persona,
-            "problem_type": problem_type
-        })
-        
-        # Clean the provocative question
-        provocative_question = provocative_response.content.replace("Provocative Question:", "").strip()
-        
-        # Step 2: Generate Final Answer
-        final_chain = final_answer_prompt | claude_llm
-        final_response = final_chain.invoke({
+        # Single Claude API call
+        combined_chain = combined_prompt | claude_llm
+        combined_response = combined_chain.invoke({
             "query": query,
             "context": full_context,
             "persona": persona,
             "problem_type": problem_type,
-            "provocative_question": provocative_question,
             "system_prompt": LARRY_SYSTEM_PROMPT
         })
         
-        # --- D. Structured Output ---
+        # Parse the combined response
+        response_text = combined_response.content
         
-        # Return a structured JSON string that the Agent can pass back to the Streamlit app
-        return json.dumps({
-            "final_answer": final_response.content,
-            "provocative_question": provocative_question,
-            "context_used": full_context[:500] + "..." # Truncate context for clean output
-        })
+        # Extract answer (provocative question already incorporated)
+        if "ANSWER:" in response_text:
+            parts = response_text.split("ANSWER:", 1)
+            final_answer = parts[1].strip()
+        else:
+            # Fallback if format not followed
+            final_answer = response_text
+        
+        # --- C. Return Clean Text Output ---
+        
+        # Return only the final answer text for clean display
+        # The provocative question is already incorporated in the answer
+        return final_answer
 
 # --- 3. Context Update Tool (Internal State) ---
 

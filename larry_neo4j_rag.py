@@ -4,6 +4,7 @@ from langchain_community.graphs import Neo4jGraph
 from langchain.chains import GraphCypherQAChain
 from langchain_anthropic import ChatAnthropic
 from langchain.prompts import PromptTemplate
+from larry_config import CLAUDE_MODEL, CLAUDE_MAX_TOKENS, CLAUDE_TEMPERATURE_PRECISE
 
 # --- Configuration ---
 NEO4J_URI = os.getenv("NEO4J_URI")
@@ -25,7 +26,7 @@ def get_neo4j_graph():
             database=NEO4J_DATABASE
         )
         # Verify connection by fetching schema
-        graph.get_schema
+        graph.refresh_schema()
         return graph
     except Exception as e:
         print(f"Neo4j connection failed: {e}")
@@ -42,9 +43,9 @@ def get_neo4j_rag_context(user_message, persona, problem_type, api_key):
 
     # Use Claude for Cypher generation and QA (consistent with the rest of the app)
     llm = ChatAnthropic(
-        model="claude-sonnet-4-20250514",  # Claude Sonnet 4.5
-        temperature=0.0,  # Low temperature for deterministic Cypher generation
-        max_tokens=8192
+        model=CLAUDE_MODEL,
+        temperature=CLAUDE_TEMPERATURE_PRECISE,  # Low temperature for deterministic Cypher generation
+        max_tokens=CLAUDE_MAX_TOKENS
     )
 
     # Custom prompt to guide the LLM for Cypher generation

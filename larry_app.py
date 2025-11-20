@@ -37,6 +37,7 @@ set_secrets_as_env()
 # NOW import LangChain components (after secrets are loaded)
 from larry_agent import initialize_larry_agent, chat_with_larry_agent, get_current_state
 from larry_neo4j_rag import is_neo4j_configured, is_faiss_configured
+from larry_config import CLARITY_BASE_SCORE, CLARITY_INCREMENT_PER_MESSAGE, CLARITY_READY_THRESHOLD
 
 # --- 1. Utility Functions ---
 
@@ -124,7 +125,7 @@ if "risk_score" not in st.session_state:
     st.session_state.risk_score = 50
 
 if "clarity_score" not in st.session_state:
-    st.session_state.clarity_score = 20
+    st.session_state.clarity_score = CLARITY_BASE_SCORE
 
 # --- 4. Sidebar Configuration ---
 
@@ -192,7 +193,7 @@ with st.sidebar:
     if st.button("🗑️ Start New Conversation", use_container_width=True):
         st.session_state.messages = []
         st.session_state.chat_count = 0
-        st.session_state.clarity_score = 20
+        st.session_state.clarity_score = CLARITY_BASE_SCORE
         if "larry_agent_executor" in st.session_state:
             del st.session_state.larry_agent_executor
         st.rerun()
@@ -291,7 +292,7 @@ if len(st.session_state.messages) == 0:
 # Clarity Indicator
 if st.session_state.chat_count > 0:
     clarity_percent = min(100, st.session_state.clarity_score)
-    clarity_status = "Ready to decide" if clarity_percent >= 70 else "Key unknowns remain"
+    clarity_status = "Ready to decide" if clarity_percent >= CLARITY_READY_THRESHOLD else "Key unknowns remain"
     
     st.markdown(f"""
     <div class="clarity-indicator">
@@ -386,7 +387,7 @@ if st.session_state.anthropic_api_key:
         
         # Update chat count and clarity
         st.session_state.chat_count += 1
-        st.session_state.clarity_score = min(100, 20 + (st.session_state.chat_count * 5))
+        st.session_state.clarity_score = min(100, CLARITY_BASE_SCORE + (st.session_state.chat_count * CLARITY_INCREMENT_PER_MESSAGE))
         
         st.rerun()
 else:
