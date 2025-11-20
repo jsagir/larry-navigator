@@ -98,6 +98,10 @@ if "exa_api_key" not in st.session_state:
     except:
         st.session_state.exa_api_key = os.getenv("EXA_API_KEY")
 
+# Set EXA_API_KEY in environment if available
+if st.session_state.exa_api_key:
+    os.environ["EXA_API_KEY"] = st.session_state.exa_api_key
+
 # Initialize Agent
 if "larry_agent_executor" not in st.session_state and st.session_state.anthropic_api_key:
     os.environ["ANTHROPIC_API_KEY"] = st.session_state.anthropic_api_key

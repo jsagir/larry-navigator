@@ -6,7 +6,7 @@ from langchain.agents import initialize_agent, AgentExecutor, AgentType
 from langchain.memory import ConversationBufferWindowMemory
 
 # Import the tools and system prompt
-from larry_tools import UncertaintyNavigatorTool, ContextUpdateTool
+from larry_tools import UncertaintyNavigatorTool, ContextUpdateTool, WebSearchTool
 from larry_system_prompt_v3 import LARRY_SYSTEM_PROMPT
 
 # --- Agent Initialization and Execution ---
@@ -27,7 +27,8 @@ def initialize_larry_agent():
     # 2. Define Tools
     tools = [
         UncertaintyNavigatorTool(),
-        ContextUpdateTool()
+        ContextUpdateTool(),
+        WebSearchTool()
     ]
 
     # 3. Initialize Memory

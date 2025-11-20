@@ -30,7 +30,46 @@ def get_claude_llm():
         _claude_llm_instance = ChatAnthropic(model="claude-3-5-sonnet-20240620", temperature=0.2)
     return _claude_llm_instance
 
-# --- 2. Uncertainty Navigator Tool (The Killer Feature) ---
+# --- 2. Web Search Tool (Standalone) ---
+
+class WebSearchToolInput(BaseModel):
+    """Input for WebSearchTool."""
+    query: str = Field(description="The search query to find current information on the web.")
+
+class WebSearchTool(BaseTool):
+    name: str = "web_search"
+    description: str = (
+        "Search the web for current, real-time information using Exa.ai neural search. "
+        "Use this when the user asks about recent events, current trends, latest research, "
+        "or specific companies/products. Returns formatted results with sources and citations."
+    )
+    args_schema: Type[BaseModel] = WebSearchToolInput
+    
+    def _run(self, query: str) -> str:
+        """Execute web search using Exa.ai"""
+        exa_api_key = os.getenv("EXA_API_KEY")
+        
+        if not exa_api_key:
+            return "Web search is not configured. EXA_API_KEY environment variable is missing."
+        
+        try:
+            # Use default persona and problem type for standalone search
+            web_result = integrate_search_with_response(
+                user_message=query,
+                persona="general",
+                problem_type="general",
+                exa_api_key=exa_api_key
+            )
+            
+            if web_result:
+                return web_result
+            else:
+                return "No relevant web results found for this query."
+                
+        except Exception as e:
+            return f"Web search error: {str(e)}"
+
+# --- 3. Uncertainty Navigator Tool (The Killer Feature) ---
 
 class UncertaintyNavigatorToolInput(BaseModel):
     """Input for UncertaintyNavigatorTool."""
