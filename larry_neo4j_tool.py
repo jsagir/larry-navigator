@@ -107,6 +107,10 @@ Instructions:
 - Make the query efficient and specific
 - Use LIMIT to prevent returning too many results (default: 25)
 - Return relevant properties of nodes and relationships
+- AVOID UNION queries - use OR conditions instead
+- If you must use UNION, ensure ALL queries return the EXACT SAME column names
+- Prefer simple MATCH queries with WHERE clauses over complex UNIONs
+- Use labels() and properties() functions to explore unknown schemas
 
 Cypher Query:"""
             )
