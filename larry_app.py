@@ -1,6 +1,7 @@
 """
 Larry Navigator - Modern Redesigned Streamlit Interface
 User-Friendly Professional UI with Interactive Components
+Version: 4.0.1
 """
 
 import streamlit as st

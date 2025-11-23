@@ -4,14 +4,21 @@ Test Larry with a sample question
 """
 
 import sys
+import os
 sys.path.insert(0, '/home/jsagi')
 
 from larry_chatbot import LarryNavigator
 
 # Initialize Larry
 print("Initializing Larry...")
+api_key = os.getenv("GOOGLE_AI_API_KEY")
+if not api_key:
+    print("ERROR: GOOGLE_AI_API_KEY not set!")
+    print("Set it with: export GOOGLE_AI_API_KEY=your-key-here")
+    sys.exit(1)
+
 larry = LarryNavigator(
-    api_key="AIzaSyC6miH5hbQeBHYVORXLJra0CCS1NMRp_TE",
+    api_key=api_key,
     store_info_file="larry_store_info.json"
 )
 print("✓ Larry initialized!\n")
