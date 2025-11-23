@@ -103,9 +103,9 @@ class LarryChat:
                     )
                 ]
             
-            # Stream response using Gemini 2.0 Flash (latest experimental model)
+            # Stream response using Gemini 3 Pro Preview (latest model released Nov 2025)
             response = self.gemini_client.models.generate_content_stream(
-                model="gemini-2.0-flash-exp",
+                model="gemini-3-pro-preview",
                 contents=contents,
                 config=config
             )
