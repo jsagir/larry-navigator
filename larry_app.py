@@ -383,37 +383,29 @@ if True:  # No API key required for Gemini (uses GOOGLE_AI_API_KEY from secrets)
         route = route_query(message_text)
         route_desc = get_route_description(route)
         
-        # Create placeholder for streaming response
-        response_placeholder = st.empty()
-        response_text = ""
+        # Show status message
+        status_msg = st.empty()
+        status_msg.info(route_desc)
         
-        # Show route-specific indicator
-        with st.spinner(route_desc):
-            try:
-                # Stream response
-                for chunk in st.session_state.larry_chat_handler.chat(
-                    message_text,
-                    conversation_history=st.session_state.messages
-                ):
-                    response_text += chunk
-                    # Update placeholder with accumulated response
-                    response_placeholder.markdown(f"""
-                    <div class="message-card larry-message">
-                        <div class="message-header">
-                            <span class="message-avatar">🎯 LARRY</span>
-                            <span class="message-time">{datetime.now().strftime("%H:%M")}</span>
-                        </div>
-                        <div class="message-content">{response_text}</div>
-                    </div>
-                    """, unsafe_allow_html=True)
-                
-                response = response_text
-                
-            except Exception as e:
-                error_msg = str(e)
-                error_type = type(e).__name__
-                print(f"❌ Chat execution failed: [{error_type}] {error_msg}")
-                response = f"⚠️ **Chat Error**\n\n[{error_type}] {error_msg}\n\n**Possible solutions:**\n- Try rephrasing your message\n- Start a new conversation (refresh the page)\n- Check your API credentials\n\nIf the problem persists, please contact support."
+        try:
+            # Collect response chunks
+            response_chunks = []
+            for chunk in st.session_state.larry_chat_handler.chat(
+                message_text,
+                conversation_history=st.session_state.messages
+            ):
+                response_chunks.append(chunk)
+            
+            # Clear status and show complete response
+            status_msg.empty()
+            response = "".join(response_chunks)
+            
+        except Exception as e:
+            error_msg = str(e)
+            error_type = type(e).__name__
+            print(f"❌ Chat execution failed: [{error_type}] {error_msg}")
+            status_msg.empty()
+            response = f"⚠️ **Chat Error**\n\n[{error_type}] {error_msg}\n\n**Possible solutions:**\n- Try rephrasing your message\n- Start a new conversation (refresh the page)\n- Check your API credentials\n\nIf the problem persists, please contact support."
         
         # Add assistant message
         st.session_state.messages.append({
