@@ -44,16 +44,18 @@ def initialize_larry_agent():
     )
 
     # 4. Initialize Agent using stable 0.1.x API
+    # Use STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION for multi-input tool support
     try:
         agent = initialize_agent(
             tools,
             llm,
-            agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION,
+            agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
             verbose=True,
             memory=memory,
             handle_parsing_errors=True,
             agent_kwargs={
-                "system_message": LARRY_SYSTEM_PROMPT
+                "system_message": LARRY_SYSTEM_PROMPT,
+                "prefix": LARRY_SYSTEM_PROMPT
             }
         )
         print("✅ Larry agent initialized successfully")
