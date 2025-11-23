@@ -86,8 +86,8 @@ class WebSearchTool(BaseTool):
 class UncertaintyNavigatorToolInput(BaseModel):
     """Input for UncertaintyNavigatorTool."""
     query: str = Field(description="The user's full message or question that requires a multi-source RAG and diagnostic analysis.")
-    persona: str = Field(description="The current user persona (e.g., 'entrepreneur', 'corporate').")
-    problem_type: str = Field(description="The current problem type (e.g., 'ill-defined', 'undefined').")
+    persona: str = Field(default="general", description="The current user persona (e.g., 'entrepreneur', 'corporate'). Defaults to 'general' if not specified.")
+    problem_type: str = Field(default="general", description="The current problem type (e.g., 'ill-defined', 'undefined'). Defaults to 'general' if not specified.")
 
 class UncertaintyNavigatorTool(BaseTool):
     name: str = "uncertainty_navigator_tool"
