@@ -5,7 +5,7 @@ This tool enables the agent to query Neo4j knowledge graphs using natural langua
 
 import os
 from typing import Optional
-from langchain.tools import BaseTool
+from langchain_core.tools import BaseTool
 from langchain_community.graphs import Neo4jGraph
 from langchain.chains import GraphCypherQAChain
 from langchain_anthropic import ChatAnthropic

@@ -5,13 +5,10 @@ google-generativeai==0.4.1
 exa_py==1.0.0
 neo4j==5.14.0
 
-# LangChain ecosystem - pinned to 0.1.x for stability
-langchain==0.1.16
-langchain-core==0.1.52
-langchain-community==0.0.38
-langchain-anthropic==0.1.11
-langchain-google-genai==0.0.11
-langchain-text-splitters==0.0.2
+# LangChain - minimal dependencies for Neo4j integration only
+langchain-core==0.3.34
+langchain-community==0.3.14
+langchain-anthropic==0.3.7
 
-# Anthropic - pinned to avoid breaking changes
-anthropic==0.74.1
+# Anthropic for Neo4j Cypher generation (version required by langchain-anthropic)
+anthropic>=0.45.0,<1
