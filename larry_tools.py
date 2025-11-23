@@ -22,19 +22,25 @@ from larry_system_prompt_v3 import LARRY_SYSTEM_PROMPT
 from larry_config import CLAUDE_MODEL, CLAUDE_MAX_TOKENS, CLAUDE_TEMPERATURE_DEFAULT
 
 # --- 1. Anthropic Claude Initialization ---
-# Global LLM instance for reuse (avoid re-initialization)
-_claude_llm_instance = None
 
-def get_claude_llm():
-    """Returns a singleton instance of ChatAnthropic."""
-    global _claude_llm_instance
-    if _claude_llm_instance is None:
-        _claude_llm_instance = ChatAnthropic(
-            model=CLAUDE_MODEL,
-            max_tokens=CLAUDE_MAX_TOKENS,
-            temperature=CLAUDE_TEMPERATURE_DEFAULT
-        )
-    return _claude_llm_instance
+def get_claude_llm(session_id: str = None):
+    """
+    Returns a ChatAnthropic instance.
+    In multi-user environments, pass session_id to scope the instance to the user's session.
+    
+    Args:
+        session_id: Optional session identifier for multi-user isolation
+        
+    Returns:
+        ChatAnthropic instance
+    """
+    # For now, create a new instance each time to ensure session isolation
+    # In production, you could cache instances per session_id
+    return ChatAnthropic(
+        model=CLAUDE_MODEL,
+        max_tokens=CLAUDE_MAX_TOKENS,
+        temperature=CLAUDE_TEMPERATURE_DEFAULT
+    )
 
 # --- 2. Web Search Tool (Standalone) ---
 

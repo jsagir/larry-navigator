@@ -23,9 +23,12 @@ def set_secrets_as_env():
             if key not in os.environ:
                 os.environ[key] = str(value)
         secrets_loaded = True
+        print("✅ Secrets loaded successfully from Streamlit Cloud")
     except Exception as e:
         secrets_error = str(e)
         secrets_loaded = False
+        print(f"⚠️ Secrets loading failed: {secrets_error}")
+        print("📝 App will continue with manual API key entry")
         # Don't crash - app can still work with manual API key entry
 
 def load_env():
@@ -47,6 +50,7 @@ set_secrets_as_env()
 from larry_agent import initialize_larry_agent, chat_with_larry_agent, get_current_state
 from larry_neo4j_rag import is_neo4j_configured, is_faiss_configured
 from larry_config import CLARITY_BASE_SCORE, CLARITY_INCREMENT_PER_MESSAGE, CLARITY_READY_THRESHOLD
+from larry_security import sanitize_user_input, check_rate_limit
 
 # --- 1. Utility Functions ---
 
@@ -99,13 +103,15 @@ if "chat_count" not in st.session_state:
 if "anthropic_api_key" not in st.session_state:
     try:
         st.session_state.anthropic_api_key = st.secrets.get("ANTHROPIC_API_KEY", os.getenv("ANTHROPIC_API_KEY"))
-    except:
+    except Exception as e:
+        print(f"⚠️ Failed to load ANTHROPIC_API_KEY from secrets: {str(e)}")
         st.session_state.anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
 
 if "exa_api_key" not in st.session_state:
     try:
         st.session_state.exa_api_key = st.secrets.get("EXA_API_KEY", os.getenv("EXA_API_KEY"))
-    except:
+    except Exception as e:
+        print(f"⚠️ Failed to load EXA_API_KEY from secrets: {str(e)}")
         st.session_state.exa_api_key = os.getenv("EXA_API_KEY")
 
 # Set EXA_API_KEY in environment if available
@@ -359,6 +365,20 @@ if st.session_state.anthropic_api_key:
     if user_input or default_text:
         message_text = user_input if user_input else default_text
         
+        # 1. Check rate limit
+        is_allowed, rate_limit_msg = check_rate_limit(st.session_state, max_messages=10, time_window=60)
+        if not is_allowed:
+            st.error(rate_limit_msg)
+            st.stop()
+        
+        # 2. Sanitize input
+        sanitized_text, sanitize_warning = sanitize_user_input(message_text)
+        if sanitize_warning:
+            st.error(f"⚠️ **Input Error:** {sanitize_warning}")
+            st.stop()
+        
+        message_text = sanitized_text
+        
         # Add user message
         timestamp = datetime.now().strftime("%H:%M")
         st.session_state.messages.append({
@@ -385,14 +405,20 @@ if st.session_state.anthropic_api_key:
                     
                 except Exception as e:
                     error_msg = str(e)
+                    error_type = type(e).__name__
                     st.session_state.agent_init_error = error_msg
-                    response = f"🚫 **Initialization Error**\n\nLarry couldn't start due to:\n```\n{error_msg}\n```\n\n**Common fixes:**\n- Check your ANTHROPIC_API_KEY is valid\n- Ensure your API key has credits\n- Verify you have access to Claude 3.5 Sonnet\n\nTry refreshing the page or contact support if the issue persists."
+                    print(f"❌ Agent initialization failed: [{error_type}] {error_msg}")
+                    
+                    response = f"🚫 **Initialization Error**\n\nLarry couldn't start due to:\n```\n[{error_type}] {error_msg}\n```\n\n**Common fixes:**\n- Check your ANTHROPIC_API_KEY is valid\n- Ensure your API key has credits\n- Verify you have access to Claude Sonnet 4.5\n- Check your internet connection\n\nTry refreshing the page or contact support if the issue persists."
             else:
                 # Agent already initialized, just chat
                 try:
                     response = chat_with_larry_agent(message_text, st.session_state.larry_agent_executor)
                 except Exception as e:
-                    response = f"⚠️ **Chat Error**\n\n{str(e)}\n\nTry starting a new conversation or refreshing the page."
+                    error_msg = str(e)
+                    error_type = type(e).__name__
+                    print(f"❌ Chat execution failed: [{error_type}] {error_msg}")
+                    response = f"⚠️ **Chat Error**\n\n[{error_type}] {error_msg}\n\n**Possible solutions:**\n- Try rephrasing your message\n- Start a new conversation (refresh the page)\n- Check your API key still has credits\n\nIf the problem persists, please contact support."
         
         # Add assistant message
         st.session_state.messages.append({
