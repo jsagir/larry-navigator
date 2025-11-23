@@ -99,7 +99,7 @@ class UncertaintyNavigatorTool(BaseTool):
     )
     args_schema: Type[BaseModel] = UncertaintyNavigatorToolInput
     
-    def _run(self, query: str, persona: str, problem_type: str) -> str:
+    def _run(self, query: str, persona: str = "general", problem_type: str = "general") -> str:
         # --- A. Parallel RAG Orchestration ---
         
         # Define RAG source functions for parallel execution
