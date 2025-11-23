@@ -100,23 +100,30 @@ class UncertaintyNavigatorTool(BaseTool):
         
         # Define RAG source functions for parallel execution
         def fetch_neo4j_context():
-            """Query Neo4j graph database."""
-            if not is_neo4j_configured():
-                return None
-            
-            try:
-                graph = Neo4jGraph()
-                claude_llm = get_claude_llm()
-                chain = GraphCypherQAChain.from_llm(
-                    llm=claude_llm,
-                    graph=graph,
-                    verbose=False,
-                    return_intermediate_steps=False
-                )
-                result = chain.invoke({"query": query})
-                return f"NETWORK-EFFECT GRAPH CONTEXT: {result.get('result', 'No relevant graph data found.')}"
-            except Exception as e:
-                return f"NETWORK-EFFECT GRAPH ERROR: {str(e)}"
+            """Query Neo4j graph database - DISABLED due to timeout issues."""
+            # TEMPORARILY DISABLED: Neo4j queries are hanging on Streamlit Cloud
+            # The GraphCypherQAChain.invoke() call has no internal timeout and blocks indefinitely
+            # TODO: Implement proper timeout using signal.alarm() or timeout-decorator
+            # TODO: Add connection pooling and query optimization
+            return None
+
+            # Original code (commented out):
+            # if not is_neo4j_configured():
+            #     return None
+            #
+            # try:
+            #     graph = Neo4jGraph()
+            #     claude_llm = get_claude_llm()
+            #     chain = GraphCypherQAChain.from_llm(
+            #         llm=claude_llm,
+            #         graph=graph,
+            #         verbose=False,
+            #         return_intermediate_steps=False
+            #     )
+            #     result = chain.invoke({"query": query})
+            #     return f"NETWORK-EFFECT GRAPH CONTEXT: {result.get('result', 'No relevant graph data found.')}"
+            # except Exception as e:
+            #     return f"NETWORK-EFFECT GRAPH ERROR: {str(e)}"
         
         def fetch_web_context():
             """Query Exa.ai web search."""
