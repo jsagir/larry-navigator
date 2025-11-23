@@ -48,7 +48,8 @@ set_secrets_as_env()
 
 # NOW import LangChain components (after secrets are loaded)
 from larry_agent import initialize_larry_agent, chat_with_larry_agent, get_current_state
-from larry_neo4j_rag import is_neo4j_configured, is_faiss_configured
+from larry_neo4j_tool import is_neo4j_configured
+from larry_neo4j_rag import is_faiss_configured
 from larry_config import CLARITY_BASE_SCORE, CLARITY_INCREMENT_PER_MESSAGE, CLARITY_READY_THRESHOLD
 from larry_security import sanitize_user_input, check_rate_limit
 

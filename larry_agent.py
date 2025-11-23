@@ -9,6 +9,7 @@ from langchain.memory import ConversationBufferWindowMemory
 
 # Import the tools and system prompt
 from larry_tools import UncertaintyNavigatorTool, ContextUpdateTool, WebSearchTool
+from larry_neo4j_tool import Neo4jQueryTool, is_neo4j_configured
 from larry_system_prompt_v3 import LARRY_SYSTEM_PROMPT
 from larry_config import CLAUDE_MODEL, CLAUDE_MAX_TOKENS, CLAUDE_TEMPERATURE_DEFAULT, CONVERSATION_MEMORY_WINDOW
 
@@ -34,6 +35,13 @@ def initialize_larry_agent():
         ContextUpdateTool(),
         WebSearchTool()
     ]
+    
+    # Add Neo4j tool if configured
+    if is_neo4j_configured():
+        tools.append(Neo4jQueryTool())
+        print("✅ Neo4j Knowledge Graph tool added to agent")
+    else:
+        print("ℹ️ Neo4j not configured, skipping Neo4j tool")
 
     # 3. Initialize Memory
     memory = ConversationBufferWindowMemory(
