@@ -46,8 +46,9 @@ def load_env():
 load_env()
 set_secrets_as_env()
 
-# NOW import LangChain components (after secrets are loaded)
-from larry_agent import initialize_larry_agent, chat_with_larry_agent, get_current_state
+# NOW import chat components (after secrets are loaded)
+from larry_chat import create_chat_handler
+from larry_router import route_query, get_route_description
 from larry_neo4j_tool import is_neo4j_configured
 from larry_neo4j_rag import is_faiss_configured
 from larry_config import CLARITY_BASE_SCORE, CLARITY_INCREMENT_PER_MESSAGE, CLARITY_READY_THRESHOLD
@@ -119,13 +120,9 @@ if "exa_api_key" not in st.session_state:
 if st.session_state.exa_api_key:
     os.environ["EXA_API_KEY"] = st.session_state.exa_api_key
 
-# Don't initialize agent on startup - do it lazily on first message
-# This prevents the app from crashing if there's an initialization error
-if "larry_agent_executor" not in st.session_state:
-    st.session_state.larry_agent_executor = None
-
-if "agent_init_error" not in st.session_state:
-    st.session_state.agent_init_error = None
+# Initialize chat handler on startup
+if "larry_chat_handler" not in st.session_state:
+    st.session_state.larry_chat_handler = create_chat_handler()
 
 # State variables
 if "persona" not in st.session_state:
@@ -217,8 +214,8 @@ with st.sidebar:
         st.session_state.messages = []
         st.session_state.chat_count = 0
         st.session_state.clarity_score = CLARITY_BASE_SCORE
-        if "larry_agent_executor" in st.session_state:
-            del st.session_state.larry_agent_executor
+        # Reinitialize chat handler for fresh conversation
+        st.session_state.larry_chat_handler = create_chat_handler()
         st.rerun()
 
 # --- 5. Main Content ---
@@ -231,13 +228,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Update state from agent if available
-if "larry_agent_executor" in st.session_state:
-    current_state = get_current_state(st.session_state.larry_agent_executor)
-    st.session_state.persona = current_state.get("persona", "general")
-    st.session_state.problem_type = current_state.get("problem_type", "general")
-    st.session_state.uncertainty_score = current_state.get("uncertainty_score", 50)
-    st.session_state.risk_score = current_state.get("risk_score", 50)
+# State is managed by the app, not extracted from agent
 
 # Dashboard Metrics Section
 st.markdown("""
@@ -355,7 +346,7 @@ for message in st.session_state.messages:
         """, unsafe_allow_html=True)
 
 # Chat Input
-if st.session_state.anthropic_api_key:
+if True:  # No API key required for Gemini (uses GOOGLE_AI_API_KEY from secrets)
     # Check if there's a quick start suggestion
     default_text = st.session_state.get("quick_start_text", "")
     if default_text:
@@ -388,38 +379,41 @@ if st.session_state.anthropic_api_key:
             "timestamp": timestamp
         })
         
-        # Show thinking indicator
-        with st.spinner("🤔 Larry is thinking..."):
-            # Get response from agent
-            if st.session_state.larry_agent_executor is None:
-                # Try to initialize agent
-                try:
-                    os.environ["ANTHROPIC_API_KEY"] = st.session_state.anthropic_api_key
-                    if st.session_state.exa_api_key:
-                        os.environ["EXA_API_KEY"] = st.session_state.exa_api_key
-                    
-                    st.session_state.larry_agent_executor = initialize_larry_agent()
-                    st.session_state.agent_init_error = None
-                    
-                    # Now chat with the initialized agent
-                    response = chat_with_larry_agent(message_text, st.session_state.larry_agent_executor)
-                    
-                except Exception as e:
-                    error_msg = str(e)
-                    error_type = type(e).__name__
-                    st.session_state.agent_init_error = error_msg
-                    print(f"❌ Agent initialization failed: [{error_type}] {error_msg}")
-                    
-                    response = f"🚫 **Initialization Error**\n\nLarry couldn't start due to:\n```\n[{error_type}] {error_msg}\n```\n\n**Common fixes:**\n- Check your ANTHROPIC_API_KEY is valid\n- Ensure your API key has credits\n- Verify you have access to Claude Sonnet 4.5\n- Check your internet connection\n\nTry refreshing the page or contact support if the issue persists."
-            else:
-                # Agent already initialized, just chat
-                try:
-                    response = chat_with_larry_agent(message_text, st.session_state.larry_agent_executor)
-                except Exception as e:
-                    error_msg = str(e)
-                    error_type = type(e).__name__
-                    print(f"❌ Chat execution failed: [{error_type}] {error_msg}")
-                    response = f"⚠️ **Chat Error**\n\n[{error_type}] {error_msg}\n\n**Possible solutions:**\n- Try rephrasing your message\n- Start a new conversation (refresh the page)\n- Check your API key still has credits\n\nIf the problem persists, please contact support."
+        # Detect route and show appropriate status
+        route = route_query(message_text)
+        route_desc = get_route_description(route)
+        
+        # Create placeholder for streaming response
+        response_placeholder = st.empty()
+        response_text = ""
+        
+        # Show route-specific indicator
+        with st.spinner(route_desc):
+            try:
+                # Stream response
+                for chunk in st.session_state.larry_chat_handler.chat(
+                    message_text,
+                    conversation_history=st.session_state.messages
+                ):
+                    response_text += chunk
+                    # Update placeholder with accumulated response
+                    response_placeholder.markdown(f"""
+                    <div class="message-card larry-message">
+                        <div class="message-header">
+                            <span class="message-avatar">🎯 LARRY</span>
+                            <span class="message-time">{datetime.now().strftime("%H:%M")}</span>
+                        </div>
+                        <div class="message-content">{response_text}</div>
+                    </div>
+                    """, unsafe_allow_html=True)
+                
+                response = response_text
+                
+            except Exception as e:
+                error_msg = str(e)
+                error_type = type(e).__name__
+                print(f"❌ Chat execution failed: [{error_type}] {error_msg}")
+                response = f"⚠️ **Chat Error**\n\n[{error_type}] {error_msg}\n\n**Possible solutions:**\n- Try rephrasing your message\n- Start a new conversation (refresh the page)\n- Check your API credentials\n\nIf the problem persists, please contact support."
         
         # Add assistant message
         st.session_state.messages.append({
@@ -434,7 +428,7 @@ if st.session_state.anthropic_api_key:
         
         st.rerun()
 else:
-    st.info("👈 Please enter your Anthropic Claude API key in the sidebar to start chatting!")
+    st.info("💬 Start chatting! Gemini file search is ready.")
 
 # Footer
 st.markdown("""
