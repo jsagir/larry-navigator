@@ -10,14 +10,23 @@ from pathlib import Path
 from datetime import datetime
 
 # --- CRITICAL: Load secrets FIRST before any other imports ---
+
+# Global flag to track secrets loading status
+secrets_loaded = False
+secrets_error = None
+
 def set_secrets_as_env():
     """Reads st.secrets and sets them as environment variables for LangChain tools."""
+    global secrets_loaded, secrets_error
     try:
         for key, value in st.secrets.items():
             if key not in os.environ:
                 os.environ[key] = str(value)
+        secrets_loaded = True
     except Exception as e:
-        pass  # Secrets might not be configured in local development
+        secrets_error = str(e)
+        secrets_loaded = False
+        # Don't crash - app can still work with manual API key entry
 
 def load_env():
     """Load environment variables from .env file"""
@@ -131,6 +140,13 @@ if "clarity_score" not in st.session_state:
 
 with st.sidebar:
     st.markdown("## ⚙️ Configuration")
+    
+    # Show warning if secrets failed to load
+    if not secrets_loaded and secrets_error:
+        st.warning("⚠️ **Secrets Configuration Issue**")
+        with st.expander("ℹ️ Click for details"):
+            st.caption(f"Secrets file has a syntax error. Using manual API key entry instead.")
+            st.caption(f"To fix: Go to Streamlit Cloud → Settings → Secrets and check TOML syntax.")
     
     # API Keys Section
     st.markdown("#### 🔑 API Keys")
