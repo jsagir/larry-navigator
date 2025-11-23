@@ -7,11 +7,12 @@ Secondary: Neo4j and Web Search (when intelligently detected)
 import os
 import json
 from typing import Iterator, Optional
-import google.generativeai as genai
-from google.generativeai import types
+from google import genai
+from google.genai import types
 
 from larry_router import route_query, should_use_streaming, get_route_description
-from larry_neo4j_tool import Neo4jQueryTool, is_neo4j_configured
+# Neo4j tool temporarily disabled - importing from correct module
+from larry_neo4j_rag import is_neo4j_configured
 from larry_tools import WebSearchTool
 from larry_system_prompt_v3 import LARRY_SYSTEM_PROMPT
 
@@ -23,11 +24,12 @@ class LarryChat:
         """Initialize chat handler with Gemini and tools."""
         self.gemini_api_key = os.getenv("GOOGLE_AI_API_KEY")
         self.file_search_store = self._load_file_search_store()
-        
+
         # Initialize tools
-        self.neo4j_tool = Neo4jQueryTool() if is_neo4j_configured() else None
+        # Neo4j tool temporarily disabled
+        self.neo4j_tool = None
         self.web_search_tool = WebSearchTool()
-        
+
         # Initialize Gemini client
         if self.gemini_api_key:
             self.gemini_client = genai.Client(api_key=self.gemini_api_key)
