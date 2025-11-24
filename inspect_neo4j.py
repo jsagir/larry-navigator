@@ -14,10 +14,15 @@ except ImportError:
     os.system("pip install neo4j")
     from neo4j import GraphDatabase
 
-# Your credentials
-NEO4J_URI = "neo4j+s://5b8df33f.databases.neo4j.io"
-NEO4J_USER = "neo4j"
-NEO4J_PASSWORD = "ukfioEbJ2JLqM_8bulME166CJ5zLJdSO5uEucuvYky8"
+# Load credentials from environment variables
+NEO4J_URI = os.getenv("NEO4J_URI", "neo4j+s://YOUR_NEO4J_URI")
+NEO4J_USER = os.getenv("NEO4J_USER", "neo4j")
+NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
+
+if not NEO4J_PASSWORD:
+    print("ERROR: NEO4J_PASSWORD environment variable not set!")
+    print("Set it with: export NEO4J_PASSWORD=your-password-here")
+    exit(1)
 
 print("=" * 80)
 print("NEO4J DATABASE INSPECTOR")
