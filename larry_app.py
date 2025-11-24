@@ -388,25 +388,44 @@ if True:  # No API key required for Gemini (uses GOOGLE_AI_API_KEY from secrets)
         status_msg.info(route_desc)
         
         try:
-            # Collect response chunks
+            # Clear status message
+            status_msg.empty()
+
+            # Create a placeholder for streaming response
+            response_placeholder = st.empty()
             response_chunks = []
+
+            # Stream response chunks incrementally
             for chunk in st.session_state.larry_chat_handler.chat(
                 message_text,
                 conversation_history=st.session_state.messages
             ):
                 response_chunks.append(chunk)
-            
-            # Clear status and show complete response
-            status_msg.empty()
+                # Update display with accumulated response
+                current_response = "".join(response_chunks)
+                response_placeholder.markdown(f"""
+                <div class="message-card larry-message">
+                    <div class="message-header">
+                        <span class="message-avatar">🎯 LARRY</span>
+                        <span class="message-time">{datetime.now().strftime("%H:%M")}</span>
+                    </div>
+                    <div class="message-content">{current_response}</div>
+                </div>
+                """, unsafe_allow_html=True)
+
+            # Final response
             response = "".join(response_chunks)
-            
+
+            # Clear streaming placeholder
+            response_placeholder.empty()
+
         except Exception as e:
             error_msg = str(e)
             error_type = type(e).__name__
             print(f"❌ Chat execution failed: [{error_type}] {error_msg}")
             status_msg.empty()
             response = f"⚠️ **Chat Error**\n\n[{error_type}] {error_msg}\n\n**Possible solutions:**\n- Try rephrasing your message\n- Start a new conversation (refresh the page)\n- Check your API credentials\n\nIf the problem persists, please contact support."
-        
+
         # Add assistant message
         st.session_state.messages.append({
             "role": "assistant",
