@@ -1,6 +1,6 @@
 """
-Larry Navigator v2.0 - PWS Innovation Mentor with 4D Problem Diagnosis
-Main Streamlit Application
+Larry Navigator v2.0 - Simplified Native Streamlit Version
+Works without custom HTML/CSS for maximum compatibility
 """
 
 import os
@@ -10,23 +10,12 @@ from typing import Iterator, Dict, Any, List
 from google import genai
 from google.genai import types
 
-# Import styles
-from styles.theme import inject_warm_theme
-from styles.components import inject_component_styles
-
-# Import components
-from components.header import render_larry_header, render_pws_explanation
-from components.problem_dashboard import render_problem_dashboard, render_compact_dashboard
-from components.research_panel import render_research_panel, render_typing_indicator
-from components.quick_actions import render_quick_actions, render_welcome_prompts
-
 # Import utilities
 from utils.session_state import (
     initialize_session_state,
     get_diagnosis,
     update_diagnosis,
     add_message,
-    add_research_result,
     set_agent_status,
     get_session_stats
 )
@@ -49,15 +38,11 @@ from config.prompts import LARRY_SYSTEM_PROMPT
 # ============================================
 
 st.set_page_config(
-    page_title="Larry Navigator v2.0",
+    page_title="🎯 Larry Navigator v2.0",
     page_icon="🎯",
-    layout="centered",
+    layout="wide",
     initial_sidebar_state="expanded"
 )
-
-# Inject CSS
-inject_warm_theme()
-inject_component_styles()
 
 
 # ============================================
@@ -65,7 +50,7 @@ inject_component_styles()
 # ============================================
 
 def load_file_search_config() -> Dict[str, Any]:
-    """Load File Search configuration from larry_store_info.json"""
+    """Load File Search configuration"""
     try:
         with open("larry_store_info.json", "r") as f:
             store_info = json.load(f)
@@ -74,7 +59,6 @@ def load_file_search_config() -> Dict[str, Any]:
                 "total_files": store_info.get("total_files", 0)
             }
     except FileNotFoundError:
-        st.warning("⚠️ File Search not configured. larry_store_info.json not found.")
         return {"store_name": None, "total_files": 0}
 
 
@@ -88,14 +72,7 @@ def get_gemini_client() -> genai.Client:
 
 
 def run_diagnostic_agents_background(api_key: str, conversation_history: List[Dict[str, str]]):
-    """Run all diagnostic agents in background and update session state
-
-    Args:
-        api_key: Google AI API key
-        conversation_history: Current conversation
-    """
-
-    # Skip if no conversation yet
+    """Run all diagnostic agents in background"""
     if len(conversation_history) == 0:
         return
 
@@ -105,34 +82,12 @@ def run_diagnostic_agents_background(api_key: str, conversation_history: List[Di
         complexity_agent = ComplexityAssessorAgent(api_key)
         risk_uncertainty_agent = RiskUncertaintyEvaluatorAgent(api_key)
         wickedness_agent = WickednessClassifierAgent(api_key)
-        consolidator_agent = DiagnosisConsolidatorAgent(api_key)
 
         # Run classifications
-        set_agent_status("definition_classifier", "running")
         definition_result = definition_agent.classify(conversation_history)
-        set_agent_status("definition_classifier", "complete")
-
-        set_agent_status("complexity_assessor", "running")
         complexity_result = complexity_agent.assess(conversation_history)
-        set_agent_status("complexity_assessor", "complete")
-
-        set_agent_status("risk_uncertainty_evaluator", "running")
         risk_uncertainty_result = risk_uncertainty_agent.evaluate(conversation_history)
-        set_agent_status("risk_uncertainty_evaluator", "complete")
-
-        set_agent_status("wickedness_classifier", "running")
         wickedness_result = wickedness_agent.classify(conversation_history)
-        set_agent_status("wickedness_classifier", "complete")
-
-        # Consolidate
-        set_agent_status("diagnosis_consolidator", "running")
-        consolidated = consolidator_agent.consolidate(
-            definition_result,
-            complexity_result,
-            risk_uncertainty_result,
-            wickedness_result
-        )
-        set_agent_status("diagnosis_consolidator", "complete")
 
         # Update session state
         update_diagnosis("definition", definition_result["classification"], definition_result["confidence"])
@@ -140,11 +95,8 @@ def run_diagnostic_agents_background(api_key: str, conversation_history: List[Di
         update_diagnosis("risk_uncertainty", risk_uncertainty_result["position"])
         update_diagnosis("wickedness", wickedness_result["wickedness"], wickedness_result["score"])
 
-        # Store consolidated result
-        st.session_state.last_consolidated_diagnosis = consolidated
-
     except Exception as e:
-        st.error(f"⚠️ Diagnostic agents error: {e}")
+        st.warning(f"⚠️ Diagnostic agents error: {e}")
 
 
 def stream_larry_response(
@@ -153,22 +105,11 @@ def stream_larry_response(
     conversation_history: List[Dict[str, str]],
     file_search_store: str
 ) -> Iterator[str]:
-    """Stream Larry's response using Gemini with File Search
-
-    Args:
-        client: Gemini client
-        user_message: User's message
-        conversation_history: Previous messages
-        file_search_store: File Search store name
-
-    Yields:
-        Response chunks
-    """
-
-    # Build conversation for Gemini
+    """Stream Larry's response"""
+    # Build conversation
     contents = []
 
-    # Add system prompt as first user message
+    # System prompt
     contents.append({
         "role": "user",
         "parts": [{"text": LARRY_SYSTEM_PROMPT}]
@@ -176,10 +117,10 @@ def stream_larry_response(
 
     contents.append({
         "role": "model",
-        "parts": [{"text": "Understood. I'm Larry, your PWS Innovation Mentor. I'll help you navigate complex problems using diagnostic thinking and the PWS framework. What brought you here today?"}]
+        "parts": [{"text": "Understood. I'm Larry, your PWS Innovation Mentor."}]
     })
 
-    # Add conversation history
+    # History
     for msg in conversation_history:
         role = "model" if msg["role"] == "assistant" else "user"
         contents.append({
@@ -187,7 +128,7 @@ def stream_larry_response(
             "parts": [{"text": msg["content"]}]
         })
 
-    # Add current user message
+    # Current message
     contents.append({
         "role": "user",
         "parts": [{"text": user_message}]
@@ -220,152 +161,171 @@ def stream_larry_response(
 
 
 # ============================================
+# UI Components (Native Streamlit)
+# ============================================
+
+def render_header():
+    """Render header with PWS badges"""
+    st.title("🎯 Larry Navigator v2.0")
+    st.caption("Your PWS Innovation Mentor")
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.info("🔥 **Real** - Evidence exists")
+    with col2:
+        st.success("🎯 **Winnable** - Can be solved")
+    with col3:
+        st.warning("💎 **Worth It** - Value justifies effort")
+
+
+def render_problem_dashboard():
+    """Render 4D diagnostic dashboard"""
+    diagnosis = get_diagnosis()
+
+    st.subheader("📊 Problem Diagnosis")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        # Definition
+        st.metric(
+            label="Definition Track",
+            value=diagnosis.definition.replace("-", " ").title(),
+            delta=f"{int(diagnosis.definition_confidence * 100)}% confidence"
+        )
+
+        # Complexity
+        st.metric(
+            label="Complexity (Cynefin)",
+            value=diagnosis.complexity.title(),
+            delta=f"{int(diagnosis.complexity_confidence * 100)}% confidence"
+        )
+
+    with col2:
+        # Risk-Uncertainty
+        st.metric(
+            label="Risk-Uncertainty Position",
+            value=f"{diagnosis.risk_uncertainty:.2f}",
+            delta="0.0=Risk, 1.0=Uncertainty"
+        )
+
+        # Wickedness
+        st.metric(
+            label="Wickedness Scale",
+            value=diagnosis.wickedness.title(),
+            delta=f"{int(diagnosis.wickedness_score * 100)}% wicked"
+        )
+
+
+def render_sidebar():
+    """Render sidebar with stats"""
+    with st.sidebar:
+        st.header("⚙️ Settings")
+
+        # File Search status
+        file_search_config = load_file_search_config()
+        if file_search_config.get("store_name"):
+            st.success(f"✅ File Search: {file_search_config.get('total_files', 0)} chunks")
+        else:
+            st.warning("⚠️ File Search not configured")
+
+        # Tavily status
+        if is_tavily_configured():
+            st.success("✅ Web Research: Enabled")
+        else:
+            st.info("💡 Web Research: Disabled")
+
+        st.divider()
+
+        # Compact diagnosis
+        st.subheader("📊 Current Diagnosis")
+        diagnosis = get_diagnosis()
+
+        st.write(f"**Definition:** {diagnosis.definition}")
+        st.write(f"**Complexity:** {diagnosis.complexity}")
+        st.write(f"**Risk-Uncertainty:** {diagnosis.risk_uncertainty:.2f}")
+        st.write(f"**Wickedness:** {diagnosis.wickedness}")
+        st.caption(f"Updates: {diagnosis.update_count}")
+
+        st.divider()
+
+        # Session stats
+        stats = get_session_stats()
+        st.subheader("📈 Session Stats")
+        st.write(f"💬 Turns: {stats['total_turns']}")
+        st.write(f"🔍 Research: {stats['total_research_queries']}")
+        st.write(f"⏱️ Duration: {stats['session_duration_minutes']} min")
+
+        # Reset button
+        if st.button("🔄 New Problem Session", use_container_width=True):
+            for key in list(st.session_state.keys()):
+                del st.session_state[key]
+            st.rerun()
+
+
+# ============================================
 # Main App
 # ============================================
 
 def main():
     """Main application"""
 
-    # Initialize session state
+    # Initialize
     initialize_session_state()
 
     # Get API key
     api_key = os.getenv("GOOGLE_AI_API_KEY") or st.secrets.get("GOOGLE_AI_API_KEY")
     if not api_key:
-        st.error("❌ GOOGLE_AI_API_KEY not found. Please configure.")
+        st.error("❌ GOOGLE_AI_API_KEY not found.")
         st.stop()
 
-    # Load File Search config
+    # Load config
     file_search_config = load_file_search_config()
     file_search_store = file_search_config.get("store_name")
 
-    # Get Gemini client
+    # Get client
     client = get_gemini_client()
 
-    # Get Tavily client (optional)
-    tavily_client = None
-    if is_tavily_configured():
-        try:
-            tavily_client = LarryTavilyClient()
-        except:
-            pass
+    # Render UI
+    render_header()
+    render_sidebar()
 
-    # ========================================
-    # Header
-    # ========================================
-    render_larry_header()
-
-    # ========================================
-    # Sidebar
-    # ========================================
-    with st.sidebar:
-        st.markdown("### ⚙️ Settings")
-
-        # Show File Search status
-        if file_search_store:
-            st.success(f"✅ File Search: {file_search_config.get('total_files', 0)} chunks")
-        else:
-            st.warning("⚠️ File Search not configured")
-
-        # Show Tavily status
-        if tavily_client:
-            st.success("✅ Web Research: Enabled")
-        else:
-            st.info("💡 Web Research: Disabled")
-
-        st.markdown("---")
-
-        # Compact dashboard
-        st.markdown("### 📊 Current Diagnosis")
-        render_compact_dashboard()
-
-        st.markdown("---")
-
-        # Session stats
-        stats = get_session_stats()
-        st.markdown("### 📈 Session Stats")
-        st.markdown(f"""
-        <div style="font-size: 0.875rem; color: var(--text-secondary);">
-            <div>💬 Turns: {stats['total_turns']}</div>
-            <div>🔍 Research: {stats['total_research_queries']}</div>
-            <div>⏱️ Duration: {stats['session_duration_minutes']} min</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-        # Reset button
-        if st.button("🔄 New Problem Session", use_container_width=True):
-            # Clear all session state
-            for key in list(st.session_state.keys()):
-                del st.session_state[key]
-            st.rerun()
-
-    # ========================================
-    # Main Content
-    # ========================================
-
-    # Show problem dashboard
+    # Show dashboard if there's conversation
     if st.session_state.total_turns > 0:
         render_problem_dashboard()
     else:
-        # First-time welcome
-        render_welcome_prompts()
+        # Welcome message
+        st.info("💡 **Welcome!** I'm here to help you navigate complex problems using the PWS methodology.")
 
-    # ========================================
-    # Chat Interface
-    # ========================================
+        with st.expander("📚 **Example starting points**", expanded=True):
+            st.write("- 'I'm exploring whether to build a new product feature...'")
+            st.write("- 'My team is struggling with [challenge]...'")
+            st.write("- 'I need to make a decision about [situation]...'")
 
-    # Display chat history
+    st.divider()
+
+    # Chat history
     for message in st.session_state.messages:
-        role = message["role"]
-        content = message["content"]
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
 
-        with st.chat_message(role):
-            st.markdown(content)
-
-    # ========================================
-    # Chat Input
-    # ========================================
-
+    # Chat input
     if user_input := st.chat_input("Share your problem or question..."):
 
         # Add user message
         add_message("user", user_input)
 
-        # Display user message
         with st.chat_message("user"):
             st.markdown(user_input)
 
-        # Check if research is needed
-        research_needed = False
-        research_results = None
-
-        if tavily_client:
-            research_agent = ResearchAgent(api_key)
-            research_decision = research_agent.analyze_research_need(
-                user_input,
-                st.session_state.messages
-            )
-
-            if research_decision.get("should_research", False):
-                research_needed = True
-                queries = research_decision.get("queries", [])
-
-                # Show typing indicator
-                with st.chat_message("assistant"):
-                    render_typing_indicator("Researching the web...")
-
-                # Execute Tavily searches
-                set_agent_status("research_agent", "running")
-                research_results = tavily_client.search_multiple_queries(queries)
-                set_agent_status("research_agent", "complete")
-
-        # Generate Larry's response
+        # Generate response
         with st.chat_message("assistant"):
             response_placeholder = st.empty()
             full_response = ""
 
-            # Show typing indicator while generating
-            render_typing_indicator("Larry is thinking...")
+            # Show thinking
+            with st.spinner("Larry is thinking..."):
+                pass
 
             # Stream response
             for chunk in stream_larry_response(
@@ -377,29 +337,12 @@ def main():
                 full_response += chunk
                 response_placeholder.markdown(full_response + "▌")
 
-            # Final response
             response_placeholder.markdown(full_response)
-
-            # Show research results if available
-            if research_needed and research_results:
-                render_research_panel(
-                    queries=research_results.get("queries", []),
-                    results=research_results.get("all_results", []),
-                    synthesis=None,  # Could add synthesis here
-                    is_loading=False
-                )
-
-                # Store research history
-                add_research_result(
-                    query=", ".join(research_results.get("queries", [])),
-                    results=research_results.get("all_results", []),
-                    synthesis=""
-                )
 
         # Add assistant message
         add_message("assistant", full_response)
 
-        # Run diagnostic agents in background (after user turn)
+        # Run diagnostic agents
         run_diagnostic_agents_background(api_key, st.session_state.messages)
 
         # Rerun to update dashboard
