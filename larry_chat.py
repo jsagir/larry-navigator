@@ -11,9 +11,26 @@ from google import genai
 from google.genai import types
 
 from larry_router import route_query, should_use_streaming, get_route_description
-# Neo4j tool temporarily disabled - importing from correct module
-from larry_neo4j_rag import is_neo4j_configured
-from larry_tools import WebSearchTool
+
+# Neo4j tool - optional import (won't break if dependencies missing)
+try:
+    from larry_neo4j_rag import is_neo4j_configured
+    NEO4J_AVAILABLE = True
+except ImportError:
+    NEO4J_AVAILABLE = False
+    def is_neo4j_configured():
+        return False
+
+# Web search tool - optional import (File Search is primary)
+try:
+    from larry_tools import WebSearchTool
+    WEB_SEARCH_AVAILABLE = True
+except ImportError:
+    WEB_SEARCH_AVAILABLE = False
+    class WebSearchTool:
+        def _run(self, query: str) -> str:
+            return "⚠️ Web search is not configured. Please install langchain dependencies."
+
 from larry_system_prompt_v3 import LARRY_SYSTEM_PROMPT
 
 
