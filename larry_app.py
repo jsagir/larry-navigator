@@ -57,8 +57,8 @@ from larry_security import sanitize_user_input, check_rate_limit
 # --- 1. Utility Functions ---
 
 def inject_css():
-    """Load the modern CSS stylesheet"""
-    css_path = Path(__file__).parent / "modern_larry_style.css"
+    """Load the dark theme CSS stylesheet"""
+    css_path = Path(__file__).parent / "dark_theme_style.css"
     if css_path.exists():
         with open(css_path) as f:
             st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -84,9 +84,9 @@ def get_level_label(score):
 # --- 2. Page Configuration ---
 
 st.set_page_config(
-    page_title="Larry - Your AI Thinking Partner",
+    page_title="Larry | PWS Navigator",
     page_icon="🎯",
-    layout="wide",
+    layout="centered",
     initial_sidebar_state="expanded"
 )
 
@@ -209,6 +209,31 @@ with st.sidebar:
 
     st.markdown("---")
 
+    # Problem Type Classification
+    st.markdown("#### 📊 Problem Classification")
+
+    # Determine active problem type based on session state
+    problem_type = st.session_state.problem_type
+    undefined_active = "active" if problem_type == "undefined" else ""
+    ill_defined_active = "active" if problem_type == "ill-defined" else ""
+    well_defined_active = "active" if problem_type == "well-defined" else ""
+
+    st.markdown(f"""
+    <div class="problem-indicator">
+        <div class="problem-type undefined {undefined_active}">
+            ◉ Un-defined
+        </div>
+        <div class="problem-type ill-defined {ill_defined_active}">
+            ○ Ill-defined
+        </div>
+        <div class="problem-type well-defined {well_defined_active}">
+            ○ Well-defined
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("---")
+
     # Reasoning Display Toggle
     st.markdown("#### 🧠 Display Options")
 
@@ -237,11 +262,16 @@ with st.sidebar:
 
 # --- 5. Main Content ---
 
-# Header
+# Header - Dark Theme with PWS Philosophy
 st.markdown("""
-<div class="modern-header">
-    <h1>🎯 LARRY</h1>
-    <p>Your AI Thinking Partner for Complex Decisions</p>
+<div class="larry-header">
+    <div class="larry-title">🎯 Larry</div>
+    <div class="larry-subtitle">Your PWS Innovation Mentor</div>
+    <div style="margin-top: 1rem;">
+        <span class="pws-badge badge-real">● Real</span>
+        <span class="pws-badge badge-winnable">● Winnable</span>
+        <span class="pws-badge badge-worth">● Worth It</span>
+    </div>
 </div>
 """, unsafe_allow_html=True)
 

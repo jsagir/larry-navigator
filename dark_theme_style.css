@@ -1,0 +1,611 @@
+/* ===============================================
+   LARRY NAVIGATOR - DARK THEME
+   Embodying Aronhime's PWS Methodology
+   =============================================== */
+
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ============== ROOT VARIABLES ============== */
+:root {
+    /* Foundation - The Dark Canvas */
+    --void-black: #000000;
+    --deep-black: #0A0A0B;
+    --surface-dark: #111113;
+    --surface-elevated: #1A1A1D;
+    --border-subtle: #2A2A2D;
+
+    /* PWS Triad - Real • Winnable • Worth It */
+    --pws-real: #FF6B35;
+    --pws-winnable: #00D9A5;
+    --pws-worth: #FFD93D;
+
+    /* Problem Types - Journey from Dark to Light */
+    --undefined: #8B5CF6;
+    --ill-defined: #3B82F6;
+    --well-defined: #10B981;
+
+    /* Interaction & Teaching Moments */
+    --challenge: #F43F5E;
+    --insight: #FFFFFF;
+    --guidance: #6366F1;
+    --question: #EC4899;
+
+    /* State Indicators */
+    --success: #22C55E;
+    --warning: #F59E0B;
+    --error: #EF4444;
+
+    /* Typography */
+    --text-primary: #FFFFFF;
+    --text-secondary: #A1A1AA;
+    --text-muted: #52525B;
+    --text-accent: #00D9A5;
+    --text-larry: #C4B5FD;
+}
+
+/* ============== GLOBAL STYLES ============== */
+
+/* Hide Streamlit Branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* App Background */
+.stApp {
+    background-color: var(--deep-black) !important;
+}
+
+.main .block-container {
+    background-color: var(--deep-black);
+    padding: 2rem 1.5rem;
+    max-width: 900px;
+}
+
+/* ============== TYPOGRAPHY ============== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif !important;
+    color: var(--text-primary) !important;
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--guidance) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+p, li, span, label, div {
+    font-family: 'Inter', sans-serif !important;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+code {
+    font-family: 'JetBrains Mono', monospace !important;
+    color: var(--pws-winnable) !important;
+    background-color: var(--void-black) !important;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+}
+
+/* ============== SIDEBAR ============== */
+
+section[data-testid="stSidebar"] {
+    background-color: var(--void-black) !important;
+    border-right: 1px solid var(--border-subtle);
+}
+
+section[data-testid="stSidebar"] > div {
+    background-color: var(--void-black) !important;
+}
+
+section[data-testid="stSidebar"] .stMarkdown {
+    color: var(--text-secondary);
+}
+
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3 {
+    color: var(--text-primary) !important;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 0.5rem;
+}
+
+/* ============== CHAT INTERFACE ============== */
+
+/* Chat Container */
+.stChatMessage {
+    background-color: var(--surface-dark) !important;
+    border-radius: 12px !important;
+    padding: 1.2rem !important;
+    margin: 0.75rem 0 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Larry's Messages (Assistant) */
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
+    border-left: 3px solid var(--guidance) !important;
+    background: linear-gradient(135deg, var(--surface-elevated) 0%, var(--surface-dark) 100%) !important;
+}
+
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) p {
+    color: var(--text-primary) !important;
+}
+
+/* User Messages */
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
+    border-right: 3px solid var(--text-muted) !important;
+    background-color: var(--surface-elevated) !important;
+}
+
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) p {
+    color: var(--text-primary) !important;
+}
+
+/* Chat Input */
+.stChatInput > div {
+    background-color: var(--surface-dark) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: 12px !important;
+}
+
+.stChatInput textarea {
+    background-color: var(--surface-dark) !important;
+    color: var(--text-primary) !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.stChatInput textarea::placeholder {
+    color: var(--text-muted) !important;
+}
+
+/* ============== BUTTONS ============== */
+
+.stButton > button {
+    background-color: var(--surface-elevated) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: 8px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    padding: 0.5rem 1rem !important;
+}
+
+.stButton > button:hover {
+    background-color: var(--guidance) !important;
+    border-color: var(--guidance) !important;
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3) !important;
+    transform: translateY(-1px);
+}
+
+.stButton > button:active {
+    transform: translateY(0);
+}
+
+/* Primary Button */
+.stButton > button[kind="primary"] {
+    background-color: var(--guidance) !important;
+    border-color: var(--guidance) !important;
+}
+
+/* ============== SELECT BOXES & INPUTS ============== */
+
+.stSelectbox > div > div,
+.stTextInput > div > div > input {
+    background-color: var(--surface-dark) !important;
+    border: 1px solid var(--border-subtle) !important;
+    color: var(--text-primary) !important;
+    border-radius: 8px !important;
+}
+
+.stSelectbox label,
+.stTextInput label {
+    color: var(--text-secondary) !important;
+    font-weight: 500 !important;
+}
+
+/* ============== EXPANDERS ============== */
+
+.streamlit-expanderHeader {
+    background-color: var(--surface-elevated) !important;
+    border-radius: 8px !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-subtle) !important;
+}
+
+.streamlit-expanderHeader:hover {
+    background-color: var(--surface-dark) !important;
+}
+
+.streamlit-expanderContent {
+    background-color: var(--surface-dark) !important;
+    border: 1px solid var(--border-subtle);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+}
+
+/* ============== METRICS ============== */
+
+[data-testid="stMetric"] {
+    background-color: var(--surface-elevated) !important;
+    padding: 1rem !important;
+    border-radius: 8px !important;
+    border: 1px solid var(--border-subtle) !important;
+}
+
+[data-testid="stMetricLabel"] {
+    color: var(--text-muted) !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+[data-testid="stMetricValue"] {
+    color: var(--pws-winnable) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-size: 1.75rem !important;
+    font-weight: 700 !important;
+}
+
+[data-testid="stMetricDelta"] {
+    font-size: 0.875rem !important;
+}
+
+/* ============== SCROLLBAR ============== */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--deep-black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-subtle);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* ============== CUSTOM COMPONENTS ============== */
+
+/* Header Section */
+.larry-header {
+    text-align: center;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 2rem;
+}
+
+.larry-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--guidance) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.larry-subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* PWS Badges */
+.pws-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0.25rem;
+}
+
+.badge-real {
+    background-color: rgba(255, 107, 53, 0.15);
+    color: var(--pws-real);
+    border: 1px solid var(--pws-real);
+}
+
+.badge-winnable {
+    background-color: rgba(0, 217, 165, 0.15);
+    color: var(--pws-winnable);
+    border: 1px solid var(--pws-winnable);
+}
+
+.badge-worth {
+    background-color: rgba(255, 217, 61, 0.15);
+    color: var(--pws-worth);
+    border: 1px solid var(--pws-worth);
+}
+
+/* Problem Type Indicator */
+.problem-indicator {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--surface-dark);
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    margin: 1rem 0;
+}
+
+.problem-type {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.problem-type.active {
+    opacity: 1;
+    transform: translateX(4px);
+}
+
+.problem-type.undefined.active {
+    background: rgba(139, 92, 246, 0.2);
+    color: var(--undefined);
+    border-left: 3px solid var(--undefined);
+}
+
+.problem-type.ill-defined.active {
+    background: rgba(59, 130, 246, 0.2);
+    color: var(--ill-defined);
+    border-left: 3px solid var(--ill-defined);
+}
+
+.problem-type.well-defined.active {
+    background: rgba(16, 185, 129, 0.2);
+    color: var(--well-defined);
+    border-left: 3px solid var(--well-defined);
+}
+
+/* Thinking Animation */
+.thinking-animation {
+    display: flex;
+    gap: 6px;
+    padding: 1rem;
+    justify-content: center;
+}
+
+.thinking-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--guidance);
+    border-radius: 50%;
+    animation: thinking 1.4s ease-in-out infinite;
+}
+
+.thinking-dot:nth-child(2) { animation-delay: 0.2s; }
+.thinking-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes thinking {
+    0%, 80%, 100% {
+        transform: scale(0.6);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Section Markers */
+.section-marker {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.marker-hook {
+    background: rgba(244, 63, 94, 0.2);
+    color: var(--challenge);
+}
+
+.marker-frame {
+    background: rgba(99, 102, 241, 0.2);
+    color: var(--guidance);
+}
+
+.marker-framework {
+    background: rgba(0, 217, 165, 0.2);
+    color: var(--pws-winnable);
+}
+
+.marker-story {
+    background: rgba(255, 217, 61, 0.2);
+    color: var(--pws-worth);
+}
+
+.marker-application {
+    background: rgba(16, 185, 129, 0.2);
+    color: var(--well-defined);
+}
+
+.marker-challenge {
+    background: rgba(236, 72, 153, 0.2);
+    color: var(--question);
+}
+
+/* Framework Card */
+.framework-card {
+    background: linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface-dark) 100%);
+    border: 1px solid var(--border-subtle);
+    border-top: 3px solid var(--pws-winnable);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.framework-card:hover {
+    border-color: var(--pws-winnable);
+    box-shadow: 0 0 30px rgba(0, 217, 165, 0.15);
+    transform: translateY(-2px);
+}
+
+.framework-title {
+    color: var(--pws-winnable);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Insight Highlight */
+.insight-highlight {
+    background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+    border-left: 3px solid var(--insight);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Stats Card */
+.stats-card {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.stat-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--pws-winnable);
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.25rem;
+}
+
+/* Session Info */
+.session-info {
+    background: var(--surface-dark);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.session-info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.session-info-item:last-child {
+    border-bottom: none;
+}
+
+.session-info-label {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.session-info-value {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Glow Effect for Insights */
+@keyframes insight-glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+    }
+}
+
+.insight-moment {
+    animation: insight-glow 2s ease-in-out infinite;
+}
+
+/* ============== RESPONSIVE DESIGN ============== */
+
+@media (max-width: 768px) {
+    .main .block-container {
+        padding: 1rem;
+    }
+
+    .larry-title {
+        font-size: 2rem;
+    }
+
+    .problem-indicator {
+        flex-direction: column;
+    }
+
+    [data-testid="stMetricValue"] {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* ============== DIVIDERS ============== */
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-subtle) !important;
+    margin: 1.5rem 0;
+}
+
+/* ============== ALERTS & WARNINGS ============== */
+
+.stAlert {
+    background-color: var(--surface-elevated) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-left: 3px solid var(--warning) !important;
+    color: var(--text-primary) !important;
+}
+
+/* ============== LOADING STATES ============== */
+
+.stSpinner > div {
+    border-color: var(--guidance) !important;
+}
+
+/* ============== CHECKBOX & RADIO ============== */
+
+.stCheckbox label,
+.stRadio label {
+    color: var(--text-secondary) !important;
+}
+
+.stCheckbox input:checked + div,
+.stRadio input:checked + div {
+    background-color: var(--guidance) !important;
+}
