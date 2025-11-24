@@ -216,13 +216,91 @@ class LarryChat:
             yield f"⚠️ Neo4j Error: {str(e)}"
     
     def _handle_web_search(self, user_message: str) -> Iterator[str]:
-        """Handle web search queries."""
+        """Handle web search queries with Gemini 3 synthesis."""
+        if not self.gemini_client:
+            yield "⚠️ Gemini is not configured. Please set GOOGLE_AI_API_KEY."
+            return
+
         try:
-            # Web search tool returns complete response (not streaming)
-            result = self.web_search_tool._run(user_message)
-            yield result
+            # Get Tavily search results
+            tavily_api_key = os.getenv("TAVILY_API_KEY")
+            if not tavily_api_key:
+                yield "⚠️ Web search requires TAVILY_API_KEY. Using File Search instead..."
+                yield from self._handle_file_search(user_message, conversation_history=None, show_thinking=False)
+                return
+
+            # Import Tavily integration
+            try:
+                from larry_tavily_search import search_with_tavily, format_tavily_results
+            except ImportError:
+                yield "⚠️ Tavily integration not available. Please install tavily-python."
+                return
+
+            # Search with Tavily
+            yield "🔍 Searching the web with Tavily AI...\n\n"
+
+            tavily_results = search_with_tavily(
+                query=user_message,
+                tavily_api_key=tavily_api_key,
+                max_results=5,
+                search_depth="advanced",
+                include_answer=True
+            )
+
+            if not tavily_results or not tavily_results.get('results'):
+                yield "No recent web results found. Let me check our knowledge base...\n\n"
+                yield from self._handle_file_search(user_message, conversation_history=None, show_thinking=False)
+                return
+
+            # Format Tavily results as context
+            formatted_results = format_tavily_results(tavily_results, max_sources=5)
+
+            # Use Gemini 3 to synthesize web search + knowledge base
+            synthesis_prompt = f"""You are analyzing web search results to answer the user's query.
+
+User Query: {user_message}
+
+Web Search Results:
+{formatted_results}
+
+Please provide a comprehensive answer that:
+1. Synthesizes the key findings from web search
+2. Identifies trends and patterns
+3. Cites specific sources with URLs
+4. Highlights what's current/trending vs established knowledge
+
+Your response should be conversational and insightful."""
+
+            config = types.GenerateContentConfig(
+                system_instruction=LARRY_SYSTEM_PROMPT,
+                temperature=0.7,
+                max_output_tokens=4096
+            )
+
+            # Add File Search tool for hybrid context
+            if self.file_search_store:
+                config.tools = [
+                    types.Tool(
+                        file_search=types.FileSearch(
+                            file_search_store_names=[self.file_search_store]
+                        )
+                    )
+                ]
+
+            # Stream Gemini 3's synthesis
+            response = self.gemini_client.models.generate_content_stream(
+                model="gemini-3-pro-preview",
+                contents=synthesis_prompt,
+                config=config
+            )
+
+            for chunk in response:
+                if chunk.text:
+                    yield chunk.text
+
         except Exception as e:
-            yield f"⚠️ Web Search Error: {str(e)}"
+            yield f"⚠️ Web Search Error: {str(e)}\n\nFalling back to File Search...\n\n"
+            yield from self._handle_file_search(user_message, conversation_history=None, show_thinking=False)
 
 
 def create_chat_handler() -> LarryChat:

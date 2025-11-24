@@ -3,12 +3,8 @@ streamlit==1.31.0
 google-genai==1.50.1
 google-generativeai==0.4.1
 tavily-python==0.3.3
-neo4j==5.14.0
 
-# LangChain - minimal dependencies for Neo4j integration only
-langchain-core==0.3.34
-langchain-community==0.3.14
-langchain-anthropic==0.3.7
-
-# Anthropic for Neo4j Cypher generation (version required by langchain-anthropic)
-anthropic>=0.45.0,<1
+# Optional dependencies (graceful degradation if missing)
+# neo4j==5.14.0
+# langchain-core==0.3.34
+# langchain-community==0.3.14
