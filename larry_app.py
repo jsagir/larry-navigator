@@ -206,9 +206,26 @@ with st.sidebar:
     st.caption(f"Neo4j Graph: {'✓ Active' if neo4j_status else '✗ Not configured'}")
     
     st.caption(f"Tavily AI Search: {'✓ Active' if st.session_state.tavily_api_key else '✗ Not configured'}")
-    
+
     st.markdown("---")
-    
+
+    # Reasoning Display Toggle
+    st.markdown("#### 🧠 Display Options")
+
+    if "show_thinking" not in st.session_state:
+        st.session_state.show_thinking = True
+
+    show_thinking = st.checkbox(
+        "Show Larry's reasoning process",
+        value=st.session_state.show_thinking,
+        help="Display step-by-step thinking and sources used"
+    )
+
+    if show_thinking != st.session_state.show_thinking:
+        st.session_state.show_thinking = show_thinking
+
+    st.markdown("---")
+
     # Clear Chat
     if st.button("🗑️ Start New Conversation", use_container_width=True):
         st.session_state.messages = []
@@ -398,7 +415,8 @@ if True:  # No API key required for Gemini (uses GOOGLE_AI_API_KEY from secrets)
             # Stream response chunks incrementally
             for chunk in st.session_state.larry_chat_handler.chat(
                 message_text,
-                conversation_history=st.session_state.messages
+                conversation_history=st.session_state.messages,
+                show_thinking=st.session_state.get("show_thinking", True)
             ):
                 response_chunks.append(chunk)
                 # Update display with accumulated response

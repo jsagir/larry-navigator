@@ -47,27 +47,28 @@ class LarryChat:
             print(f"Failed to load file search store: {e}")
         return None
     
-    def chat(self, user_message: str, conversation_history: list = None) -> Iterator[str]:
+    def chat(self, user_message: str, conversation_history: list = None, show_thinking: bool = True) -> Iterator[str]:
         """
         Process a chat message with intelligent routing and streaming.
-        
+
         Args:
             user_message: The user's input message
             conversation_history: List of previous messages for context
-            
+            show_thinking: Whether to display reasoning process (default: True)
+
         Yields:
             Response chunks (for streaming) or complete response
         """
         # Route the query
         route = route_query(user_message)
-        
+
         # Handle based on route
         if route == "neo4j" and self.neo4j_tool:
             yield from self._handle_neo4j(user_message)
         elif route == "web_search":
             yield from self._handle_web_search(user_message)
         else:  # file_search (default)
-            yield from self._handle_file_search(user_message, conversation_history)
+            yield from self._handle_file_search(user_message, conversation_history, show_thinking)
     
     def _handle_file_search(self, user_message: str, conversation_history: list = None, show_thinking: bool = True) -> Iterator[str]:
         """Handle file search with Gemini streaming."""
