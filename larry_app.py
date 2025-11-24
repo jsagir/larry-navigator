@@ -277,120 +277,107 @@ st.markdown("""
 
 # State is managed by the app, not extracted from agent
 
-# Dashboard Metrics Section
-st.markdown("""
-<div class="dashboard-container">
-    <h2>📊 Your Uncertainty Dashboard</h2>
-</div>
-""", unsafe_allow_html=True)
+# Session Stats (only show if there are messages)
+if len(st.session_state.messages) > 0:
+    col1, col2, col3 = st.columns(3)
 
-col1, col2, col3 = st.columns(3)
+    with col1:
+        st.markdown(f"""
+        <div class="stats-card">
+            <div class="stat-value">{st.session_state.chat_count}</div>
+            <div class="stat-label">Messages</div>
+        </div>
+        """, unsafe_allow_html=True)
 
-with col1:
-    uncertainty_class = get_level_class(st.session_state.uncertainty_score)
-    st.markdown(f"""
-    <div class="metric-card {uncertainty_class}">
-        <div class="metric-icon">🌡️</div>
-        <div class="metric-value">{st.session_state.uncertainty_score}%</div>
-        <div class="metric-label">Uncertainty</div>
-        <div class="metric-status">{get_level_label(st.session_state.uncertainty_score)}</div>
-    </div>
-    """, unsafe_allow_html=True)
+    with col2:
+        # Count frameworks mentioned (placeholder logic)
+        frameworks_count = sum(1 for msg in st.session_state.messages if msg["role"] == "assistant" and len(msg["content"]) > 200)
+        st.markdown(f"""
+        <div class="stats-card">
+            <div class="stat-value">{frameworks_count}</div>
+            <div class="stat-label">Frameworks</div>
+        </div>
+        """, unsafe_allow_html=True)
 
-with col2:
-    risk_class = get_level_class(st.session_state.risk_score)
-    st.markdown(f"""
-    <div class="metric-card {risk_class}">
-        <div class="metric-icon">⚠️</div>
-        <div class="metric-value">{st.session_state.risk_score}%</div>
-        <div class="metric-label">Risk Level</div>
-        <div class="metric-status">{get_level_label(st.session_state.risk_score)}</div>
-    </div>
-    """, unsafe_allow_html=True)
+    with col3:
+        problem_label = st.session_state.problem_type.replace("-", " ").title() if st.session_state.problem_type != "general" else "Exploring"
+        st.markdown(f"""
+        <div class="stats-card">
+            <div class="stat-value" style="font-size: 1.25rem; text-transform: capitalize;">{problem_label}</div>
+            <div class="stat-label">Problem Type</div>
+        </div>
+        """, unsafe_allow_html=True)
 
-with col3:
-    st.markdown(f"""
-    <div class="metric-card">
-        <div class="metric-icon">💬</div>
-        <div class="metric-value">{st.session_state.chat_count}</div>
-        <div class="metric-label">Conversations</div>
-        <div class="metric-status">{'START ONE!' if st.session_state.chat_count == 0 else 'ACTIVE'}</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-# Quick Start Section (only show if no messages)
+# Welcome Message (only show if no messages)
 if len(st.session_state.messages) == 0:
     st.markdown("""
-    <div class="quick-start-container">
-        <h3>🚀 Quick Start</h3>
-        <p>Welcome! I'm Larry, your AI thinking partner.</p>
-        <p>I help you navigate tough decisions by:</p>
-        <ul>
-            <li>✓ Challenging your assumptions (killer questions)</li>
-            <li>✓ Exploring alternative perspectives</li>
-            <li>✓ Mapping uncertainty in your decisions</li>
-        </ul>
-        <p class="quick-start-hint">💡 Try these to get started:</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # Suggestion pills
-    col1, col2, col3, col4 = st.columns(4)
-    suggestions = [
-        "I'm facing a tough decision about...",
-        "Help me think through...",
-        "What am I not considering about...",
-        "Challenge my assumptions on..."
-    ]
-    
-    for col, suggestion in zip([col1, col2, col3, col4], suggestions):
-        with col:
-            if st.button(suggestion, key=f"suggest_{suggestion[:10]}", use_container_width=True):
-                st.session_state.quick_start_text = suggestion
-    
-    st.markdown('<p class="quick-start-hint">Or just start typing below ↓</p>', unsafe_allow_html=True)
-
-# Clarity Indicator
-if st.session_state.chat_count > 0:
-    clarity_percent = min(100, st.session_state.clarity_score)
-    clarity_status = "Ready to decide" if clarity_percent >= CLARITY_READY_THRESHOLD else "Key unknowns remain"
-    
-    st.markdown(f"""
-    <div class="clarity-indicator">
-        <div class="clarity-label">Decision Clarity: {clarity_percent}%</div>
-        <div class="clarity-bar">
-            <div class="clarity-fill" style="width: {clarity_percent}%"></div>
+    <div class="framework-card">
+        <div style="text-align: center; padding: 1rem 0;">
+            <h2 style="color: var(--text-primary); margin-bottom: 1rem;">Welcome. I'm Larry.</h2>
         </div>
-        <div class="clarity-status">{clarity_status}</div>
+
+        <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8;">
+            Let me challenge your thinking from the start: <em style="color: var(--challenge);">What problem brought you here today?</em>
+        </p>
+
+        <p style="color: var(--text-secondary); margin-top: 1rem;">
+            Notice I didn't ask about your <em>idea</em>, your <em>product</em>, or your <em>business plan</em>. That's intentional.
+        </p>
+
+        <div style="background: rgba(244, 63, 94, 0.1); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--challenge); margin: 1.5rem 0;">
+            <p style="color: var(--text-primary); font-weight: 500; margin: 0;">
+                <strong>Here's what most people miss:</strong> Innovation doesn't start with ideas.
+                It starts with <span style="color: var(--challenge);">problems worth solving</span>.
+            </p>
+        </div>
+
+        <p style="color: var(--text-secondary); font-weight: 500; margin-bottom: 0.5rem;">
+            A problem worth solving meets three criteria:
+        </p>
+
+        <div style="display: grid; gap: 0.75rem; margin: 1rem 0;">
+            <div style="display: flex; align-items: start; gap: 0.75rem; padding: 0.75rem; background: rgba(255, 107, 53, 0.1); border-radius: 6px;">
+                <span style="color: var(--pws-real); font-size: 1.5rem;">🔥</span>
+                <div>
+                    <strong style="color: var(--pws-real);">Real</strong>
+                    <span style="color: var(--text-muted); margin-left: 0.5rem;">— People actually experience this pain</span>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: start; gap: 0.75rem; padding: 0.75rem; background: rgba(0, 217, 165, 0.1); border-radius: 6px;">
+                <span style="color: var(--pws-winnable); font-size: 1.5rem;">🎯</span>
+                <div>
+                    <strong style="color: var(--pws-winnable);">Winnable</strong>
+                    <span style="color: var(--text-muted); margin-left: 0.5rem;">— A solution is feasible within your constraints</span>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: start; gap: 0.75rem; padding: 0.75rem; background: rgba(255, 217, 61, 0.1); border-radius: 6px;">
+                <span style="color: var(--pws-worth); font-size: 1.5rem;">💎</span>
+                <div>
+                    <strong style="color: var(--pws-worth);">Worth It</strong>
+                    <span style="color: var(--text-muted); margin-left: 0.5rem;">— The value of solving exceeds the cost</span>
+                </div>
+            </div>
+        </div>
+
+        <p style="color: var(--text-secondary); margin-top: 1.5rem;">
+            So, what's the problem you're wrestling with? Or if you're not sure yet — that's exactly where we should start.
+        </p>
+
+        <p style="color: var(--text-larry); font-style: italic; text-align: center; margin-top: 1.5rem; font-size: 0.95rem;">
+            The best questions begin in uncertainty.
+        </p>
     </div>
     """, unsafe_allow_html=True)
 
-# Chat Messages
+# Chat Messages - Using native Streamlit components (styled by CSS)
 for message in st.session_state.messages:
     role = message["role"]
     content = message["content"]
-    timestamp = message.get("timestamp", "")
-    
-    if role == "user":
-        st.markdown(f"""
-        <div class="message-card user-message">
-            <div class="message-header">
-                <span class="message-avatar">👤 YOU</span>
-                <span class="message-time">{timestamp}</span>
-            </div>
-            <div class="message-content">{content}</div>
-        </div>
-        """, unsafe_allow_html=True)
-    else:
-        st.markdown(f"""
-        <div class="message-card larry-message">
-            <div class="message-header">
-                <span class="message-avatar">🎯 LARRY</span>
-                <span class="message-time">{timestamp}</span>
-            </div>
-            <div class="message-content">{content}</div>
-        </div>
-        """, unsafe_allow_html=True)
+
+    with st.chat_message(role):
+        st.markdown(content)
 
 # Chat Input
 if True:  # No API key required for Gemini (uses GOOGLE_AI_API_KEY from secrets)
