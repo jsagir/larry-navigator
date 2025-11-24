@@ -11,7 +11,7 @@ import google.generativeai as genai
 from google.generativeai import types
 
 # Import existing utilities
-from larry_web_search import integrate_search_with_response
+from larry_tavily_search import integrate_search_with_response  # Updated to use Tavily instead of Exa
 from larry_neo4j_rag import is_neo4j_configured
 from larry_framework_recommender import calculate_uncertainty_risk
 from larry_system_prompt_v3 import LARRY_SYSTEM_PROMPT
@@ -47,33 +47,34 @@ class WebSearchToolInput(BaseModel):
 class WebSearchTool(BaseTool):
     name: str = "web_search"
     description: str = (
-        "Search the web for current, real-time information using Exa.ai neural search. "
+        "Search the web for current, real-time information using Tavily AI. "
         "Use this when the user asks about recent events, current trends, latest research, "
-        "or specific companies/products. Returns formatted results with sources and citations."
+        "or specific companies/products. Returns formatted results with sources, citations, "
+        "and AI-generated summaries. Tavily is optimized for AI agents with advanced search depth."
     )
     args_schema: Type[BaseModel] = WebSearchToolInput
-    
+
     def _run(self, query: str) -> str:
-        """Execute web search using Exa.ai"""
-        exa_api_key = os.getenv("EXA_API_KEY")
-        
-        if not exa_api_key:
-            return "Web search is not configured. EXA_API_KEY environment variable is missing."
-        
+        """Execute web search using Tavily AI"""
+        tavily_api_key = os.getenv("TAVILY_API_KEY")
+
+        if not tavily_api_key:
+            return "Web search is not configured. TAVILY_API_KEY environment variable is missing."
+
         try:
             # Use default persona and problem type for standalone search
             web_result = integrate_search_with_response(
                 user_message=query,
                 persona="general",
                 problem_type="general",
-                exa_api_key=exa_api_key
+                tavily_api_key=tavily_api_key
             )
-            
+
             if web_result:
                 return web_result
             else:
                 return "No relevant web results found for this query."
-                
+
         except Exception as e:
             return f"Web search error: {str(e)}"
 
@@ -126,17 +127,17 @@ class UncertaintyNavigatorTool(BaseTool):
             #     return f"NETWORK-EFFECT GRAPH ERROR: {str(e)}"
         
         def fetch_web_context():
-            """Query Exa.ai web search."""
-            exa_api_key = os.getenv("EXA_API_KEY")
-            if not exa_api_key:
+            """Query Tavily AI web search."""
+            tavily_api_key = os.getenv("TAVILY_API_KEY")
+            if not tavily_api_key:
                 return None
-            
+
             try:
                 web_result = integrate_search_with_response(
                     user_message=query,
                     persona=persona,
                     problem_type=problem_type,
-                    exa_api_key=exa_api_key
+                    tavily_api_key=tavily_api_key
                 )
                 return f"WEB SEARCH CONTEXT: {web_result}" if web_result else None
             except Exception as e:

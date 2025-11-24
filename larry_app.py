@@ -109,16 +109,16 @@ if "anthropic_api_key" not in st.session_state:
         print(f"⚠️ Failed to load ANTHROPIC_API_KEY from secrets: {str(e)}")
         st.session_state.anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
 
-if "exa_api_key" not in st.session_state:
+if "tavily_api_key" not in st.session_state:
     try:
-        st.session_state.exa_api_key = st.secrets.get("EXA_API_KEY", os.getenv("EXA_API_KEY"))
+        st.session_state.tavily_api_key = st.secrets.get("TAVILY_API_KEY", os.getenv("TAVILY_API_KEY"))
     except Exception as e:
-        print(f"⚠️ Failed to load EXA_API_KEY from secrets: {str(e)}")
-        st.session_state.exa_api_key = os.getenv("EXA_API_KEY")
+        print(f"⚠️ Failed to load TAVILY_API_KEY from secrets: {str(e)}")
+        st.session_state.tavily_api_key = os.getenv("TAVILY_API_KEY")
 
-# Set EXA_API_KEY in environment if available
-if st.session_state.exa_api_key:
-    os.environ["EXA_API_KEY"] = st.session_state.exa_api_key
+# Set TAVILY_API_KEY in environment if available
+if st.session_state.tavily_api_key:
+    os.environ["TAVILY_API_KEY"] = st.session_state.tavily_api_key
 
 # Initialize chat handler on startup
 if "larry_chat_handler" not in st.session_state:
@@ -164,14 +164,14 @@ with st.sidebar:
             os.environ["ANTHROPIC_API_KEY"] = api_key_input
             st.rerun()
     
-    if st.session_state.exa_api_key:
-        st.info("🔍 Web Search Enabled")
+    if st.session_state.tavily_api_key:
+        st.info("🔍 Tavily AI Search Enabled")
     else:
         st.info("💡 Web Search Optional")
-        exa_input = st.text_input("Exa.ai API Key (Optional)", type="password", key="exa_input")
-        if exa_input:
-            st.session_state.exa_api_key = exa_input
-            os.environ["EXA_API_KEY"] = exa_input
+        tavily_input = st.text_input("Tavily AI API Key (Optional)", type="password", key="tavily_input")
+        if tavily_input:
+            st.session_state.tavily_api_key = tavily_input
+            os.environ["TAVILY_API_KEY"] = tavily_input
             st.rerun()
     
     st.markdown("---")
@@ -205,7 +205,7 @@ with st.sidebar:
     neo4j_status = is_neo4j_configured()
     st.caption(f"Neo4j Graph: {'✓ Active' if neo4j_status else '✗ Not configured'}")
     
-    st.caption(f"Web Search: {'✓ Active' if st.session_state.exa_api_key else '✗ Not configured'}")
+    st.caption(f"Tavily AI Search: {'✓ Active' if st.session_state.tavily_api_key else '✗ Not configured'}")
     
     st.markdown("---")
     
