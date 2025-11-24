@@ -131,6 +131,8 @@ class LarryChat:
             )
 
             thinking_shown = False
+            sources_shown = False
+            collected_sources = []
 
             for chunk in response:
                 # Extract thinking/reasoning if available
@@ -145,23 +147,40 @@ class LarryChat:
                                 yield f"\n<details>\n<summary>🧠 <b>Larry's Reasoning Process</b></summary>\n\n```\n{part.thought}\n```\n</details>\n\n"
                                 thinking_shown = True
 
-                            # Show grounding metadata (sources used)
+                            # Collect grounding metadata (sources used)
                             if hasattr(part, 'grounding_metadata') and part.grounding_metadata:
-                                sources = []
                                 if hasattr(part.grounding_metadata, 'grounding_chunks'):
                                     for grounding_chunk in part.grounding_metadata.grounding_chunks:
                                         if hasattr(grounding_chunk, 'retrieved_context'):
                                             context = grounding_chunk.retrieved_context
-                                            if hasattr(context, 'title'):
-                                                sources.append(context.title)
+                                            source_info = {}
 
-                                if sources and not thinking_shown:
-                                    yield f"\n<details>\n<summary>📚 <b>Sources Used</b></summary>\n\n{chr(10).join([f'- {s}' for s in sources[:5]])}\n</details>\n\n"
-                                    thinking_shown = True
+                                            if hasattr(context, 'title'):
+                                                source_info['title'] = context.title
+                                            if hasattr(context, 'uri'):
+                                                source_info['uri'] = context.uri
+
+                                            # Get confidence score if available
+                                            if hasattr(grounding_chunk, 'grounding_score'):
+                                                source_info['confidence'] = grounding_chunk.grounding_score
+
+                                            if source_info and source_info not in collected_sources:
+                                                collected_sources.append(source_info)
 
                 # Yield main response text
                 if chunk.text:
                     yield chunk.text
+
+            # Show sources at the end (after response completes)
+            if collected_sources and not sources_shown:
+                yield "\n\n---\n\n"
+                yield "**📚 Sources Referenced:**\n\n"
+                for i, source in enumerate(collected_sources[:5], 1):
+                    title = source.get('title', 'Unknown')
+                    confidence = source.get('confidence', None)
+                    conf_str = f" (confidence: {confidence:.2f})" if confidence else ""
+                    yield f"{i}. {title}{conf_str}\n"
+                sources_shown = True
 
         except Exception as e:
             yield f"⚠️ Error: {str(e)}"
