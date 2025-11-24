@@ -1,8 +1,6 @@
 {
-  "store_name": "fileSearchStores/larrypwsnavigatorv2-7pkxk5lhy0xc",
-  "display_name": "larry-pws-navigator-v2",
-  "created_at": "2025-11-17 21:35:00",
-  "api_version": "v2",
-  "total_chunks": 3134,
-  "last_updated": "2025-11-18 02:52:35"
+  "store_name": "fileSearchStores/larry-navigator-neo4j-knowl-30cntohiwvs4",
+  "total_chunks": 1424,
+  "total_files": 1424,
+  "created_at": "2025-11-24 22:09:25"
 }

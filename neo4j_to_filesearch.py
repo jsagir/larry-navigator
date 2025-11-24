@@ -7,6 +7,7 @@ Extracts content from Neo4j and uploads to Google File Search for Larry Navigato
 import os
 import json
 import sys
+import time
 from pathlib import Path
 from typing import List, Dict, Any
 from neo4j import GraphDatabase
@@ -298,49 +299,78 @@ class Neo4jToFileSearch:
 
             # Upload chunks as files
             print(f"\nUploading chunks...")
-            uploaded_files = []
+            successful = 0
+            failed = 0
 
-            # Group chunks into reasonable-sized batches
-            # File Search works better with multiple files than one huge file
-            batch_size = 50  # 50 chunks per file
+            # Upload each chunk individually
+            for idx, chunk in enumerate(chunks, 1):
+                try:
+                    # Create temporary text file for this chunk
+                    chunk_id = chunk.get('chunk_id') or f"chunk_{idx}"
+                    chunk_file = f"/tmp/neo4j_chunk_{chunk_id[:12].replace('/', '_')}.txt"
 
-            for i in range(0, len(chunks), batch_size):
-                batch = chunks[i:i + batch_size]
-                batch_num = i // batch_size + 1
+                    with open(chunk_file, 'w', encoding='utf-8') as f:
+                        f.write(chunk['content'])
 
-                # Create a combined document for this batch
-                combined_content = "\n\n---\n\n".join([
-                    f"# Chunk ID: {chunk['chunk_id']}\n\n{chunk['content']}"
-                    for chunk in batch
-                ])
+                    # Prepare metadata
+                    metadata = chunk.get('metadata', {})
+                    metadata_dict = {
+                        'source_file': metadata.get('source_file', ''),
+                        'document_type': metadata.get('document_type', ''),
+                        'chunk_position': str(metadata.get('chunk_position', 0)),
+                        'difficulty': metadata.get('difficulty', 'intermediate'),
+                        'is_prior_art': 'true' if metadata.get('is_prior_art', False) else 'false',
+                    }
 
-                # Upload as a file
-                file_path = f"/tmp/larry_batch_{batch_num}.txt"
-                with open(file_path, 'w') as f:
-                    f.write(combined_content)
+                    # Remove empty values
+                    metadata_dict = {k: v for k, v in metadata_dict.items() if v and v != 'None'}
 
-                upload_result = self.genai_client.files.upload(
-                    file=file_path,
-                    config=types.UploadFileConfig(display_name=f"Larry Knowledge Batch {batch_num}")
-                )
+                    # Convert to File Search metadata format
+                    custom_metadata = [
+                        {"key": k, "string_value": v}
+                        for k, v in metadata_dict.items()
+                    ]
 
-                # Add to store
-                self.genai_client.files.add_files_to_file_search_store(
-                    file_search_store_name=store_name,
-                    file_names=[upload_result.name]
-                )
+                    # Upload using correct API
+                    operation = self.genai_client.file_search_stores.upload_to_file_search_store(
+                        file=chunk_file,
+                        file_search_store_name=store_name,
+                        config={
+                            'display_name': f"{metadata.get('source_file', 'neo4j')} (chunk {idx})",
+                            'custom_metadata': custom_metadata
+                        }
+                    )
 
-                uploaded_files.append(upload_result.name)
-                print(f"  ✓ Uploaded batch {batch_num} ({len(batch)} chunks)")
+                    successful += 1
 
-            print(f"\n✓ Uploaded {len(uploaded_files)} files to File Search store")
+                    # Progress indicator
+                    if idx % 50 == 0 or idx == len(chunks):
+                        percentage = (idx / len(chunks)) * 100
+                        print(f"  Progress: {idx}/{len(chunks)} ({percentage:.0f}%) - {successful} successful, {failed} failed")
+
+                    # Rate limiting
+                    if idx % 50 == 0:
+                        print(f"  ⏸️  Pausing for rate limit...")
+                        time.sleep(2)
+
+                    # Clean up temp file
+                    if os.path.exists(chunk_file):
+                        os.remove(chunk_file)
+
+                except Exception as e:
+                    failed += 1
+                    print(f"  ❌ Error uploading chunk {idx}: {str(e)[:100]}")
+                    if 'chunk_file' in locals() and os.path.exists(chunk_file):
+                        os.remove(chunk_file)
+
+            print(f"\n✓ Uploaded {successful} chunks to File Search store ({failed} failed)")
 
             # Save store info
             store_info = {
                 'store_name': store_name,
-                'total_chunks': len(chunks),
-                'total_files': len(uploaded_files),
-                'created_at': str(Path.cwd())
+                'total_chunks': successful,
+                'total_files': successful,
+                'created_at': time.strftime('%Y-%m-%d %H:%M:%S')
             }
 
             with open(STORE_INFO_FILE, 'w') as f:
