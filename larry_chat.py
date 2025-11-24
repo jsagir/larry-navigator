@@ -69,32 +69,32 @@ class LarryChat:
         else:  # file_search (default)
             yield from self._handle_file_search(user_message, conversation_history)
     
-    def _handle_file_search(self, user_message: str, conversation_history: list = None) -> Iterator[str]:
+    def _handle_file_search(self, user_message: str, conversation_history: list = None, show_thinking: bool = True) -> Iterator[str]:
         """Handle file search with Gemini streaming."""
         if not self.gemini_client:
             yield "⚠️ Gemini is not configured. Please set GOOGLE_AI_API_KEY."
             return
-        
+
         try:
             # Build conversation context
             contents = []
-            
+
             # Add conversation history
             if conversation_history:
                 for msg in conversation_history[-10:]:  # Last 10 messages for context
                     role = "user" if msg["role"] == "user" else "model"
                     contents.append({"role": role, "parts": [{"text": msg["content"]}]})
-            
+
             # Add current message
             contents.append({"role": "user", "parts": [{"text": user_message}]})
-            
+
             # Configure generation with file search
             config = types.GenerateContentConfig(
                 system_instruction=LARRY_SYSTEM_PROMPT,
                 temperature=0.7,
                 max_output_tokens=8192
             )
-            
+
             # Add file search tool if available
             if self.file_search_store:
                 config.tools = [
@@ -104,18 +104,64 @@ class LarryChat:
                         )
                     )
                 ]
-            
-            # Stream response using Gemini 3 Pro Preview (latest model released Nov 2025)
+
+            # Use Gemini 3 Pro Preview (best reasoning capability)
+            model_name = "gemini-3-pro-preview"
+
+            # If showing thinking, prepend reasoning instruction to user message
+            if show_thinking and contents:
+                last_content = contents[-1]
+                original_text = last_content["parts"][0]["text"]
+                reasoning_prompt = (
+                    f"{original_text}\n\n"
+                    "Please think through this step-by-step:\n"
+                    "1. First, explain what information you're searching for\n"
+                    "2. Then, show your reasoning process\n"
+                    "3. Finally, provide your answer\n\n"
+                    "Format your response with: **Thinking:** section first, then **Answer:** section."
+                )
+                contents[-1] = {"role": "user", "parts": [{"text": reasoning_prompt}]}
+
+            # Stream response
             response = self.gemini_client.models.generate_content_stream(
-                model="gemini-3-pro-preview",
+                model=model_name,
                 contents=contents,
                 config=config
             )
-            
+
+            thinking_shown = False
+
             for chunk in response:
+                # Extract thinking/reasoning if available
+                if hasattr(chunk, 'candidates') and chunk.candidates:
+                    candidate = chunk.candidates[0]
+
+                    # Check for thinking/reasoning in parts
+                    if hasattr(candidate, 'content') and hasattr(candidate.content, 'parts'):
+                        for part in candidate.content.parts:
+                            # Show thinking section (if model supports it)
+                            if hasattr(part, 'thought') and part.thought and not thinking_shown:
+                                yield f"\n<details>\n<summary>🧠 <b>Larry's Reasoning Process</b></summary>\n\n```\n{part.thought}\n```\n</details>\n\n"
+                                thinking_shown = True
+
+                            # Show grounding metadata (sources used)
+                            if hasattr(part, 'grounding_metadata') and part.grounding_metadata:
+                                sources = []
+                                if hasattr(part.grounding_metadata, 'grounding_chunks'):
+                                    for grounding_chunk in part.grounding_metadata.grounding_chunks:
+                                        if hasattr(grounding_chunk, 'retrieved_context'):
+                                            context = grounding_chunk.retrieved_context
+                                            if hasattr(context, 'title'):
+                                                sources.append(context.title)
+
+                                if sources and not thinking_shown:
+                                    yield f"\n<details>\n<summary>📚 <b>Sources Used</b></summary>\n\n{chr(10).join([f'- {s}' for s in sources[:5]])}\n</details>\n\n"
+                                    thinking_shown = True
+
+                # Yield main response text
                 if chunk.text:
                     yield chunk.text
-                    
+
         except Exception as e:
             yield f"⚠️ Error: {str(e)}"
     
