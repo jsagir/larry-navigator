@@ -27,7 +27,7 @@ The secrets.toml file on Streamlit Cloud has a **syntax error**. Common causes:
 **Copy and paste this EXACT text:**
 
 ```toml
-GOOGLE_AI_API_KEY = "AIzaSyBLhdITr0UqZSV7_06GFUexDSt8OV5RXMc"
+GOOGLE_AI_API_KEY = "YOUR_GOOGLE_AI_API_KEY_HERE"
 ```
 
 **That's it!** Just one line for now.
@@ -42,7 +42,7 @@ GOOGLE_AI_API_KEY = "AIzaSyBLhdITr0UqZSV7_06GFUexDSt8OV5RXMc"
 Once the app is working, you can add optional keys:
 
 ```toml
-GOOGLE_AI_API_KEY = "AIzaSyBLhdITr0UqZSV7_06GFUexDSt8OV5RXMc"
+GOOGLE_AI_API_KEY = "YOUR_GOOGLE_AI_API_KEY_HERE"
 TAVILY_API_KEY = "tvly-your-key-here"
 ```
 
@@ -58,7 +58,7 @@ GOOGLE_AI_API_KEY = "AIzaSy..."extra  # Wrong: text after closing quote
 
 ### ✅ Correct Format
 ```toml
-GOOGLE_AI_API_KEY = "AIzaSyBLhdITr0UqZSV7_06GFUexDSt8OV5RXMc"
+GOOGLE_AI_API_KEY = "YOUR_GOOGLE_AI_API_KEY_HERE"
 ```
 
 **Rules:**
@@ -111,7 +111,7 @@ Keep this template handy for Streamlit Cloud Secrets:
 
 ```toml
 # Required
-GOOGLE_AI_API_KEY = "AIzaSyBLhdITr0UqZSV7_06GFUexDSt8OV5RXMc"
+GOOGLE_AI_API_KEY = "YOUR_GOOGLE_AI_API_KEY_HERE"
 
 # Optional (add later if needed)
 TAVILY_API_KEY = "tvly-your-key-here"
@@ -126,7 +126,7 @@ TAVILY_API_KEY = "tvly-your-key-here"
 The absolute minimum to get Larry working:
 
 ```toml
-GOOGLE_AI_API_KEY = "AIzaSyBLhdITr0UqZSV7_06GFUexDSt8OV5RXMc"
+GOOGLE_AI_API_KEY = "YOUR_GOOGLE_AI_API_KEY_HERE"
 ```
 
 Copy that single line into Streamlit Cloud Secrets and save. Done!

@@ -77,7 +77,7 @@ git push origin main
 In Streamlit Cloud UI → Settings → Secrets:
 
 ```toml
-GOOGLE_AI_API_KEY = "AIzaSyBLhdITr0UqZSV7_06GFUexDSt8OV5RXMc"
+GOOGLE_AI_API_KEY = "YOUR_GOOGLE_AI_API_KEY_HERE"
 TAVILY_API_KEY = "tvly-your-key-here"
 ```
 

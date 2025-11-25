@@ -149,7 +149,7 @@ python-dotenv>=1.0.0
 
 ### Environment Variables Required:
 ```bash
-GOOGLE_AI_API_KEY=AIzaSyBLhdITr0UqZSV7_06GFUexDSt8OV5RXMc
+GOOGLE_AI_API_KEY=YOUR_GOOGLE_AI_API_KEY_HERE
 ```
 
 ### Environment Variables Optional:
