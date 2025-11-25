@@ -10,6 +10,9 @@ from typing import Iterator, Dict, Any, List
 from google import genai
 from google.genai import types
 
+# Import Supabase knowledge base
+from larry_supabase_rag import SupabaseKnowledgeBase
+
 # Import utilities
 from utils.session_state import (
     initialize_session_state,
@@ -49,17 +52,24 @@ st.set_page_config(
 # Helper Functions
 # ============================================
 
-def load_file_search_config() -> Dict[str, Any]:
-    """Load File Search configuration"""
-    try:
-        with open("larry_store_info.json", "r") as f:
-            store_info = json.load(f)
-            return {
-                "store_name": store_info.get("store_name"),
-                "total_files": store_info.get("total_files", 0)
-            }
-    except FileNotFoundError:
-        return {"store_name": None, "total_files": 0}
+# OLD: Google File Search (replaced with Supabase)
+# def load_file_search_config() -> Dict[str, Any]:
+#     """Load File Search configuration"""
+#     try:
+#         with open("larry_store_info.json", "r") as f:
+#             store_info = json.load(f)
+#             return {
+#                 "store_name": store_info.get("store_name"),
+#                 "total_files": store_info.get("total_files", 0)
+#             }
+#     except FileNotFoundError:
+#         return {"store_name": None, "total_files": 0}
+
+
+@st.cache_resource
+def get_knowledge_base():
+    """Initialize Supabase knowledge base"""
+    return SupabaseKnowledgeBase()
 
 
 def get_gemini_client() -> genai.Client:
@@ -129,9 +139,23 @@ def stream_larry_response(
     client: genai.Client,
     user_message: str,
     conversation_history: List[Dict[str, str]],
-    file_search_store: str
+    kb: SupabaseKnowledgeBase
 ) -> Iterator[str]:
-    """Stream Larry's response"""
+    """Stream Larry's response using Supabase knowledge base"""
+
+    # Retrieve context from Supabase
+    context_chunks = kb.retrieve_context(
+        query=user_message,
+        top_k=5,
+        threshold=0.5
+    )
+
+    # Format context for LLM
+    context_text = ""
+    if context_chunks:
+        context_text = "\n\n## 📚 Context from PWS Course Materials:\n\n"
+        context_text += kb.format_context_for_llm(context_chunks, include_similarity=False)
+
     # Build conversation
     contents = []
 
@@ -158,29 +182,26 @@ def stream_larry_response(
             "parts": [{"text": msg["content"]}]
         })
 
-    # Current message
+    # Current message (with context if available)
+    current_message = user_message
+    if context_text:
+        current_message = f"{context_text}\n\n{user_message}"
+
     contents.append({
         "role": "user",
-        "parts": [{"text": user_message}]
+        "parts": [{"text": current_message}]
     })
 
-    # Configure File Search
+    # Configure (NO File Search - using Supabase instead)
     config = types.GenerateContentConfig(
         temperature=0.7,
         top_p=0.95,
-        max_output_tokens=2048,
-        tools=[
-            types.Tool(
-                file_search=types.FileSearch(
-                    file_search_store=file_search_store
-                )
-            )
-        ]
+        max_output_tokens=2048
     )
 
     # Stream response
     response = client.models.generate_content_stream(
-        model="gemini-3-pro-preview",
+        model="gemini-2.0-flash-exp",
         contents=contents,
         config=config
     )
@@ -321,12 +342,9 @@ def main():
         st.error("❌ GOOGLE_AI_API_KEY not found.")
         st.stop()
 
-    # Load config
-    file_search_config = load_file_search_config()
-    file_search_store = file_search_config.get("store_name")
-
-    # Get client
+    # Get client and knowledge base
     client = get_gemini_client()
+    kb = get_knowledge_base()
 
     # Render UI
     render_header()
@@ -374,7 +392,7 @@ def main():
                 client,
                 user_input,
                 st.session_state.messages,
-                file_search_store
+                kb
             ):
                 full_response += chunk
                 response_placeholder.markdown(full_response + "▌")
