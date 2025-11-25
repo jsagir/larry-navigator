@@ -276,13 +276,23 @@ def render_sidebar():
         st.header("⚙️ Settings")
 
         # Supabase Knowledge Base status
-        try:
-            kb = get_knowledge_base()
-            stats = kb.get_stats()
-            total_chunks = stats.get('total_chunks', 0)
-            st.success(f"✅ Knowledge Base: {total_chunks} chunks (Supabase)")
-        except Exception as e:
-            st.warning("⚠️ Knowledge Base: Connection issue")
+        supabase_url = os.getenv("SUPABASE_URL") or st.secrets.get("SUPABASE_URL")
+        supabase_key = os.getenv("SUPABASE_KEY") or st.secrets.get("SUPABASE_KEY")
+
+        if not (supabase_url and supabase_key):
+            st.warning("⚠️ Knowledge Base: Not configured")
+            st.caption("Add SUPABASE_URL and SUPABASE_KEY to Streamlit secrets")
+        else:
+            try:
+                kb = get_knowledge_base()
+                stats = kb.get_stats()
+                total_chunks = stats.get('total_chunks', 0)
+                if total_chunks > 0:
+                    st.success(f"✅ Knowledge Base: {total_chunks} chunks (Supabase)")
+                else:
+                    st.warning("⚠️ Knowledge Base: 0 chunks (Check connection)")
+            except Exception as e:
+                st.error(f"⚠️ Knowledge Base: Error - {str(e)[:50]}")
 
         # Tavily status
         if is_tavily_configured():
