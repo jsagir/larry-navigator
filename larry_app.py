@@ -200,8 +200,10 @@ def stream_larry_response(
     )
 
     # Stream response
+    # Using gemini-2.0-flash-exp for fast conversational responses
+    # Agents use same model for consistency
     response = client.models.generate_content_stream(
-        model="gemini-1.5-flash",
+        model="gemini-2.0-flash-exp",
         contents=contents,
         config=config
     )
