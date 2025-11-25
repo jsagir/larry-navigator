@@ -148,7 +148,7 @@ class SupabaseKnowledgeBase:
         """
         try:
             result = self.supabase.table('knowledge_base') \
-                .select('count', count='exact') \
+                .select('*', count='exact') \
                 .limit(1) \
                 .execute()
 
