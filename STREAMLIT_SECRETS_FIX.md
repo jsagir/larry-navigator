@@ -50,10 +50,10 @@ TAVILY_API_KEY = "tvly-your-key-here"
 
 ### ❌ Wrong Format
 ```toml
-GOOGLE_AI_API_KEY: AIzaSy...          # Wrong: colon instead of =
-GOOGLE_AI_API_KEY = AIzaSy...         # Wrong: missing quotes
-GOOGLE_AI_API_KEY = 'AIzaSy...'       # Wrong: single quotes
-GOOGLE_AI_API_KEY = "AIzaSy..."extra  # Wrong: text after closing quote
+GOOGLE_AI_API_KEY: YOUR_GOOGLE_AI_API_KEY          # Wrong: colon instead of =
+GOOGLE_AI_API_KEY = YOUR_GOOGLE_AI_API_KEY         # Wrong: missing quotes
+GOOGLE_AI_API_KEY = 'YOUR_GOOGLE_AI_API_KEY'       # Wrong: single quotes
+GOOGLE_AI_API_KEY = "YOUR_GOOGLE_AI_API_KEY"extra  # Wrong: text after closing quote
 ```
 
 ### ✅ Correct Format

@@ -376,12 +376,12 @@ Output: "Current AI trends show..."
 
 ### Required
 ```bash
-GOOGLE_AI_API_KEY=AIzaSy...  # Gemini 3 (File Search + synthesis)
+GOOGLE_AI_API_KEY=YOUR_GOOGLE_AI_API_KEY  # Gemini 3 (File Search + synthesis)
 ```
 
 ### Optional
 ```bash
-TAVILY_API_KEY=tvly-...     # Web search
+TAVILY_API_KEY=YOUR_TAVILY_API_KEY     # Web search
 NEO4J_URI=neo4j+s://...     # Knowledge graph (rarely used)
 NEO4J_USER=neo4j
 NEO4J_PASSWORD=...
@@ -393,8 +393,8 @@ NEO4J_PASSWORD=...
 
 ```toml
 # .streamlit/secrets.toml
-GOOGLE_AI_API_KEY = "AIzaSy..."
-TAVILY_API_KEY = "tvly-..."  # Optional but recommended
+GOOGLE_AI_API_KEY = "YOUR_GOOGLE_AI_API_KEY"
+TAVILY_API_KEY = "YOUR_TAVILY_API_KEY"  # Optional but recommended
 ```
 
 ### Requirements.txt (Minimal)
@@ -411,7 +411,7 @@ tavily-python==0.3.3
 
 ### Test File Search
 ```bash
-GOOGLE_AI_API_KEY=AIzaSy... python3 -c "
+GOOGLE_AI_API_KEY=YOUR_GOOGLE_AI_API_KEY python3 -c "
 from larry_chat import create_chat_handler
 
 handler = create_chat_handler()
@@ -422,7 +422,7 @@ for chunk in handler.chat('What is JTBD framework?'):
 
 ### Test Web Search
 ```bash
-GOOGLE_AI_API_KEY=AIzaSy... TAVILY_API_KEY=tvly-... python3 -c "
+GOOGLE_AI_API_KEY=YOUR_GOOGLE_AI_API_KEY TAVILY_API_KEY=YOUR_TAVILY_API_KEY python3 -c "
 from larry_chat import create_chat_handler
 
 handler = create_chat_handler()
@@ -434,7 +434,7 @@ for chunk in handler.chat('Latest AI trends in 2025'):
 ### Test Hybrid (Web + File Search)
 ```bash
 # Ask a time-sensitive question that also relates to course material
-GOOGLE_AI_API_KEY=AIzaSy... TAVILY_API_KEY=tvly-... python3 -c "
+GOOGLE_AI_API_KEY=YOUR_GOOGLE_AI_API_KEY TAVILY_API_KEY=YOUR_TAVILY_API_KEY python3 -c "
 from larry_chat import create_chat_handler
 
 handler = create_chat_handler()

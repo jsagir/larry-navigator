@@ -106,7 +106,7 @@ GOOGLE_AI_API_KEY=YOUR_GOOGLE_AI_API_KEY_HERE
 
 ### Optional (Recommended)
 ```bash
-TAVILY_API_KEY=tvly-...  # For web search
+TAVILY_API_KEY=YOUR_TAVILY_API_KEY  # For web search
 ```
 
 ### Optional (Advanced)
@@ -132,7 +132,7 @@ git push origin main
 
 ```toml
 GOOGLE_AI_API_KEY = "YOUR_GOOGLE_AI_API_KEY_HERE"
-TAVILY_API_KEY = "tvly-..."  # Optional but recommended
+TAVILY_API_KEY = "YOUR_TAVILY_API_KEY"  # Optional but recommended
 ```
 
 ### Step 3: Deploy

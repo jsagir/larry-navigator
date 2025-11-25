@@ -90,12 +90,12 @@ anthropic>=0.45.0,<1
 
 #### Required for Web Search
 ```bash
-TAVILY_API_KEY=tvly-xxxxxxxxxxxxxxxxxxxxxxxxxx
+TAVILY_API_KEY=YOUR_TAVILY_API_KEY
 ```
 
 #### Optional (for other features)
 ```bash
-GOOGLE_AI_API_KEY=AIzaSy...  # File Search (required)
+GOOGLE_AI_API_KEY=YOUR_GOOGLE_AI_API_KEY  # File Search (required)
 NEO4J_URI=neo4j+s://...      # Knowledge graph (optional)
 NEO4J_USER=neo4j             # Knowledge graph (optional)
 NEO4J_PASSWORD=...           # Knowledge graph (optional)
@@ -235,7 +235,7 @@ print(route_query("Explain innovation frameworks"))  # → "file_search"
 
 ```bash
 # Set API key
-export TAVILY_API_KEY=tvly-xxxxxxxxxxxxxxxxxx
+export TAVILY_API_KEY=YOUR_TAVILY_API_KEY
 
 # Run test
 python3 -c "
@@ -245,7 +245,7 @@ result = integrate_search_with_response(
     user_message='Latest AI trends in 2025',
     persona='general',
     problem_type='general',
-    tavily_api_key='tvly-xxxxx'
+    tavily_api_key='YOUR_TAVILY_API_KEY'
 )
 
 print(result)
@@ -256,7 +256,7 @@ print(result)
 
 ```bash
 # Test end-to-end
-GOOGLE_AI_API_KEY=AIzaSy... TAVILY_API_KEY=tvly-... python3 -c "
+GOOGLE_AI_API_KEY=YOUR_GOOGLE_AI_API_KEY TAVILY_API_KEY=YOUR_TAVILY_API_KEY python3 -c "
 from larry_chat import create_chat_handler
 
 handler = create_chat_handler()
@@ -285,7 +285,7 @@ pip install tavily-python langchain-core langchain-community langchain-anthropic
 **Fix:**
 ```bash
 # For local testing
-export TAVILY_API_KEY=tvly-xxxxxxxxxx
+export TAVILY_API_KEY=YOUR_TAVILY_API_KEY
 
 # For Streamlit Cloud
 # Add to Secrets management in dashboard
@@ -346,8 +346,8 @@ print(f"Results: {len(results.get('results', []))}")
 
 ```toml
 # .streamlit/secrets.toml (for local testing)
-GOOGLE_AI_API_KEY = "AIzaSy..."
-TAVILY_API_KEY = "tvly-..."
+GOOGLE_AI_API_KEY = "YOUR_GOOGLE_AI_API_KEY"
+TAVILY_API_KEY = "YOUR_TAVILY_API_KEY"
 NEO4J_URI = "neo4j+s://..."  # Optional
 NEO4J_USER = "neo4j"         # Optional
 NEO4J_PASSWORD = "..."       # Optional
