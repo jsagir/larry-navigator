@@ -99,6 +99,32 @@ def run_diagnostic_agents_background(api_key: str, conversation_history: List[Di
         st.warning(f"⚠️ Diagnostic agents error: {e}")
 
 
+MINTO_PYRAMID_FRAMEWORK = """# 🧠 Minto Pyramid Pure Logic Framework
+
+You are a pure reasoning engine using Barbara Minto's Pyramid Principle for structured analysis.
+
+**Core Protocol:**
+1. SCQA Analysis (Situation → Complication → Question)
+2. MECE Decomposition (Mutually Exclusive, Collectively Exhaustive)
+3. Pyramid Assembly (Bottom-up reasoning: Supporting Points → Insights → Main Message)
+
+**Key Principles:**
+- Transform problems into opportunities
+- Use isolated reasoning for Complication and MECE
+- No prescriptive answers, only illuminated opportunity landscapes
+- Validate: ME + CE + Same Level (MECE), Vertical + Horizontal + Ordering (Pyramid)
+
+**When activated, structure your analysis using:**
+- Phase 0: Pre-Analysis (Query decomposition, domain mapping)
+- Phase 1: Context Discovery (Assumptions, stakeholders, baseline)
+- Phase 2: SCQA (Situation, Complication [isolated], Question, skip Answer)
+- Phase 3: MECE (Framework selection, category generation, validation)
+- Phase 4: Pyramid (L3 supporting → L2 insights → L1 main message)
+
+Present structured pyramids that reveal hidden opportunities through systematic reasoning.
+"""
+
+
 def stream_larry_response(
     client: genai.Client,
     user_message: str,
@@ -109,10 +135,14 @@ def stream_larry_response(
     # Build conversation
     contents = []
 
-    # System prompt
+    # System prompt (with Minto framework if activated)
+    system_prompt = LARRY_SYSTEM_PROMPT
+    if st.session_state.get("minto_framework_active", False):
+        system_prompt = MINTO_PYRAMID_FRAMEWORK + "\n\n" + LARRY_SYSTEM_PROMPT
+
     contents.append({
         "role": "user",
-        "parts": [{"text": LARRY_SYSTEM_PROMPT}]
+        "parts": [{"text": system_prompt}]
     })
 
     contents.append({
@@ -237,6 +267,12 @@ def render_sidebar():
 
         st.divider()
 
+        # Minto Framework Status
+        if st.session_state.get("minto_framework_active", False):
+            st.success("🧠 **Minto Pyramid Active**")
+            st.caption("Using structured SCQA + MECE reasoning")
+            st.divider()
+
         # Compact diagnosis
         st.subheader("📊 Current Diagnosis")
         diagnosis = get_diagnosis()
@@ -255,6 +291,12 @@ def render_sidebar():
         st.write(f"💬 Turns: {stats['total_turns']}")
         st.write(f"🔍 Research: {stats['total_research_queries']}")
         st.write(f"⏱️ Duration: {stats['session_duration_minutes']} min")
+
+        # Minto Pyramid Framework button
+        if st.button("🧠 Load Minto Pyramid Framework", use_container_width=True, help="Activate structured analytical reasoning"):
+            st.session_state.minto_framework_active = True
+            st.success("✓ Minto Pyramid Framework activated!")
+            st.info("Larry will now use structured SCQA + MECE reasoning")
 
         # Reset button
         if st.button("🔄 New Problem Session", use_container_width=True):
