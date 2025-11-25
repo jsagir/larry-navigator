@@ -273,12 +273,14 @@ def render_sidebar():
     with st.sidebar:
         st.header("⚙️ Settings")
 
-        # File Search status
-        file_search_config = load_file_search_config()
-        if file_search_config.get("store_name"):
-            st.success(f"✅ File Search: {file_search_config.get('total_files', 0)} chunks")
-        else:
-            st.warning("⚠️ File Search not configured")
+        # Supabase Knowledge Base status
+        try:
+            kb = get_knowledge_base()
+            stats = kb.get_stats()
+            total_chunks = stats.get('total_chunks', 0)
+            st.success(f"✅ Knowledge Base: {total_chunks} chunks (Supabase)")
+        except Exception as e:
+            st.warning("⚠️ Knowledge Base: Connection issue")
 
         # Tavily status
         if is_tavily_configured():
